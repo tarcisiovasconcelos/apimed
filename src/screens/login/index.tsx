@@ -62,7 +62,7 @@ export function Login (props: LoginProps) {
       </Formik>
       <View style={styles.container2}>
       <TouchableOpacity onPress={() => nav.navigate('Tela-EsqueceuSenha')}>
-          <Text style={styles.text2}>Esqueceu a senha? Solicite uma nova</Text>
+          <Text style={styles.text2}>TESTANDO OS COMITEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => nav.navigate('Tela-Cadastro')}>
           <Text style={styles.text2}>Não tem uma conta? Clique aqui para criar uma agora.</Text>
