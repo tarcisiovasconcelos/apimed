@@ -1,12 +1,11 @@
 import { useNavigation } from '@react-navigation/core';
-import { StatusBar } from 'expo-status-bar';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { Formik } from 'formik';
 import * as React from 'react';
 import { useState } from 'react';
-import { ActivityIndicator, ImageBackground, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, ToastAndroid, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
@@ -18,14 +17,21 @@ export interface CadastroProps {
 export function Cadastro (props: CadastroProps) {
 
     const nav = useNavigation();
-    const [erro, setErro] = useState<null|string>(null);
+    const [erro] = useState<null|string>(null);
     
         
     const cadastro = async (dados) => {
 
       await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
-      firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha);
-        console.log(dados);       
+      firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)
+      .then(usuario => {
+        if (Platform.OS =="android")
+            ToastAndroid.show("Conta criada com sucesso!", 3000);
+            nav.navigate('Tela-Login')})
+      .catch(erro => {
+        if (Platform.OS == "android")
+            ToastAndroid.show("Já existe conta com esse email", 3000);
+            nav.navigate('Tela-Cadastro')})     
     }
 
     return (
@@ -61,8 +67,8 @@ export function Cadastro (props: CadastroProps) {
           
         </View>
         <View style={styles.rodape}>
-        <TouchableOpacity onPress={() => nav.navigate('Tela-Cadastro')}>
-	        <Text style={styles.text1}>Não tem uma conta? Clique aqui para criar uma agora.</Text>
+        <TouchableOpacity onPress={() => nav.navigate('Tela-Login')}>
+	        <Text style={styles.text1}>Já possui uma conta? Clique aqui para entrar.</Text>
         </TouchableOpacity>
         </View>
       </View>
