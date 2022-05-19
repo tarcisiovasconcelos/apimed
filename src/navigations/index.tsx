@@ -10,6 +10,7 @@ import { Medicamento } from '../screens/medicamento';
 import { Slot } from '../screens/slot';
 import { Notificacao } from '../screens/notificacao';
 import { Esqueceusenha } from '../screens/esqueceusenha';
+import { Start } from '../screens/start';
 
 
 const Stack = createStackNavigator();
@@ -19,6 +20,7 @@ export function MainNavigation(){
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{animationEnabled:true,headerShown:false}}>
+                <Stack.Screen name="Tela-Start" component={Start}/>
                 <Stack.Screen name="Tela-Login" component={Login}/>
                 <Stack.Screen name="Tela-Cadastro" component={Cadastro}/>
                 <Stack.Screen name="Tela-EsqueceuSenha" component={Esqueceusenha}/>
