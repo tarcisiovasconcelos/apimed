@@ -14,11 +14,11 @@ export function InputRound (props: InputRoundProps) {
     return (
       <View>
          <Input placeholder={props.placeholder}
-          leftIcon={{name:props.icone, color:"black"}}
+          leftIcon={{name:props.icone, color:"#DEDBDB"}}
           secureTextEntry={props.senha} 
           onBlur={props.onBlur} 
           inputStyle={{color:'black'}}
-          placeholderTextColor="lightgrey"
+          placeholderTextColor="#DEDBDB"
           inputContainerStyle={styles.inputContainer}
           onChangeText={props.onChangeText}
         />
@@ -28,10 +28,9 @@ export function InputRound (props: InputRoundProps) {
 
 const styles = StyleSheet.create({
     inputContainer: { 
-        backgroundColor: '#F1F5F4',
-        padding: 5,
+        backgroundColor: '#0077B6',
         marginBottom: -29,
-        borderRadius: 30
+        borderRadius: 15
       }
     
 });

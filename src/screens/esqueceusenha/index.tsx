@@ -15,7 +15,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export interface EsqueceuSenhaProps {
 }
 //LOGIN
-export function esqueceusenha (props: EsqueceuSenhaProps) {
+export function Esqueceusenha (props: EsqueceuSenhaProps) {
 
     const nav = useNavigation();
 
