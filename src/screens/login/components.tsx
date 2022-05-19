@@ -17,7 +17,7 @@ export function InputRound (props: InputRoundProps) {
           leftIcon={{name:props.icone, color:"#DEDBDB"}}
           secureTextEntry={props.senha} 
           onBlur={props.onBlur} 
-          inputStyle={{color:'black'}}
+          inputStyle={{color:'#DEDBDB'}}
           placeholderTextColor="#DEDBDB"
           inputContainerStyle={styles.inputContainer}
           onChangeText={props.onChangeText}

@@ -22,6 +22,8 @@ export function Login (props: LoginProps) {
         
     const login = async (dados:any) => {
 
+      await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
+
       firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
         .then(usuario => nav.navigate('Tela-Home'))
         .catch(erro => {
@@ -42,7 +44,7 @@ export function Login (props: LoginProps) {
         initialValues={{email:'', senha: ''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no minimo 6 dígitos')
+          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no máximo 6 dígitos')
 
         })}
         onSubmit={login}>
@@ -58,7 +60,7 @@ export function Login (props: LoginProps) {
           <InputRound onBlur={handleBlur('senha')} placeholder="Digite sua senha" icone="lock" senha onChangeText={handleChange('senha')}/>
           { touched.senha && <Text style={styles.text2}>{errors.senha}</Text>}
           { erro != null && <Text style={styles.text2}>{erro}</Text>}
-          { isSubmitting && <ActivityIndicator size="large" color="black"/>}
+          { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
           { !isSubmitting && <Button title="Logar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
           <View style={{marginTop: 15}}>
           <TouchableOpacity onPress={() => nav.navigate('Tela-EsqueceuSenha')}>
