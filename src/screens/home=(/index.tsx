@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
-
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from 'react-native-ico-material-design';
 
 export interface HomeProps {
 }
@@ -18,7 +18,9 @@ export function Home (props: HomeProps) {
 
         <View style={styles.headcontainer}>
             <Text style={styles.title2}>Meus Dispositivos</Text>
-            <Text style={styles.title2}>+</Text>     
+            <TouchableOpacity>
+            <Icon name="add-plus-button" height="20" width="20" color="#DEDBDB" />
+            </TouchableOpacity>     
         </View>
 
         <View style={styles.container}>        
@@ -60,8 +62,6 @@ export function Home (props: HomeProps) {
         width:315,
         height: 25,
         marginTop: 50,
-        backgroundColor: 'black'
-
     },
 
     container:{
