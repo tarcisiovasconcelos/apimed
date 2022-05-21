@@ -41,7 +41,7 @@ export function Cadastro (props: CadastroProps) {
         </View>
         <View style={styles.container}>
         <Formik
-        initialValues={{user:'',email:'', senha: ''}}
+        initialValues={{user:'',email:'', senha: '', senha1:''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
           senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos')
@@ -72,7 +72,7 @@ export function Cadastro (props: CadastroProps) {
 
           <Text style={styles.title2}>Confirmar Senha</Text>
           <InputRound onBlur={handleBlur('senha1')} placeholder="Digite novamente sua senha" icone="lock" senha onChangeText={handleChange('senha1')}/>
-          { touched.senha && <Text style={styles.text2}>{errors.senha1}</Text>}
+          { touched.senha1 && <Text style={styles.text2}>{errors.senha1}</Text>}
           { erro != null && <Text style={styles.text2}>{erro}</Text>}
           { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
           { !isSubmitting && <Button title="Cadastrar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
