@@ -5,7 +5,7 @@ import "firebase/compat/firestore"
 import { Formik } from 'formik';
 import * as React from 'react';
 import { useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, Platform, ToastAndroid, View, Image } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, Platform,ToastAndroid, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';

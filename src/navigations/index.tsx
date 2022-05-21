@@ -5,6 +5,7 @@ import { Login } from '../screens/login';
 import { Cadastro } from '../screens/cadastro';
 import { Esqueceusenha } from '../screens/esqueceusenha';
 import { Start } from '../screens/start';
+import { Home } from '../screens/home=(';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ export function MainNavigation(){
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{animationEnabled:true,headerShown:false}}>
+                <Stack.Screen name="Tela-Home" component={Home}/>
                 <Stack.Screen name="Tela-Start" component={Start}/>
                 <Stack.Screen name="Tela-Login" component={Login}/>
                 <Stack.Screen name="Tela-Cadastro" component={Cadastro}/>
