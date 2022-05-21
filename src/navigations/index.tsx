@@ -16,7 +16,7 @@ export function MainNavigation(){
         <NavigationContainer>
             <Stack.Navigator screenOptions={{animationEnabled:true,headerShown:false}}>
                 <Stack.Screen name="Tela-Home" component={Home}/>
-                <Stack.Screen name="Tela-Start" component={Start}/>
+                <Stack.Screen name="Tela-Start" component={Start}/>                
                 <Stack.Screen name="Tela-Login" component={Login}/>
                 <Stack.Screen name="Tela-Cadastro" component={Cadastro}/>
                 <Stack.Screen name="Tela-EsqueceuSenha" component={Esqueceusenha}/>        

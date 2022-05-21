@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 
 
 export interface HomeProps {
@@ -10,16 +11,22 @@ export function Home (props: HomeProps) {
 
     return (
     <View style={styles.background}>
-      <View style={styles.head}>
-	
-      </View>
+        <View style={styles.head}>
+            <Text style={styles.title1}>Ola, seja bem-vindo(a)!</Text>
+            <Text style={styles.title2}>Nome Aqui</Text>
+        </View>
 
-      <View style={styles.container}>        
+        <View style={styles.headcontainer}>
+            <Text style={styles.title2}>Meus Dispositivos</Text>
+            <Text style={styles.title2}>+</Text>     
+        </View>
+
+        <View style={styles.container}>        
     
-      </View>
-      <View style={styles.rodape}>
+        </View>
+        <View style={styles.rodape}>
 
-      </View>
+        </View>
 
     </View>
       
@@ -32,14 +39,13 @@ export function Home (props: HomeProps) {
       flex: 1,
       backgroundColor: '#0077B6',
       alignItems: 'center',
-      justifyContent: 'space-evenly',
     },
 
     head:{
       alignItems:'center',
       width: 315,
-      height: 140,
-      marginTop:50
+      height: 50,
+      marginTop:80,
     },
   
     logo:{
@@ -47,11 +53,23 @@ export function Home (props: HomeProps) {
       height:140,    
     },
 
+    headcontainer:{
+        flex:0,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:315,
+        height: 25,
+        marginTop: 50,
+        backgroundColor: 'black'
+
+    },
+
     container:{
+      flex:0,
       width: 315,
-      height: 255,
-      marginTop: 50,
-      alignItems: 'center',
+      height: 455,
+      marginTop: 5,
+      backgroundColor: 'purple'
     },
 
     btn:{
@@ -65,10 +83,11 @@ export function Home (props: HomeProps) {
     },
 
     rodape:{
-      flex:1,
+      flex:0,
       width: 315,
       height: 50,
       alignItems: 'center',
+      backgroundColor:'black'
 
     },
 
