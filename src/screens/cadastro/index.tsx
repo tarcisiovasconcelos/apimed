@@ -5,7 +5,7 @@ import "firebase/compat/firestore"
 import { Formik } from 'formik';
 import * as React from 'react';
 import { useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, Platform, ToastAndroid, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
@@ -37,7 +37,7 @@ export function Cadastro (props: CadastroProps) {
     return (
       <View style={styles.background}>
         <View style={styles.head}>
-
+        <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
         </View>
         <View style={styles.container}>
         <Formik
@@ -99,10 +99,15 @@ const styles = StyleSheet.create({
   },
 
   head:{
-    backgroundColor: 'silver',
+    alignItems:'center',
     width: 315,
     height: 140,
     marginTop:50
+  },
+
+  logo:{
+    width:245,
+    height:140,    
   },
 
   container:{

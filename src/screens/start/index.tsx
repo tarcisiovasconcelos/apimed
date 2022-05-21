@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, View, Text , ImageBackground, ActivityIndicator, YellowBox, Platform, ToastAndroid } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text , Image } from 'react-native';
 import { Button } from 'react-native-elements';
-import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { useState } from 'react';
-import { InputRound } from './components';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/core';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export interface StartProps {
 }
@@ -21,13 +15,13 @@ export function Start (props: StartProps) {
     const [erro, setErro] = useState<null|string>(null);
         
     const start = async (dados:any) => {
-
-      await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
+      nav.navigate('Tela-Login')
     }
 
     return (
     <View style={styles.background}>
       <View style={styles.head}>
+	      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
       </View>
 
       <View style={styles.container}>        
@@ -37,7 +31,7 @@ export function Start (props: StartProps) {
         </Text>
       </View>
       <View style={styles.rodape}>
-        <Button buttonStyle={styles.btn} title="Começar" onPress={() => nav.navigate('Tela-Login')}></Button>
+        <Button buttonStyle={styles.btn} title="Começar" onPress={start}></Button>
       </View>
 
     </View>
@@ -52,16 +46,18 @@ export function Start (props: StartProps) {
       backgroundColor: '#0077B6',
       alignItems: 'center',
       justifyContent: 'space-evenly',
-      
-      
     },
 
     head:{
-      backgroundColor: 'silver',
+      alignItems:'center',
       width: 315,
       height: 140,
       marginTop:50
-
+    },
+  
+    logo:{
+      width:245,
+      height:140,    
     },
 
     container:{
@@ -69,9 +65,6 @@ export function Start (props: StartProps) {
       height: 255,
       marginTop: 50,
       alignItems: 'center',
-      backgroundColor:'green'
-
-
     },
 
     btn:{
@@ -81,10 +74,7 @@ export function Start (props: StartProps) {
       width: 165,
       borderColor: '#DEDBDB',
       borderRightWidth: 5,
-      borderLeftWidth: 5,
-      
-
-
+      borderLeftWidth: 5, 
     },
 
     rodape:{
@@ -116,7 +106,6 @@ export function Start (props: StartProps) {
       textAlign: 'center',
       fontSize: 10,
       color: '#DEDBDB',
-
     },
 
     text2:{

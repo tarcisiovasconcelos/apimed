@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, View, Text , ImageBackground, ActivityIndicator, YellowBox, Platform, ToastAndroid } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text ,  ActivityIndicator, Platform, Image, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
-import { useState } from 'react';
 import { InputRound } from './components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigation } from '@react-navigation/core';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export interface EsqueceuSenhaProps {
 }
 //LOGIN
 export function Esqueceusenha (props: EsqueceuSenhaProps) {
 
-    const nav = useNavigation();
-
-    const [erro, setErro] = useState<null|string>(null);
         
     const requestPassword = async (dados:any) => {
 
@@ -40,8 +33,8 @@ export function Esqueceusenha (props: EsqueceuSenhaProps) {
     return (
     <View style={styles.background}>
       <View style={styles.head}>
-
-      </View >
+	      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
+      </View>
       <View style={styles.container}>
         <Formik
         initialValues={{email:'', senha: ''}}
@@ -77,11 +70,15 @@ const styles = StyleSheet.create({
   },
 
   head:{
-    backgroundColor: 'silver',
+    alignItems:'center',
     width: 315,
     height: 140,
-    marginTop:50,
+    marginTop:50
+  },
 
+  logo:{
+    width:245,
+    height:140,    
   },
 
   container:{

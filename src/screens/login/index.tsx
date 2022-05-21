@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text , ImageBackground, ActivityIndicator, YellowBox, Platform, ToastAndroid } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text , ActivityIndicator, Image, Platform, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -37,7 +36,7 @@ export function Login (props: LoginProps) {
     return (
       <View style={styles.background}>
         <View style={styles.head}>
-
+	        <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
         </View>
         <View style={styles.container}>
         <Formik
@@ -89,11 +88,15 @@ export function Login (props: LoginProps) {
     },
 
     head:{
-      backgroundColor: 'silver',
+      alignItems:'center',
       width: 315,
       height: 140,
-      marginTop:50,
-
+      marginTop:50
+    },
+  
+    logo:{
+      width:245,
+      height:140,    
     },
 
     container:{
