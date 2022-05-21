@@ -85,7 +85,6 @@ export function Login (props: LoginProps) {
       flex: 1,
       backgroundColor: '#0077B6',
       alignItems: 'center',
-      justifyContent: 'space-around'
       
     },
 
@@ -93,12 +92,14 @@ export function Login (props: LoginProps) {
       backgroundColor: 'silver',
       width: 315,
       height: 140,
+      marginTop:50,
 
     },
 
     container:{
       width: 315,
       height: 355,
+      marginTop:50,
     },
 
     btn:{
@@ -109,6 +110,7 @@ export function Login (props: LoginProps) {
     rodape:{
       width: 315,
       height: 50,
+      marginTop:50,
 
     },
 

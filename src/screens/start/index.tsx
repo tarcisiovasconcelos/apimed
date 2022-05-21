@@ -26,31 +26,21 @@ export function Start (props: StartProps) {
     }
 
     return (
-      <View style={styles.background}>
-        <View style={styles.head}>
-
-        </View>
-
-        <View style={styles.container}>
-        
-        <Text style={styles.title2}>
-          Seja bem vindo ao aplicativo Remédio na Hora, 
-          aqui você encontra informações sobre medicamentos utilizados no tratamento de transtornos mentais,
-          além de contar com a possibilidade de integrar nosso sistema a um dispositivo que armazena, alerta
-          e indica quando seu paciente deve tomar a medicação!
-        </Text>
-
-        <Text style={styles.title2}>
-          Acompanhar o tratamento e bem-estar de quem você mais ama é nosso ideal! 
-        </Text>
-        <Button buttonStyle={styles.btn} title="Começar" onPress={() => nav.navigate('Tela-Login')}></Button>
-        </View>
-
-        <View style={styles.rodape}>
-
-        </View>
-
+    <View style={styles.background}>
+      <View style={styles.head}>
       </View>
+
+      <View style={styles.container}>        
+        <Text style={styles.title2}>
+          Seja bem vindo ao aplicativo Remédio na Hora,
+          Acompanhar o tratamento e bem-estar de quem você mais ama é nosso ideal!  
+        </Text>
+      </View>
+      <View style={styles.rodape}>
+        <Button buttonStyle={styles.btn} title="Começar" onPress={() => nav.navigate('Tela-Login')}></Button>
+      </View>
+
+    </View>
       
         
     );
@@ -75,13 +65,12 @@ export function Start (props: StartProps) {
     },
 
     container:{
-      flex:2,
       width: 315,
-      height: 355,
-      marginTop: 30,
-      marginBottom: 30,
+      height: 255,
+      marginTop: 50,
       alignItems: 'center',
-      justifyContent: 'space-between',
+      backgroundColor:'green'
+
 
     },
 
@@ -102,6 +91,7 @@ export function Start (props: StartProps) {
       flex:1,
       width: 315,
       height: 50,
+      alignItems: 'center',
 
     },
 

@@ -41,16 +41,24 @@ export function Cadastro (props: CadastroProps) {
         </View>
         <View style={styles.container}>
         <Formik
-        initialValues={{email:'', senha: ''}}
+        initialValues={{user:'',email:'', senha: ''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no máximo 6 dígitos')
+          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos')
+          .max(6,'A senha deve conter no máximo 6 dígitos'),
+          user: Yup.string() .required('*Campo Obrigatório*'),
+          senha1: Yup.string().required('*Campo Obrigatório*').oneOf([Yup.ref('senha')], 'as senhas precisam ser iguais'),
+
 
         })}
         onSubmit={cadastro}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
         <View>
           <Text style={styles.title1}>Cadastrar</Text>
+
+          <Text style={styles.title2}>Nome</Text>
+          <InputRound onBlur={handleBlur('user')} placeholder="Digite seu nome" icone="person" onChangeText={handleChange('user')}/>
+          { touched.user && <Text style={styles.text2}>{errors.user}</Text>}
 
           <Text style={styles.title2}>E-mail</Text>
           <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
@@ -59,6 +67,12 @@ export function Cadastro (props: CadastroProps) {
           <Text style={styles.title2}>Senha</Text>
           <InputRound onBlur={handleBlur('senha')} placeholder="Digite sua senha" icone="lock" senha onChangeText={handleChange('senha')}/>
           { touched.senha && <Text style={styles.text2}>{errors.senha}</Text>}
+          { erro != null && <Text style={styles.text2}>{erro}</Text>}
+
+
+          <Text style={styles.title2}>Confirmar Senha</Text>
+          <InputRound onBlur={handleBlur('senha1')} placeholder="Digite novamente sua senha" icone="lock" senha onChangeText={handleChange('senha1')}/>
+          { touched.senha && <Text style={styles.text2}>{errors.senha1}</Text>}
           { erro != null && <Text style={styles.text2}>{erro}</Text>}
           { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
           { !isSubmitting && <Button title="Cadastrar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
@@ -81,7 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0077B6',
     alignItems: 'center',
-    justifyContent: 'space-around'
     
   },
 
@@ -89,12 +102,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'silver',
     width: 315,
     height: 140,
+    marginTop:50
 
   },
 
   container:{
     width: 315,
-    height: 355,
+    height: 417,
+    marginTop:50,
+    backgroundColor:'green'
   },
 
   btn:{
@@ -105,6 +121,8 @@ const styles = StyleSheet.create({
   rodape:{
     width: 315,
     height: 50,
+    marginTop:50,
+    backgroundColor:'green'
 
   },
 
