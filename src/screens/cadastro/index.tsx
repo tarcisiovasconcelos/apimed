@@ -103,14 +103,12 @@ const styles = StyleSheet.create({
     width: 315,
     height: 140,
     marginTop:50
-
   },
 
   container:{
     width: 315,
     height: 417,
     marginTop:50,
-    backgroundColor:'green'
   },
 
   btn:{
@@ -122,8 +120,6 @@ const styles = StyleSheet.create({
     width: 315,
     height: 50,
     marginTop:50,
-    backgroundColor:'green'
-
   },
 
   //CSS DE TEXTO

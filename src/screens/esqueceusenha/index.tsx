@@ -21,113 +21,117 @@ export function Esqueceusenha (props: EsqueceuSenhaProps) {
 
     const [erro, setErro] = useState<null|string>(null);
         
-    const esqueceusenha = async (dados:any) => {
+    const requestPassword = async (dados:any) => {
+
+        await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
         firebase.auth().sendPasswordResetEmail(dados.email)
+        .then(usuario => {
+        if (Platform.OS =="android")
+          ToastAndroid.show("Enviamos um link no seu e-mail!", 3000);
+        })
+        .catch(erro => {
+        if (Platform.OS == "android")
+          ToastAndroid.show("Desculpe, Não encontramos conta com esse email.", 3000);
+        })     
+    }
 
       
-        }
 
     return (
-      <ImageBackground source={require('./../../assets/imgs/bg2.png')}
-                            style={styles.background}>
-      
-      <Formik
-        initialValues={{email:''}}
+    <View style={styles.background}>
+      <View style={styles.head}>
+
+      </View >
+      <View style={styles.container}>
+        <Formik
+        initialValues={{email:'', senha: ''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-
         })}
-        onSubmit={esqueceusenha}>
+        onSubmit={requestPassword}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
-        <View style={styles.container}>
-          <Text style={styles.text1}>Entrar</Text>
-
-          <Text style={{paddingLeft: 30}}>E-mail</Text>
-          <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
-          { touched.email && <Text style={styles.errorLabel}>{errors.email}</Text>}
-          
-        
-          { erro != null && <Text style={styles.errorLabel}>{erro}</Text>}
-          { isSubmitting && <ActivityIndicator style={styles.bolinha}  size="large" color="black"/>}
-          { !isSubmitting && <Button title="Nova Senha" onPress={handleSubmit} buttonStyle={{borderRadius: 30, backgroundColor: '#1C3144', marginTop: 10}}></Button>}
-        </View>)}
-        
-      </Formik>
-      <View style={styles.container2}>
-      <TouchableOpacity onPress={() => nav.navigate('Tela-Cadastro')}>
-          <Text style={styles.text2}>Não tem uma conta? Clique aqui para criar uma agora.</Text>
-      </TouchableOpacity>
+        <View>
+          <Text style={styles.title1}>Já estamos quase lá.</Text>
       
-      <StatusBar style="dark"/>
+          <Text style={styles.title2}>E-mail</Text>
+          <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
+          { touched.email && <Text style={styles.text2}>{errors.email}</Text>}        
+       
+          { !isSubmitting && <Button title="Recuperar senha" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
+          { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
+        </View>
+      
+        )}
+        </Formik>        
       </View>
-      <View style={styles.rodape}>
-
-      </View>
-      </ImageBackground>
-    );
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: '#0077B6',
+    alignItems: 'center',
+    
+  },
 
-//CSS BACKGROUND + INDICATOR
-background: {
-  width: '100%',
-  height: '100%',  
-},
+  head:{
+    backgroundColor: 'silver',
+    width: 315,
+    height: 140,
+    marginTop:50,
 
-bolinha: {
-  flexDirection: 'row',
-  justifyContent: 'center',
-  paddingTop: 15
-},
+  },
 
-//CSS VIEWS
-rodape:{
-  flex:1,
-  backgroundColor: 'yellow'
-},
+  container:{
+    width: 315,
+    height: 220,
+    marginTop:50,
 
-container: {
-  flex: 10,
-  flexDirection: 'column',
-  justifyContent: 'center',
-  padding: 30,
-   
-},
+  },
 
-container2: {
-  flex:1,
-  width: '100%',
-  flexDirection: 'column',
-  justifyContent: 'space-around'
+  btn:{
+    borderRadius: 15,
+    backgroundColor: '#00B4D8',
+  },
 
-},
+  rodape:{
+    width: 315,
+    height: 50,
+    marginTop:50,
 
-//CSS TEXTOS
-text2: {
-  color:'black',
-  fontSize: 11,
-  textAlign: 'center',
-  textDecorationLine: 'underline',
-},
+  },
 
-text1: {
-  textAlign: 'center',
-  padding: 10,
-  color:'black',
-  fontSize: 20,
-  paddingLeft: 30,
-  paddingTop:50,
-  fontStyle: 'italic'
-},
+  //CSS DE TEXTO
+  title1:{
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
 
-errorLabel: {
-  color:'red',
-  fontSize: 12,
-  marginTop: 0,
-  marginBottom: 5,
-  textAlign: 'center'
-  
-}
+  },
 
-})
+  title2:{
+    textAlign: 'left',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
+  },
+
+  text1:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+
+  },
+
+  text2:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+
+  },
+});
+
