@@ -20,7 +20,7 @@ export function Cadastro (props: CadastroProps) {
     const [erro] = useState<null|string>(null);
     
         
-    const cadastro = async (dados) => {
+    const cadastro = async (dados:any) => {
 
       await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
       firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)

@@ -28,8 +28,6 @@ export function Login (props: LoginProps) {
         .catch(erro => {
           if (Platform.OS == "android")
               ToastAndroid.show("email ou senha incorreta", 3000);
-          else
-            setErro("email ou senha incorreta");
         })
     }
 
