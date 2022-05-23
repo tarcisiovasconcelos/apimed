@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 export function MyTabs(){
   return (
-    <Tab.Navigator screenOptions={{headerShown:false}}>
+    <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
       <Tab.Screen name="Medicamentos" component={Medicamento} options={{
           tabBarActiveBackgroundColor:'#00B4D8',
           tabBarShowLabel:false,
