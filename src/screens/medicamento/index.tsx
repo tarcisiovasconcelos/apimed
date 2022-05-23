@@ -91,9 +91,11 @@ export function Medicamento (props: MedicamentoProps) {
 
     inputContainer: { 
       backgroundColor: '#0077B6',
+      borderColor:"#DEDBDB",
+      borderWidth: 1,
       borderRadius: 15,
       width: 250,
-      height: 50,
+      height: 30,
       color:"#DEDBDB"
     },
 
@@ -119,13 +121,12 @@ export function Medicamento (props: MedicamentoProps) {
 
     btn:{
       borderColor: '#DEDBDB',
-      marginTop:5
     },
 
     barra:{
       flex:0,
       width: 315,
-      height: 80,
+      height: 50,
       marginTop:5,
       flexDirection:'row',
       justifyContent:'space-evenly',
