@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-ico-material-design';
+import { AntDesign } from '@expo/vector-icons'; 
 
 export interface HomeProps {
 }
@@ -19,7 +19,7 @@ export function Home (props: HomeProps) {
         <View style={styles.headcontainer}>
             <Text style={styles.title2}>Meus Dispositivos</Text>
             <TouchableOpacity>
-            <Icon name="add-plus-button" height="20" width="20" color="#DEDBDB" />
+            <AntDesign name="plus" size={24} color="#DEDBDB" />
             </TouchableOpacity>     
         </View>
 
@@ -48,6 +48,7 @@ export function Home (props: HomeProps) {
       width: 315,
       height: 50,
       marginTop:80,
+      backgroundColor:'green'
     },
   
     logo:{
@@ -86,9 +87,9 @@ export function Home (props: HomeProps) {
       flex:0,
       width: 315,
       height: 50,
+      marginTop:50,
       alignItems: 'center',
-      backgroundColor:'black'
-
+      backgroundColor:'black',
     },
 
     //CSS DE TEXTO

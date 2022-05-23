@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'; 
+import ListItem from '../medicamento/ListItem';
+import results from './results';
+import { useState, useEffect } from 'react';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 export interface MedicamentoProps {
@@ -7,21 +13,66 @@ export interface MedicamentoProps {
 //LOGIN
 export function Medicamento (props: MedicamentoProps) {
 
+  const [searchText, setSearchText] = useState('');
+  const [list, setList] = useState(results);
+
+  useEffect(() => {
+    if (searchText === '') {
+      setList(results);
+    } else {
+      setList(
+        results.filter(
+          (item) =>
+            item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        )
+      );
+    }
+  }, [searchText]);
+
+  const handleOrderClick = () => {
+    let newList = [...list];
+
+    newList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+
+    setList(newList);
+  };
+
 
     return (
-    <View style={styles.background}>
-      <View style={styles.head}>
-	
-      </View>
-
-      <View style={styles.container}>        
+    <SafeAreaView style={styles.background}>
     
+      <View style={styles.head}>
+        <Text style={styles.title1}>Medicamentos</Text>	
       </View>
-      <View style={styles.rodape}>
 
+      <View style={styles.barra}>
+        <TextInput
+          style={styles.inputContainer}
+          placeholder="Pesquise um medicamento"
+          placeholderTextColor="#DEDBDB"
+          value={searchText}
+          onChangeText={(t) => setSearchText(t)}
+          />
+          <TouchableOpacity onPress={handleOrderClick} style={styles.btn}>
+            <MaterialCommunityIcons
+              name="order-alphabetical-ascending"
+              size={24}
+              color="#DEDBDB"
+            />
+          </TouchableOpacity>
       </View>
 
-    </View>
+      <View style={styles.container}>
+        <FlatList
+          data={list}
+          style={styles.list}
+          renderItem={({ item }) => <ListItem data={item} />}
+          keyExtractor={(item) => item.id}          
+          />    
+      </View>
+      
+
+    </SafeAreaView>
       
         
     );
@@ -32,14 +83,25 @@ export function Medicamento (props: MedicamentoProps) {
       flex: 1,
       backgroundColor: '#0077B6',
       alignItems: 'center',
-      justifyContent: 'space-evenly',
+    },
+    list:{
+      width:300
+
+    },
+
+    inputContainer: { 
+      backgroundColor: '#0077B6',
+      borderRadius: 15,
+      width: 250,
+      height: 50,
+      color:"#DEDBDB"
     },
 
     head:{
       alignItems:'center',
       width: 315,
-      height: 140,
-      marginTop:50
+      height: 45,
+      marginTop:80,
     },
   
     logo:{
@@ -50,27 +112,24 @@ export function Medicamento (props: MedicamentoProps) {
     container:{
       flex:0,
       width: 315,
-      height: 255,
+      height: 350,
       marginTop: 50,
       alignItems: 'center',
     },
 
     btn:{
-      flexDirection:'column',
-      borderRadius: 15,
-      backgroundColor: '#00B4D8',
-      width: 165,
       borderColor: '#DEDBDB',
-      borderRightWidth: 5,
-      borderLeftWidth: 5, 
+      marginTop:5
     },
 
-    rodape:{
+    barra:{
       flex:0,
       width: 315,
-      height: 50,
-      alignItems: 'center',
-
+      height: 80,
+      marginTop:5,
+      flexDirection:'row',
+      justifyContent:'space-evenly',
+      alignItems:'center',
     },
 
     //CSS DE TEXTO
