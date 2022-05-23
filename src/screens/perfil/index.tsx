@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 
-export interface HomeProps {
+export interface PerfilProps {
 }
 //LOGIN
-export function Home (props: HomeProps) {
+export function Perfil (props: PerfilProps) {
 
 
     return (
@@ -48,6 +48,7 @@ export function Home (props: HomeProps) {
     },
 
     container:{
+      flex:0,
       width: 315,
       height: 255,
       marginTop: 50,
@@ -65,7 +66,7 @@ export function Home (props: HomeProps) {
     },
 
     rodape:{
-      flex:1,
+      flex:0,
       width: 315,
       height: 50,
       alignItems: 'center',
