@@ -13,7 +13,7 @@ export function Home (props: HomeProps) {
     <View style={styles.background}>
         <View style={styles.head}>
             <Text style={styles.title1}>Ola, seja bem-vindo(a)!</Text>
-            <Text style={styles.title2}>Nome Aqui</Text>
+            <Text style={styles.title2}>Tarcisio</Text>
         </View>
 
         <View style={styles.headcontainer}>
