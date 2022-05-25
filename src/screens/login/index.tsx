@@ -24,10 +24,10 @@ export function Login (props: LoginProps) {
       await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
 
       firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
-        .then(usuario => nav.navigate('Tela-Home'))
+        .then(() => nav.navigate('Tela-Home'))
         .catch(erro => {
           if (Platform.OS == "android")
-              ToastAndroid.show("email ou senha incorreta", 3000);
+              ToastAndroid.show("email ou senha incorreta =(", 3000);
         })
     }
 

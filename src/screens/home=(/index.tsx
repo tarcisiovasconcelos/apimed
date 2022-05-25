@@ -2,18 +2,25 @@ import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
+import { useState } from 'react';
 
 export interface HomeProps {
+
+}
+
+interface User {
+  name: string;
 }
 //LOGIN
 export function Home (props: HomeProps) {
+    const [user, setUser] = useState<User>({} as User);
 
 
     return (
     <View style={styles.background}>
         <View style={styles.head}>
             <Text style={styles.title1}>Ola, seja bem-vindo(a)!</Text>
-            <Text style={styles.title2}>Nome Aqui</Text>
+            <Text style={styles.title2}>Nome Aqui: {user.name}</Text>
         </View>
 
         <View style={styles.headcontainer}>
