@@ -27,7 +27,7 @@ export function Login (props: LoginProps) {
         .then(() => nav.navigate('Tela-Home'))
         .catch(erro => {
           if (Platform.OS == "android")
-              ToastAndroid.show("email ou senha incorreta =(", 3000);
+              ToastAndroid.show("email ou senha incorreta", 3000);
         })
     }
 
