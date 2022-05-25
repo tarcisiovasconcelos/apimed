@@ -7,7 +7,7 @@ import { firebaseConfig } from './src/config/firebase';
 
 firebase.initializeApp(firebaseConfig);
 
-
+//
 export default function App() {
   return (<MainNavigation/>);
 }

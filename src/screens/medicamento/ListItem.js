@@ -3,13 +3,15 @@ import { TouchableOpacity, View, Image, Text, StyleSheet } from 'react-native';
 
 const ListItem = ({ data }) => {
   return (
-    <TouchableOpacity style={styles.item}>
-      <Image source={{ uri: data.avatar }} style={styles.itemPhoto} />
       <View style={styles.itemInfo}>
-        <Text style={styles.itemP1}>{data.name}</Text>
-        <Text style={styles.itemP2}>{data.descricao}</Text>
+        <Text style={styles.title1}>{data.name}</Text>
+        <Text style={styles.title2}>{data.descricao}</Text>
+        <Text style={styles.text1}>{data.textdesc}</Text>
+        <Text style={styles.title2}>{data.efeitos}</Text>
+        <Text style={styles.text1}>{data.textefec}</Text>
+        <Text style={styles.title2}>{data.interacao}</Text>
+        <Text style={styles.text1}>{data.textinte}</Text>
       </View>
-    </TouchableOpacity>
   );
 };
 
@@ -23,22 +25,38 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
   },
-  itemPhoto: {
-    width: 50,
-    height: 50,
-    borderRadius: 30,
-  },
+
   itemInfo: {
-    marginLeft: 20,
+    alignItems:'flex-start',
   },
-  itemP1: {
-    fontSize: 22,
-    color: 'black',
-    marginBottom: 5
+
+  title1:{
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
   },
-  itemP2: {
-    fontSize: 18,
-    color: 'grey',
+
+  title2:{
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
+  },
+
+  text1:{
+    textAlign: 'left',
+    fontSize: 10,
+    color: '#DEDBDB',
+  },
+
+  text2:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+
   },
 });
 

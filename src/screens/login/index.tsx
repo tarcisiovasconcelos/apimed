@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text , ImageBackground, ActivityIndicator, YellowBox, Platform, ToastAndroid } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text , ActivityIndicator, Image, Platform, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -22,121 +21,129 @@ export function Login (props: LoginProps) {
         
     const login = async (dados:any) => {
 
+      await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
+
       firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
-        .then(usuario => nav.navigate('Tela-Home'))
+        .then(() => nav.navigate('Tela-Home'))
         .catch(erro => {
           if (Platform.OS == "android")
               ToastAndroid.show("email ou senha incorreta", 3000);
-          else
-            setErro("email ou senha incorreta");
         })
     }
 
     return (
-      <ImageBackground source={require('./../../assets/imgs/bg2.png')}
-                            style={styles.background}>
-      
-      <Formik
+      <View style={styles.background}>
+        <View style={styles.head}>
+	        <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
+        </View>
+        <View style={styles.container}>
+        <Formik
         initialValues={{email:'', senha: ''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no minimo 6 dígitos')
+          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no máximo 6 dígitos')
 
         })}
         onSubmit={login}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
-        <View style={styles.container}>
-          <Text style={styles.text1}>Entrar</Text>
+        <View>
+          <Text style={styles.title1}>Entrar</Text>
 
-          <Text style={{paddingLeft: 30}}>E-mail</Text>
+          <Text style={styles.title2}>E-mail</Text>
           <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
-          { touched.email && <Text style={styles.errorLabel}>{errors.email}</Text>}
+          { touched.email && <Text style={styles.text2}>{errors.email}</Text>}
           
-          <Text style={{paddingLeft: 30}}>Senha</Text>
+          <Text style={styles.title2}>Senha</Text>
           <InputRound onBlur={handleBlur('senha')} placeholder="Digite sua senha" icone="lock" senha onChangeText={handleChange('senha')}/>
-          { touched.senha && <Text style={styles.errorLabel}>{errors.senha}</Text>}
-          { erro != null && <Text style={styles.errorLabel}>{erro}</Text>}
-          { isSubmitting && <ActivityIndicator style={styles.bolinha}  size="large" color="black"/>}
-          { !isSubmitting && <Button title="Logar" onPress={handleSubmit} buttonStyle={{borderRadius: 30, backgroundColor: '#1C3144', marginTop: 10}}></Button>}
+          { touched.senha && <Text style={styles.text2}>{errors.senha}</Text>}
+          { erro != null && <Text style={styles.text2}>{erro}</Text>}
+          { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
+          { !isSubmitting && <Button title="Logar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
+          <View style={{marginTop: 15}}>
+          <TouchableOpacity onPress={() => nav.navigate('Tela-EsqueceuSenha')}>
+	        <Text style={styles.text1}>Esqueçeu a senha? Clique aqui para recuperar.</Text>
+          </TouchableOpacity>
+          </View>
         </View>)}
       </Formik>
-      <View style={styles.container2}>
-      <TouchableOpacity onPress={() => nav.navigate('Tela-EsqueceuSenha')}>
-          <Text style={styles.text2}>Esqueceu a senha? Solicite uma nova</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => nav.navigate('Tela-Cadastro')}>
-          <Text style={styles.text2}>Não tem uma conta? Clique aqui para criar uma agora.</Text>
-      </TouchableOpacity>
-      <StatusBar style="dark"/>
+          
+        </View>
+        <View style={styles.rodape}>
+        <TouchableOpacity onPress={() => nav.navigate('Tela-Cadastro')}>
+	        <Text style={styles.text1}>Não tem uma conta? Clique aqui para criar uma agora.</Text>
+        </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.rodape}>
-
-      </View>
-      </ImageBackground>
     );
-}
-
-const styles = StyleSheet.create({
-
-//CSS BACKGROUND + INDICATOR
-background: {
-  width: '100%',
-  height: '100%',  
-},
-
-bolinha: {
-  flexDirection: 'row',
-  justifyContent: 'center',
-  paddingTop: 15
-},
-
-//CSS VIEWS
-rodape:{
-  flex:1,
-  backgroundColor: 'yellow'
-},
-
-container: {
-  flex: 10,
-  flexDirection: 'column',
-  justifyContent: 'center',
-  padding: 30,
-   
-},
-
-container2: {
-  flex:1,
-  width: '100%',
-  flexDirection: 'column',
-  justifyContent: 'space-around'
-
-},
-
-//CSS TEXTOS
-text2: {
-  color:'black',
-  fontSize: 11,
-  textAlign: 'center',
-  textDecorationLine: 'underline',
-},
-
-text1: {
-  textAlign: 'center',
-  padding: 10,
-  color:'black',
-  fontSize: 20,
-  paddingLeft: 30,
-  paddingTop:50,
-  fontStyle: 'italic'
-},
-
-errorLabel: {
-  color:'red',
-  fontSize: 12,
-  marginTop: 0,
-  marginBottom: 5,
-  textAlign: 'center'
+  }
   
-}
+  const styles = StyleSheet.create({
+    background: {
+      flex: 1,
+      backgroundColor: '#0077B6',
+      alignItems: 'center',
+      
+    },
 
-})
+    head:{
+      alignItems:'center',
+      width: 315,
+      height: 140,
+      marginTop:50
+    },
+  
+    logo:{
+      width:245,
+      height:140,    
+    },
+
+    container:{
+      width: 315,
+      height: 355,
+      marginTop:50,
+    },
+
+    btn:{
+      borderRadius: 15,
+      backgroundColor: '#00B4D8',
+    },
+
+    rodape:{
+      width: 315,
+      height: 50,
+      marginTop:50,
+
+    },
+
+    //CSS DE TEXTO
+    title1:{
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#DEDBDB',
+
+    },
+
+    title2:{
+      textAlign: 'left',
+      fontSize: 14,
+      fontWeight: 'bold',
+      color: '#DEDBDB',
+
+    },
+
+    text1:{
+      textAlign: 'center',
+      fontSize: 10,
+      color: '#DEDBDB',
+
+    },
+
+    text2:{
+      textAlign: 'center',
+      fontSize: 10,
+      color: '#DEDBDB',
+
+    },
+  });
+  
