@@ -44,7 +44,7 @@ export function Cadastro (props: CadastroProps) {
         initialValues={{user:'',email:'', senha: '', senha1:''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos')
+          senha: Yup.string().required('*Campo Obrigatório*').min(6,'A senha deve conter no minimo 6 dígitos')
           .max(6,'A senha deve conter no máximo 6 dígitos'),
           user: Yup.string() .required('*Campo Obrigatório*'),
           senha1: Yup.string().required('*Campo Obrigatório*').oneOf([Yup.ref('senha')], 'as senhas precisam ser iguais'),

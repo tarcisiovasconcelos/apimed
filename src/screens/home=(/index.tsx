@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
+import { Cardi } from '../../componentes/card';
+
 
 export interface HomeProps {
 }
@@ -12,8 +14,9 @@ export function Home (props: HomeProps) {
     return (
     <View style={styles.background}>
         <View style={styles.head}>
-            <Text style={styles.title1}>Ola, seja bem-vindo(a)!</Text>
-            <Text style={styles.title2}>Tarcisio</Text>
+            <Text style={styles.title1}>Olá {<Text style={styles.title2}>Tarcisio 
+            Vasconcelos</Text>}, seja bem-vindo(a)!</Text>
+            
         </View>
 
         <View style={styles.headcontainer}>
@@ -22,13 +25,16 @@ export function Home (props: HomeProps) {
             <AntDesign name="plus" size={24} color="#DEDBDB" />
             </TouchableOpacity>     
         </View>
-
-        <View style={styles.container}>        
-    
-        </View>
-        <View style={styles.rodape}>
-
-        </View>
+        
+        <View style={styles.container}>
+        <ScrollView horizontal={true}>
+          <Cardi/>
+          <Cardi/>
+          <Cardi/>
+          <Cardi/>
+          <Cardi/>
+        </ScrollView>        
+        </View>        
 
     </View>
       
@@ -40,56 +46,33 @@ export function Home (props: HomeProps) {
     background: {
       flex: 1,
       backgroundColor: '#0077B6',
-      alignItems: 'center',
     },
 
     head:{
+      flex:0,
       alignItems:'center',
-      width: 315,
+      width: 390,
+      marginLeft:10,
       height: 50,
       marginTop:80,
-      backgroundColor:'green'
-    },
-  
-    logo:{
-      width:245,
-      height:140,    
     },
 
     headcontainer:{
         flex:0,
         flexDirection:'row',
         justifyContent:'space-between',
-        width:315,
+        width:300,
+        marginLeft:15,
         height: 25,
         marginTop: 50,
     },
 
     container:{
       flex:0,
-      width: 315,
+      flexDirection:'row',
+      width: 400,
       height: 455,
-      marginTop: 5,
-      backgroundColor: 'purple'
-    },
-
-    btn:{
-      flexDirection:'column',
-      borderRadius: 15,
-      backgroundColor: '#00B4D8',
-      width: 165,
-      borderColor: '#DEDBDB',
-      borderRightWidth: 5,
-      borderLeftWidth: 5, 
-    },
-
-    rodape:{
-      flex:0,
-      width: 315,
-      height: 50,
-      marginTop:50,
-      alignItems: 'center',
-      backgroundColor:'black',
+      backgroundColor:'#0077B6'
     },
 
     //CSS DE TEXTO

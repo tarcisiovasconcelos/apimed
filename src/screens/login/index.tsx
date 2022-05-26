@@ -41,7 +41,7 @@ export function Login (props: LoginProps) {
         initialValues={{email:'', senha: ''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
-          senha: Yup.string().required('*Campo Obrigatório*').min(4,'A senha deve conter no minimo 4 dígitos').max(6,'A senha deve conter no máximo 6 dígitos')
+          senha: Yup.string().required('*Campo Obrigatório*').min(6,'A senha deve conter no minimo 4 dígitos')
 
         })}
         onSubmit={login}>
