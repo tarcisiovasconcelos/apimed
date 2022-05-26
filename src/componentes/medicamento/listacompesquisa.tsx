@@ -1,21 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import results from './results';
+import results from '../../screens/medicamento/results';
 import { useState, useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import ListaMedicamentos from '../../componentes/medicamento/listamedicamentos';
-import { TitleMedicamentos } from '../../componentes/medicamento/title';
-import { ListaComBarra } from '../../componentes/medicamento/listacompesquisa';
 
-
-export interface MedicamentoProps {
+export interface ListaComBarraProps {
 }
 //LOGIN
-export function Medicamento (props: MedicamentoProps) {
+export function ListaComBarra (props: ListaComBarraProps) {
 
-  const [searchText] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [list, setList] = useState(results);
 
   useEffect(() => {
@@ -31,13 +28,44 @@ export function Medicamento (props: MedicamentoProps) {
     }
   }, [searchText]);
 
+  const handleOrderClick = () => {
+    let newList = [...list];
+
+    newList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+
+    setList(newList);
+  };
+
 
     return (
     <SafeAreaView style={styles.background}>
-    
-      <TitleMedicamentos/>
 
-      <ListaComBarra/>
+      <View style={styles.barra}>
+        <TextInput
+          style={styles.inputContainer}
+          placeholder="Pesquise um medicamento"
+          placeholderTextColor="#DEDBDB"
+          value={searchText}
+          onChangeText={(t) => setSearchText(t)}
+          />
+          <TouchableOpacity onPress={handleOrderClick} style={styles.btn}>
+            <MaterialCommunityIcons
+              name="order-alphabetical-ascending"
+              size={24}
+              color="#DEDBDB"
+            />
+          </TouchableOpacity>
+      </View>
+
+      <View style={styles.container}>
+        <FlatList
+          data={list}
+          style={styles.list}
+          renderItem={({ item }) => <ListaMedicamentos data={item} />}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={true}          
+          />    
+      </View>
       
 
     </SafeAreaView>
@@ -82,7 +110,7 @@ export function Medicamento (props: MedicamentoProps) {
     container:{
       flex:0,
       width: 315,
-      height: 350,
+      height: 420,
       marginTop: 50,
       alignItems: 'center',
     },

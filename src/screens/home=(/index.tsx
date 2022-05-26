@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { AntDesign } from '@expo/vector-icons'; 
-import { Cardi } from '../../componentes/card';
+import { StyleSheet, View } from 'react-native';
+import { BoasVindas } from '../../componentes/home/boasvindas';
+import { HeadContainer } from '../../componentes/home/headcontainer';
+import { ScrollViewHorizontal } from '../../componentes/home/scrollviewhorizontal';
 
 
 export interface HomeProps {
@@ -11,36 +11,14 @@ export interface HomeProps {
 export function Home (props: HomeProps) {
 
 
-    return (
-    <View style={styles.background}>
-        <View style={styles.head}>
-            <Text style={styles.title1}>Olá {<Text style={styles.title2}>Tarcisio 
-            Vasconcelos</Text>}, seja bem-vindo(a)!</Text>
-            
-        </View>
+  return (
+  <View style={styles.background}>
+    <BoasVindas/>
+    <HeadContainer/>        
+    <ScrollViewHorizontal/>       
 
-        <View style={styles.headcontainer}>
-            <Text style={styles.title2}>Meus Dispositivos</Text>
-            <TouchableOpacity>
-            <AntDesign name="plus" size={24} color="#DEDBDB" />
-            </TouchableOpacity>     
-        </View>
-        
-        <View style={styles.container}>
-        <ScrollView horizontal={true}>
-          <Cardi/>
-          <Cardi/>
-          <Cardi/>
-          <Cardi/>
-          <Cardi/>
-        </ScrollView>        
-        </View>        
-
-    </View>
-      
-        
-    );
-  }
+  </View>       
+  );}
   
   const styles = StyleSheet.create({
     background: {
@@ -48,32 +26,6 @@ export function Home (props: HomeProps) {
       backgroundColor: '#0077B6',
     },
 
-    head:{
-      flex:0,
-      alignItems:'center',
-      width: 390,
-      marginLeft:10,
-      height: 50,
-      marginTop:80,
-    },
-
-    headcontainer:{
-        flex:0,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width:300,
-        marginLeft:15,
-        height: 25,
-        marginTop: 50,
-    },
-
-    container:{
-      flex:0,
-      flexDirection:'row',
-      width: 400,
-      height: 455,
-      backgroundColor:'#0077B6'
-    },
 
     //CSS DE TEXTO
     title1:{

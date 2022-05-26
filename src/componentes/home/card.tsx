@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign, Entypo } from '@expo/vector-icons'; 
 import { Card } from 'react-native-elements';
+import { InfoDisp } from './infodisp';
 
 export interface CardiProps {
 }
@@ -27,20 +28,7 @@ export function Cardi (props: CardiProps) {
             Imagem
           </Text>
           </View>
-          <View style={styles.cardinfo}>
-          <Text style={styles.title2}>
-            Nome do dispositivo
-          </Text>
-          <Text style={styles.text1}>
-            Vô beto
-          </Text>
-          <Text style={styles.title2}>
-            Nome do paciente 
-          </Text>
-          <Text style={styles.text1}>
-            Vô beto
-          </Text>
-          </View>
+          <InfoDisp/>
 
         </Card>
         );
@@ -79,7 +67,7 @@ const styles = StyleSheet.create({
         height:200
       },
       
-      cardinfo:{
+      infodisp:{
         flex:0,
         marginTop:15,
         marginRight:10,
