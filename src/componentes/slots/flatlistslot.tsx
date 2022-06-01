@@ -13,6 +13,8 @@ export interface FlatSlotProps {
 export function FlatSlot (props: FlatSlotProps) {
 
   const [list, setList] = useState(slots);
+  
+  useEffect(() => {setList(slots)});
 
     return (
     <SafeAreaView style={styles.background}>
@@ -21,7 +23,7 @@ export function FlatSlot (props: FlatSlotProps) {
         <FlatList
           data={list}
           style={styles.list}
-          renderItem={({ item }) => <ListaSlots data={item} />}
+          renderItem={({ item }) => <ListaSlots data={item}  />}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}          
           />    

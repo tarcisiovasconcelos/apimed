@@ -18,7 +18,8 @@ export function ListaComBarra (props: ListaComBarraProps) {
 
   useEffect(() => {
     if (searchText === '') {
-      setList(medicamentos);
+      setList(medicamentos)
+      ;
     } else {
       setList(
         medicamentos.filter(
