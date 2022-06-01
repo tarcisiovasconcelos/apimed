@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -10,11 +11,13 @@ export interface HeadContainerProps {
 //LOGIN
 export function HeadContainer (props: HeadContainerProps) {
 
+    const nav = useNavigation();
+
 
     return (
         <View style={styles.headcontainer}>
             <Text style={styles.title2}>Meus Dispositivos</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => nav.navigate('Tela-InsertDispositivo')}>
             <AntDesign name="plus" size={24} color="#DEDBDB" />
             </TouchableOpacity>     
         </View>        

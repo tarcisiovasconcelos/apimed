@@ -2,10 +2,11 @@ import * as React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import results from '../../screens/medicamento/results';
+import results from '../../pequenoback/slots';
 import { useState, useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import ListaMedicamentos from '../../componentes/medicamento/listamedicamentos';
+import ListaMedicamentos from './listamedicamentos';
+import medicamentos from '../../pequenoback/medicamentos'
 
 export interface ListaComBarraProps {
 }
@@ -13,14 +14,14 @@ export interface ListaComBarraProps {
 export function ListaComBarra (props: ListaComBarraProps) {
 
   const [searchText, setSearchText] = useState('');
-  const [list, setList] = useState(results);
+  const [list, setList] = useState(medicamentos);
 
   useEffect(() => {
     if (searchText === '') {
-      setList(results);
+      setList(medicamentos);
     } else {
       setList(
-        results.filter(
+        medicamentos.filter(
           (item) =>
             item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
         )
@@ -63,7 +64,7 @@ export function ListaComBarra (props: ListaComBarraProps) {
           style={styles.list}
           renderItem={({ item }) => <ListaMedicamentos data={item} />}
           keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={true}          
+          showsVerticalScrollIndicator={false}          
           />    
       </View>
       
