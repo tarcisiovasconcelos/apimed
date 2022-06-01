@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import results from '../../pequenoback/slots';
 import { useState, useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import ListaSlots from './listaslots';
+import CardSlot from './cardslot';
 import slots from '../../pequenoback/slots';
 
 export interface FlatSlotProps {
@@ -23,7 +22,7 @@ export function FlatSlot (props: FlatSlotProps) {
         <FlatList
           data={list}
           style={styles.list}
-          renderItem={({ item }) => <ListaSlots data={item}  />}
+          renderItem={({ item }) => <CardSlot data={item}  />}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}          
           />    

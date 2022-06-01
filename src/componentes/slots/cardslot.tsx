@@ -6,11 +6,11 @@ import { Entypo } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
 
 
-const ListaSlots = ({ data }) => {
+const CardSlot = ({ data }) => {
 
   useEffect(() => {});
   return (
-      <View style={styles.itemInfo}>
+
         <Card wrapperStyle={styles.carditens} containerStyle={styles.card} >
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>{data.name}</Text>
@@ -20,17 +20,13 @@ const ListaSlots = ({ data }) => {
             </View>
 
         </Card>
-      </View>
+
   );
 };
 
 const styles = StyleSheet.create({
   
 
-  itemInfo: {
-    alignItems:'flex-start',
-    marginVertical:15,
-  },
   card:{
     width:280,
     height:80,
@@ -84,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListaSlots;
+export default CardSlot;
