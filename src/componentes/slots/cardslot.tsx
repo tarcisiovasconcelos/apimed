@@ -11,7 +11,7 @@ const CardSlot = ({ data }) => {
   useEffect(() => {});
   return (
 
-        <Card wrapperStyle={styles.carditens} containerStyle={styles.card} >
+        <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>{data.name}</Text>
                 <TouchableOpacity>
@@ -28,26 +28,22 @@ const styles = StyleSheet.create({
   
 
   card:{
+    flex:0,
+    justifyContent:'center',
     width:280,
     height:80,
     borderRadius:15,
     backgroundColor:'green'
   },
-  carditens:{
-    flex:0,
-    flexDirection:'column',
-    height:300
-
-  },
 
   cardhead:{
     flex:0,
-    height:40,
-    marginTop:15,
+    height:30,
     marginRight:10,
     marginLeft:10,
     flexDirection:'row',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    alignItems:'center',
   },
 
   title1:{
