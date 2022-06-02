@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BoasVindas } from '../../componentes/home/boasvindas';
 import { FlatSlot } from '../../componentes/slots/flatlistslot';
 
 
