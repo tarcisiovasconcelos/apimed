@@ -26,6 +26,7 @@ const CardSlot = ({data}: ICardSlot) => {
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>{data.name}</Text>
+                <Text style={styles.text1}>{data.status == 'Livre' ? 'Livre' : 'Ocupado'} </Text>
                 <TouchableOpacity>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
                 </TouchableOpacity>
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
 
   text1:{
-    textAlign: 'center',
+
     fontSize: 10,
     color: '#DEDBDB',
   },
