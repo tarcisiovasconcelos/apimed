@@ -5,10 +5,22 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Entypo } from '@expo/vector-icons'; 
 import { Card } from 'react-native-elements';
 
+//Propriedades do FlatList (data é uma delas)
+export interface ICardSlot {
+  data: ISlot
+}
 
-const CardSlot = ({ data }) => {
+//Propriedades do slot que vem dentro da propriedade data do Flatlist
+export interface ISlot {
+  id: number,
+  name: string,
+  status: string
+}
 
+const CardSlot = ({data}: ICardSlot) => {
+  
   useEffect(() => {});
+  
   return (
 
         <Card containerStyle={styles.card} >

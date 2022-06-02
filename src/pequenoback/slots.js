@@ -1,4 +1,4 @@
-export default [
+export default slots[
     {
       id: 1,
       name: 'Slot 1',
@@ -113,7 +113,6 @@ export default [
       id: 23,
       name: 'Slot 23',
       status: 'Ocupado',
-    },
-    
-   
+    }
+
   ];
