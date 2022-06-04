@@ -16,7 +16,6 @@ export function FlatSlot (props: FlatSlotProps) {
   useEffect(() => {setList(slots)});
 
     return (
-    <SafeAreaView style={styles.background}>
 
       <View style={styles.container}>
         <FlatList
@@ -28,8 +27,6 @@ export function FlatSlot (props: FlatSlotProps) {
           />    
       </View>
       
-
-    </SafeAreaView>
       
         
     );

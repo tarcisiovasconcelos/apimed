@@ -37,8 +37,7 @@ const CardSlot = ({data}: ICardSlot) => {
   );
 };
 
-const styles = StyleSheet.create({
-  
+const styles = StyleSheet.create({  
 
   card:{
     flex:0,

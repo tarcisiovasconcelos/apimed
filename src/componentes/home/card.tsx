@@ -4,11 +4,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign, Entypo } from '@expo/vector-icons'; 
 import { Card } from 'react-native-elements';
 import { InfoDisp } from './infodisp';
+import { useNavigation } from '@react-navigation/native';
 
 export interface CardiProps {
 }
 
 export function Cardi (props: CardiProps) {
+  const nav = useNavigation();
 
 
     return (
@@ -18,7 +20,7 @@ export function Cardi (props: CardiProps) {
           <TouchableOpacity>
           <AntDesign name="downcircleo" size={24} color="#DEDBDB" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo')}>
           <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
           </TouchableOpacity>
           </View>
