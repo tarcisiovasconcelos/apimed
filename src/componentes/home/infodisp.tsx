@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 //dados do dispositivo que eu vou usar nessa tela pra printar as informaçoes do dispositivo, a questão é
 //como que eu vou alimentar esse data.. antes eu tava alimentando através do flatlist.. mas agora tem que ser do firebase.
-//essa mesma ideia vou usar nas outras telas.
+//essa mesma ideia vou usar nas outras telas, pensei isso baseado no que você fez no slot.
 export interface IDispInfo {
   data: IDisp
 }
