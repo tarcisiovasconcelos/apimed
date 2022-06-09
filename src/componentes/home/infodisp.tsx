@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-//Propriedades do FlatList (data é uma delas)
+//dados do dispositivo que eu vou usar nessa tela pra printar as informaçoes do dispositivo, a questão é
+//como que eu vou alimentar esse data.. antes eu tava alimentando através do flatlist.. mas agora tem que ser do firebase.
+//essa mesma ideia vou usar nas outras telas.
 export interface IDispInfo {
   data: IDisp
 }
 
-//Propriedades do slot que vem dentro da propriedade data do Flatlist
+//Propriedades do dispositivo
 export interface IDisp {
   id: number,
   nome: string,
