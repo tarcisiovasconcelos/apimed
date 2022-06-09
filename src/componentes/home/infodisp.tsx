@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import dispositivos from '../../pequenoback/dispositivos';
+import { useState } from 'react';
 
 //dados do dispositivo que eu vou usar nessa tela pra printar as informaçoes do dispositivo, a questão é
 //como que eu vou alimentar esse data.. antes eu tava alimentando através do flatlist.. mas agora tem que ser do firebase.
@@ -18,7 +20,7 @@ export interface IDisp {
 }
 
 const InfoDisp = ({data}: IDispInfo) => {
-
+    data = useState(dispositivos);
 
     return (
           <View style={styles.infodisp}>
