@@ -1,10 +1,21 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export interface InfoDispProps {
+//Propriedades do FlatList (data é uma delas)
+export interface IDispInfo {
+  data: IDisp
 }
 
-export function InfoDisp (props: InfoDispProps) {
+//Propriedades do slot que vem dentro da propriedade data do Flatlist
+export interface IDisp {
+  id: number,
+  nome: string,
+  paciente: string,
+
+
+}
+
+const InfoDisp = ({data}: IDispInfo) => {
 
 
     return (
@@ -13,13 +24,13 @@ export function InfoDisp (props: InfoDispProps) {
             Nome do dispositivo
           </Text>
           <Text style={styles.text1}>
-            Robô do vô beto
+            {data.nome}
           </Text>
           <Text style={styles.title2}>
             Nome do paciente 
           </Text>
           <Text style={styles.text1}>
-            Vô beto
+            {data.paciente}
           </Text>
           </View>
         );
