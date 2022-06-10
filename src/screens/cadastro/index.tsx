@@ -10,28 +10,40 @@ import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 import { InputRound } from './components';
+import { getDatabase, ref, set, child } from "firebase/database";
 
-export interface CadastroProps {
+
+//Usuário
+export interface IUsuario {
+  idUsuario: string,
+  name: string,
 }
-//LOGIN
-export function Cadastro (props: CadastroProps) {
-
+//CADASTRO
+export function Cadastro () {
     const nav = useNavigation();
     const [erro] = useState<null|string>(null);
-    
+    const database = getDatabase();
         
     const cadastro = async (dados:any) => {
-
+      //cria a autenticação
       await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
       firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)
       .then(usuario => {
-        if (Platform.OS =="android")
+            let idUsuario = usuario.user?.uid;
+            let dadosUsuario:IUsuario = {
+              idUsuario: idUsuario,
+              name: dados.name
+            };
+            
             ToastAndroid.show("Conta criada com sucesso!", 3000);
-            nav.navigate('Tela-Login')})
+            console.log (dadosUsuario)
+            set(child(ref(database, 'usuarios'), dadosUsuario.idUsuario), dadosUsuario)
+            nav.navigate('Tela-Login')}
+            )
       .catch(erro => {
         if (Platform.OS == "android")
             ToastAndroid.show("Já existe conta com esse email", 3000);
-            nav.navigate('Tela-Cadastro')})     
+          })     
     }
 
     return (
@@ -41,12 +53,12 @@ export function Cadastro (props: CadastroProps) {
         </View>
         <View style={styles.container}>
         <Formik
-        initialValues={{user:'',email:'', senha: '', senha1:''}}
+        initialValues={{name:'',email:'', senha: '', senha1:''}}
         validationSchema={Yup.object({
           email: Yup.string().required('*Campo Obrigatório*').email('Campo deve ser EMAIL'),
           senha: Yup.string().required('*Campo Obrigatório*').min(6,'A senha deve conter no minimo 6 dígitos')
           .max(6,'A senha deve conter no máximo 6 dígitos'),
-          user: Yup.string() .required('*Campo Obrigatório*'),
+          name: Yup.string() .required('*Campo Obrigatório*'),
           senha1: Yup.string().required('*Campo Obrigatório*').oneOf([Yup.ref('senha')], 'as senhas precisam ser iguais'),
 
 
@@ -57,8 +69,8 @@ export function Cadastro (props: CadastroProps) {
           <Text style={styles.title1}>Cadastrar</Text>
 
           <Text style={styles.title2}>Nome</Text>
-          <InputRound onBlur={handleBlur('user')} placeholder="Digite seu nome" icone="person" onChangeText={handleChange('user')}/>
-          { touched.user && <Text style={styles.text2}>{errors.user}</Text>}
+          <InputRound onBlur={handleBlur('name')} placeholder="Digite seu nome" icone="person" onChangeText={handleChange('name')}/>
+          { touched.name && <Text style={styles.text2}>{errors.name}</Text>}
 
           <Text style={styles.title2}>E-mail</Text>
           <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
