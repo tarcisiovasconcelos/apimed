@@ -1,15 +1,35 @@
+import { child, getDatabase, onValue, ref } from 'firebase/database';
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { getAuth } from 'firebase/auth';
+import { useState } from 'react';
+
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
 export interface BoasVindasProps {
 }
 //LOGIN
 export function BoasVindas (props: BoasVindasProps) {
+  const auth = getAuth()
+  const usuarioID = auth.currentUser.uid;
+  const database = getDatabase();
+  let [nome] = useState();
 
+  
+  const refNome = child(child(ref(database, 'usuarios'), usuarioID), 'name');
+  //Busca
+  onValue(refNome, (snapshot) => {
+  console.log(snapshot.val())
+  nome = (snapshot.val());
+  })
+
+
+  
 
     return (
         <View style={styles.head}>
-            <Text style={styles.title1}>Olá {<Text style={styles.title2}>Tarcisio 
-            Vasconcelos</Text>}, seja bem-vindo(a)!</Text>
+            <Text style={styles.title1}>Olá {nome}, seja bem-vindo(a)!</Text>
         </View>        
     );
   }

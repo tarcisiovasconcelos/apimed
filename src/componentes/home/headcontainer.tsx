@@ -3,21 +3,39 @@ import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
+import { child, getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { useState } from 'react';
 
 
 
-export interface HeadContainerProps {
+//dispositivo
+export interface IDispositivo {
+  idDispositivo: string,
 }
 //LOGIN
-export function HeadContainer (props: HeadContainerProps) {
+export function HeadContainer () {
+    
+  
 
-    const nav = useNavigation();
+    
+    const dispositivoNew = async () => {
+      const db = getDatabase();
+      const refP = ref(db, 'dispositivos')
+      let UID = push(ref(db, 'dispositivos')).key; //Id unico
+      let dispositivo:IDispositivo = {
+        idDispositivo: UID
+      };
+      set(child(ref(db, 'dispositivos'), dispositivo.idDispositivo), dispositivo)
+      
+
+    }
 
 
     return (
         <View style={styles.headcontainer}>
             <Text style={styles.title2}>Meus Dispositivos</Text>
-            <TouchableOpacity onPress={() => nav.navigate('Tela-InsertDispositivo')}>
+            <TouchableOpacity onPress={() => dispositivoNew}>
             <AntDesign name="plus" size={24} color="#DEDBDB" />
             </TouchableOpacity>     
         </View>        
