@@ -1,32 +1,34 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TitleMedicamentos } from '../../componentes/medicamento/title';
-import { ListaComBarra } from '../../componentes/medicamento/flatlistcompesquisa';
+import { StyleSheet, View } from 'react-native';
+import { InfoDisp } from '../../componentes/slots/infodisp';
+import { FlatSlot } from '../../componentes/slots/flatlistslot';
+import { HeadContainerSlot } from '../../componentes/slots/headcontainerslot';
 
 
-export interface MedicamentoProps {
+export interface InsertDispositivoProps {
 }
 //LOGIN
-export function Medicamento (props: MedicamentoProps) {
+export function InsertDispositivo (props: InsertDispositivoProps) {
 
-    return (
-    <SafeAreaView style={styles.background}>    
-      <TitleMedicamentos/>
-      <ListaComBarra/>
 
-    </SafeAreaView>
-      
-        
-    );
-  }
+  return (
+  <View style={styles.background}>
+    
+    <InfoDisp/>
+    <HeadContainerSlot/>
+    <FlatSlot/>
+    
+
+  </View>       
+  );}
   
   const styles = StyleSheet.create({
     background: {
       flex: 1,
       backgroundColor: '#0077B6',
-      alignItems: 'center',
+      alignItems:'center'
     },
+
 
     //CSS DE TEXTO
     title1:{

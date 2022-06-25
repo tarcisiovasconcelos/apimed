@@ -1,32 +1,31 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TitleMedicamentos } from '../../componentes/medicamento/title';
-import { ListaComBarra } from '../../componentes/medicamento/flatlistcompesquisa';
+import { StyleSheet, View } from 'react-native';
+import { BoasVindas } from '../../componentes/home/boasvindas';
+import { HeadContainer } from '../../componentes/home/headcontainer';
+import { ScrollViewHorizontal } from '../../componentes/home/scrollviewhorizontal';
 
 
-export interface MedicamentoProps {
+export interface HomeProps {
 }
 //LOGIN
-export function Medicamento (props: MedicamentoProps) {
+export function Home (props: HomeProps) {
 
-    return (
-    <SafeAreaView style={styles.background}>    
-      <TitleMedicamentos/>
-      <ListaComBarra/>
 
-    </SafeAreaView>
-      
-        
-    );
-  }
+  return (
+  <View style={styles.background}>
+    <BoasVindas/>
+    <HeadContainer/>        
+    <ScrollViewHorizontal/>       
+
+  </View>       
+  );}
   
   const styles = StyleSheet.create({
     background: {
       flex: 1,
       backgroundColor: '#0077B6',
-      alignItems: 'center',
     },
+
 
     //CSS DE TEXTO
     title1:{

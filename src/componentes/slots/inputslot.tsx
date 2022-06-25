@@ -2,20 +2,16 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Input } from 'react-native-elements';
 
-export interface InputRoundProps {
-    senha?: boolean;
-    icone: string;
+export interface InputRoundSlotProps {
     placeholder: string;
     onChangeText(texto: string): void ;
     onBlur?(error: any): void;
 }
 
-export function InputRound (props: InputRoundProps) {
+export function InputRoundSlot (props: InputRoundSlotProps) {
     return (
-      <View>
+      <View style={styles.test}>
          <Input placeholder={props.placeholder}
-          leftIcon={{name:props.icone, color:"#DEDBDB"}}
-          secureTextEntry={props.senha}
           onBlur={props.onBlur} 
           inputStyle={{color:'#DEDBDB'}}
           placeholderTextColor="#DEDBDB"
@@ -27,10 +23,18 @@ export function InputRound (props: InputRoundProps) {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: { 
-      backgroundColor: '#0077B6',
-      marginBottom: -29,
-      borderRadius: 15
-    }
+
+    test:{
+      height:22,  
+
+    },
+    inputContainer: { 
+        backgroundColor: '#0077B6',
+        borderRadius: 15,
+        borderWidth:2,
+        width:250,
+        height:20,
+        
+      }
     
 });
