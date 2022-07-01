@@ -13,20 +13,19 @@ import { useState } from 'react';
 export interface IDispositivo {
   idDispositivo: string,
 }
-//LOGIN
-export function HeadContainer () {
-    
+//Cabeçalho da home Meus dispositivos  + add dispositivo
+export function HeadContainer () {   
   
 
     
     const dispositivoNew = async () => {
-      const db = getDatabase();
-      const refP = ref(db, 'dispositivos')
-      let UID = push(ref(db, 'dispositivos')).key; //Id unico
-      let dispositivo:IDispositivo = {
+      const database = getDatabase();
+      let UID = push(ref(database, 'dispositivos')).key; //Id unico
+      let dadosDispositivo:IDispositivo = {
         idDispositivo: UID
       };
-      set(child(ref(db, 'dispositivos'), dispositivo.idDispositivo), dispositivo)
+
+      set(child(ref(database, 'dispositivos'), dadosDispositivo.idDispositivo), dadosDispositivo)
       
 
     }
@@ -35,7 +34,7 @@ export function HeadContainer () {
     return (
         <View style={styles.headcontainer}>
             <Text style={styles.title2}>Meus Dispositivos</Text>
-            <TouchableOpacity onPress={() => dispositivoNew}>
+            <TouchableOpacity onPress={(dispositivoNew)}>
             <AntDesign name="plus" size={24} color="#DEDBDB" />
             </TouchableOpacity>     
         </View>        
