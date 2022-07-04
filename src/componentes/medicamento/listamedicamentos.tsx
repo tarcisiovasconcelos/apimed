@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const ListaMedicamentos = ({ data }) => {
   return (
       <View style={styles.itemInfo}>
-        <Text style={styles.title1}>{data.name}</Text>
+        <Text style={styles.title1}>{data.nome}</Text>
         <Text style={styles.title2}>Descrição:</Text>
         <Text style={styles.text1}>{data.descricao}</Text>
         <Text style={styles.title2}>Efeitos colaterais:</Text>

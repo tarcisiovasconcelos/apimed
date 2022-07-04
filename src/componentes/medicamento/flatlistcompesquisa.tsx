@@ -6,25 +6,45 @@ import results from '../../pequenoback/slots';
 import { useState, useEffect } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import ListaMedicamentos from './listamedicamentos';
-import medicamentos from '../../pequenoback/medicamentos'
+import medicamentos from '../../pequenoback/medicamentos';
+import { child, getDatabase, onValue, ref } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 export interface ListaComBarraProps {
 }
-//LOGIN
+//flatlist
 export function ListaComBarra (props: ListaComBarraProps) {
+  
+  const database = getDatabase();
+  let [dados] = useState();
 
+  
+  const refNome = ref(database, 'medicamentos');
+
+  //Busca por dados de medicamentos/firebase
+  onValue(refNome, (snapshot) => {
+  console.log(snapshot.val())
+  
+  dados = (snapshot.val())
+  ;
+  })
+
+  //meti aqui 
+  const [list, setList] = useState(dados);
   const [searchText, setSearchText] = useState('');
-  const [list, setList] = useState(medicamentos);
 
   useEffect(() => {
     if (searchText === '') {
-      setList(medicamentos)
+      setList(list)
       ;
     } else {
       setList(
-        medicamentos.filter(
+        list.filter(
           (item) =>
-            item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+            item.nome.toLowerCase().indexOf(searchText.toLowerCase()) > -1
         )
       );
     }

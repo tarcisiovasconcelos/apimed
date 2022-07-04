@@ -20,7 +20,7 @@ export function InfoDisp (props: InfoDispProps) {
 
     onValue(refNome, (snapshot) => {
       console.log(snapshot.val())
-      nome = (snapshot.val());
+      
       })
 
 
@@ -30,7 +30,7 @@ export function InfoDisp (props: InfoDispProps) {
             Nome do dispositivo
           </Text>
           <Text style={styles.text1}>
-            {nome}
+            VAI CHEGAR
           </Text>
           <Text style={styles.title2}>
             Nome do paciente 
