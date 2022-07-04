@@ -22,25 +22,23 @@ export function InfoDisp (props: InfoDispProps) {
       console.log(dados1)
       nav.navigate('Tela-Home')
 
-    }
-
-    
+    }    
 
 
     return (
       <View style={styles.infodisp}>
         <Formik
-        initialValues={{paciente:'', dispositivo:''}}
+        initialValues={{paciente:'', nome:''}}
         validationSchema={Yup.object({
           paciente: Yup.string().required('*Campo Obrigatório*'),
-          dispositivo: Yup.string().required('*Campo Obrigatório*')})}
+          nome: Yup.string().required('*Campo Obrigatório*')})}
         
         onSubmit={formdate}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
           <View style={styles.view}>
             <Text style={styles.title2}>Nome do Dispositivo</Text>
-            <InputRoundSlot onBlur={handleBlur('dispositivo')} placeholder="" onChangeText={handleChange('dispositivo')}/>
-            { touched.dispositivo && <Text style={styles.text2}>{errors.dispositivo}</Text>}
+            <InputRoundSlot onBlur={handleBlur('nome')} placeholder="" onChangeText={handleChange('nome')}/>
+            { touched.nome && <Text style={styles.text2}>{errors.nome}</Text>}
             { erro != null && <Text style={styles.text2}>{erro}</Text>} 
 
             <Text style={styles.title2}>Nome do Paciente</Text>

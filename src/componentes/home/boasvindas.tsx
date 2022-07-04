@@ -18,6 +18,7 @@ export function BoasVindas (props: BoasVindasProps) {
 
   
   const refNome = child(child(ref(database, 'usuarios'), usuarioID), 'name');
+
   //Busca
   onValue(refNome, (snapshot) => {
   console.log(snapshot.val())
