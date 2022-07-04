@@ -32,7 +32,7 @@ export function Cadastro () {
             let idUsuario = usuario.user?.uid;
             let dadosUsuario:IUsuario = {
               idUsuario: idUsuario,
-              name: dados.name
+              name: dados.name,
             };
             
             ToastAndroid.show("Conta criada com sucesso!", 3000);
