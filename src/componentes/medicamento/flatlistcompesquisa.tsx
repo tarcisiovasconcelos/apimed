@@ -19,18 +19,20 @@ export interface ListaComBarraProps {
 export function ListaComBarra (props: ListaComBarraProps) {
   
   const database = getDatabase();
-  let [dados] = useState();
+  let [dados, setDados] = useState();
 
   
   const refNome = ref(database, 'medicamentos');
 
   //Busca por dados de medicamentos/firebase
+  React.useEffect(() => {
   onValue(refNome, (snapshot) => {
   console.log(snapshot.val())
   
-  dados = (snapshot.val())
+  setDados(snapshot.val())
   ;
   })
+  },[])
 
   //meti aqui 
   const [list, setList] = useState(dados);

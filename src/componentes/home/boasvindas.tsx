@@ -14,16 +14,18 @@ export function BoasVindas (props: BoasVindasProps) {
   const auth = getAuth()
   const usuarioID = auth.currentUser.uid;
   const database = getDatabase();
-  let [nome] = useState();
+  let [nome, setNome] = useState();
 
   
   const refNome = child(child(ref(database, 'usuarios'), usuarioID), 'name');
 
+  React.useEffect(() => {
   //Busca
   onValue(refNome, (snapshot) => {
   console.log(snapshot.val())
-  nome = (snapshot.val());
+  setNome(snapshot.val());
   })
+  },[])
 
 
   

@@ -14,14 +14,7 @@ export function InfoDisp (props: InfoDispProps) {
     const auth = getAuth()
     const usuarioID = auth.currentUser.uid;
     const database = getDatabase();
-    let [nome] = useState();
-    
-    const refNome = child(child(ref(database, 'dispositivos'), usuarioID), 'nome');
 
-    onValue(refNome, (snapshot) => {
-      console.log(snapshot.val())
-      
-      })
 
 
     return (
