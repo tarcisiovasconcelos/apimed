@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { child, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
+import { ScrollViewHorizontal } from './scrollviewhorizontal';
 
 
 
@@ -20,12 +21,29 @@ export interface IDispositivo {
 export function HeadContainer () {   
   
 
+    const [ dispositivos, setDispositivos ] = useState<any[]>([])
     
+
+    const getDispositivos = async () => {
+      const auth = getAuth()
+      const usuarioID = auth.currentUser.uid;
+      const database = getDatabase();
+      
+      const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
+      //Busca por dados de medicamentos/firebase
+      onValue(refDispositivos, (snapshot) => {
+        
+        console.log(Object.values(snapshot.val()))
+        setDispositivos(Object.values(snapshot.val()))
+      })
+      console.log('E');
+    }
+
     const dispositivoNew = async () => {
       const auth = getAuth()
       const usuarioID = auth.currentUser.uid;
       const database = getDatabase();
-      let UID = push(ref(database, 'dispositivos')).key; //Id unico
+      let UID = push(ref(database, `dispositivos/${usuarioID}`)).key; //Id unico
       let dadosDispositivo:IDispositivo = {
         idDispositivo: UID,
         nome: 'Dispositivo 1',
@@ -36,21 +54,25 @@ export function HeadContainer () {
         ],
       };
 
-      set(child(ref(database, 'dispositivos'), dadosDispositivo.idDispositivo), dadosDispositivo)
+      set(child(ref(database, `dispositivos/${usuarioID}`), dadosDispositivo.idDispositivo), dadosDispositivo)
       ToastAndroid.show("CRIADO", 3000);
-
-      
-
     }
+
+    React.useEffect(() => {
+      getDispositivos();
+    })
 
 
     return (
-        <View style={styles.headcontainer}>
-            <Text style={styles.title2}>Meus Dispositivos</Text>
-            <TouchableOpacity onPress={(dispositivoNew)}>
-            <AntDesign name="plus" size={24} color="#DEDBDB" />
-            </TouchableOpacity>     
-        </View>        
+        <View>
+          <View style={styles.headcontainer}>
+              <Text style={styles.title2}>Meus Dispositivos</Text>
+              <TouchableOpacity onPress={(dispositivoNew)}>
+              <AntDesign name="plus" size={24} color="#DEDBDB" />
+              </TouchableOpacity>     
+          </View>    
+          <ScrollViewHorizontal dispositivos={dispositivos}/>     
+        </View>
     );
   }
   

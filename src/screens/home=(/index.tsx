@@ -15,7 +15,7 @@ export function Home (props: HomeProps) {
   <View style={styles.background}>
     <BoasVindas/>
     <HeadContainer/>        
-    <ScrollViewHorizontal/>       
+          
 
   </View>       
   );}

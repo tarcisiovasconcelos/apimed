@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MainNavigation } from './src/navigations';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -8,10 +8,10 @@ import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);
 
-firebase.initializeApp(firebaseConfig);
 
 //
 export default function App() {
+  
   return (<MainNavigation/>);
 }
 

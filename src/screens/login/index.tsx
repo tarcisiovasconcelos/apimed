@@ -21,9 +21,7 @@ export function Login (props: LoginProps) {
         
     const login = async (dados:any) => {
 
-      await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
-
-      firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
+      await firebase.auth().signInWithEmailAndPassword(dados.email, dados.senha)
         .then(usuario => nav.navigate('Tela-Home'))
         .catch(erro => {
           if (Platform.OS == "android")

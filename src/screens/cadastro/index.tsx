@@ -5,7 +5,7 @@ import "firebase/compat/firestore"
 import { Formik } from 'formik';
 import * as React from 'react';
 import { useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, Platform,ToastAndroid, View, Image } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, Platform,ToastAndroid, View, Image, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
@@ -26,8 +26,7 @@ export function Cadastro () {
         
     const cadastro = async (dados:any) => {
       //cria a autenticação
-      await new Promise((resolve) => setTimeout(() => resolve(''), 2000))
-      firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)
+      await firebase.auth().createUserWithEmailAndPassword(dados.email, dados.senha)
       .then(usuario => {
             let idUsuario = usuario.user?.uid;
             let dadosUsuario:IUsuario = {
@@ -47,7 +46,7 @@ export function Cadastro () {
     }
 
     return (
-      <View style={styles.background}>
+      <KeyboardAvoidingView style={styles.background} behavior="position">
         <View style={styles.head}>
         <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
         </View>
@@ -97,7 +96,7 @@ export function Cadastro () {
 	        <Text style={styles.text1}>Já possui uma conta? Clique aqui para entrar.</Text>
         </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
 }
 

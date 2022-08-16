@@ -19,32 +19,32 @@ export interface ListaComBarraProps {
 export function ListaComBarra (props: ListaComBarraProps) {
   
   const database = getDatabase();
-  let [dados, setDados] = useState();
+  let [medicamentos, setMedicamentos] = useState<any[]>([]);
+  //meti aqui 
+  const [list, setList] = useState<any[]>([]);
 
   
+
+
+  const [searchText, setSearchText] = useState('');
   const refNome = ref(database, 'medicamentos');
 
   //Busca por dados de medicamentos/firebase
   React.useEffect(() => {
-  onValue(refNome, (snapshot) => {
-  console.log(snapshot.val())
-  
-  setDados(snapshot.val())
-  ;
-  })
+    onValue(refNome, (snapshot) => {
+      console.log('AAAA');
+      console.log(snapshot.val())
+      setList(snapshot.val())
+      setMedicamentos(snapshot.val())
+    })
   },[])
 
-  //meti aqui 
-  const [list, setList] = useState(dados);
-  const [searchText, setSearchText] = useState('');
-
   useEffect(() => {
-    if (searchText === '') {
-      setList(list)
-      ;
+    if (searchText == '') {
+      setList(medicamentos);
     } else {
       setList(
-        list.filter(
+        medicamentos.filter(
           (item) =>
             item.nome.toLowerCase().indexOf(searchText.toLowerCase()) > -1
         )
@@ -84,6 +84,7 @@ export function ListaComBarra (props: ListaComBarraProps) {
       <View style={styles.container}>
         <FlatList
           data={list}
+          extraData={list}
           style={styles.list}
           renderItem={({ item }) => <ListaMedicamentos data={item} />}
           keyExtractor={(item) => item.id}
@@ -116,6 +117,7 @@ export function ListaComBarra (props: ListaComBarraProps) {
       borderRadius: 15,
       width: 250,
       height: 30,
+      paddingLeft: 10,
       color:"#DEDBDB"
     },
 

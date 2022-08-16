@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export interface UpdateDispositivoProps {
+  dispositivo: any;
 }
 //LOGIN
 export function UpdateDispositivo (props: UpdateDispositivoProps) {
