@@ -9,8 +9,14 @@ import { MyTabs } from './configuracoes';
 import { InsertDispositivo } from '../screens/insertdispositivo';
 import { UpdateDispositivo } from '../screens/updatedispositivo';
 import { View } from 'react-native';
-import firebase from "firebase/compat/app"
+import firebase from "firebase/compat/app";
+import {
+    initializeAuth,
+    getReactNativePersistence
+} from 'firebase/auth/react-native';
+
 import { firebaseConfig } from '../config/firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -22,10 +28,13 @@ export function Carregando() {
     //Define para qual tela o usuário irá
     const inicializar = async() => {
 
-        await firebase.initializeApp(firebaseConfig);
+        const app =  firebase.initializeApp(firebaseConfig);
+        const auth = initializeAuth(app, {
+            persistence: getReactNativePersistence(AsyncStorage)
+        });
 
         //Checa se o usuário está logado, caso não esteja retorna null em usuario
-        firebase.auth().onAuthStateChanged(usuario => {
+        auth.onAuthStateChanged(usuario => {
             console.log(usuario)
             if (usuario == null)
                 nav.navigate('Tela-Start')
