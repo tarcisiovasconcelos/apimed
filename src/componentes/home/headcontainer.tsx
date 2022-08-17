@@ -60,7 +60,7 @@ export function HeadContainer () {
 
     React.useEffect(() => {
       getDispositivos();
-    })
+    }, [])
 
 
     return (

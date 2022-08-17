@@ -22,8 +22,7 @@ export function Cardi (props: CardiProps) {
           <AntDesign name="downcircleo" size={24} color="#DEDBDB" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo')}>
-            <AntDesign name="home" size={24} color="#DEDBDB" />
-            <Text>AAAA</Text>
+            <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
           </TouchableOpacity>
           </View>
           
