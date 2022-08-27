@@ -10,10 +10,33 @@ import { child, getDatabase, onValue, ref } from 'firebase/database';
 export interface InfoDispProps {
 }
 
+//dispositivo
+export interface IDispositivo {
+  idDispositivo: string,
+  nome: string,
+  paciente: string,
+  slots:[{id:'', status:'',nome:'',data:'',horario: '', medicamentos:[]}]
+}
+
 export function InfoDisp (props: InfoDispProps) {
-    const auth = getAuth()
-    const usuarioID = auth.currentUser.uid;
-    const database = getDatabase();
+  const auth = getAuth()
+  const usuarioID = auth.currentUser.uid;
+  const database = getDatabase();
+  const [ nomeDispositivo, setNomeDispositivo ] = useState<any[]>([])
+  let [nomePaciente, setNomePaciente] = useState();
+
+  const refNomeDispositivo = child(child(ref(database,  `dispositivos/${usuarioID}`), usuarioID), "nome");
+  ////child(child(ref(database,  `dispositivos/${usuarioID}`), usuarioID),'nome');
+  
+  
+  React.useEffect(() => {
+    //Busca
+    onValue(refNomeDispositivo, (snapshot) => {
+    console.log((snapshot.val()))
+    setNomeDispositivo((snapshot.val()))
+    /////setNomeDispositivo(snapshot.val());
+    })
+    },[])
 
 
 
@@ -23,13 +46,13 @@ export function InfoDisp (props: InfoDispProps) {
             Nome do dispositivo
           </Text>
           <Text style={styles.text1}>
-            VAI CHEGAR
+            {nomeDispositivo}
           </Text>
           <Text style={styles.title2}>
             Nome do paciente 
           </Text>
           <Text style={styles.text1}>
-            Vô beto
+            vem depois
           </Text>
           </View>
         );

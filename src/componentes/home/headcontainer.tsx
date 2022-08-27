@@ -30,7 +30,7 @@ export function HeadContainer () {
       const database = getDatabase();
       
       const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
-      //Busca por dados de medicamentos/firebase
+      //Busca por dados de dispositivos/firebase
       onValue(refDispositivos, (snapshot) => {
         
         console.log(Object.values(snapshot.val()))
