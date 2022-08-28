@@ -18,9 +18,6 @@ export function Cardi (props: CardiProps) {
         <Card wrapperStyle={styles.carditens} containerStyle={styles.card}>
           {/*react-native-elements Card*/}
           <View style={styles.cardhead}>
-          <TouchableOpacity>
-          <AntDesign name="downcircleo" size={24} color="#DEDBDB" />
-          </TouchableOpacity>
           <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo')}>
             <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
           </TouchableOpacity>
@@ -59,11 +56,11 @@ const styles = StyleSheet.create({
         marginRight:10,
         marginLeft:10,
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'flex-end'
       },
   
       cardimagem:{
-        backgroundColor: 'silver',
+        backgroundColor: 'gold',
         marginTop:15,
         marginRight:10,
         marginLeft:10,

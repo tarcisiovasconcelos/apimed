@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-elements';
 
 
 export interface PerfilProps {
@@ -15,7 +16,7 @@ export function Perfil (props: PerfilProps) {
       </View>
 
       <View style={styles.container}>        
-    
+      <Text>Pagina Destinada as Notificações</Text>
       </View>
       <View style={styles.rodape}>
 
