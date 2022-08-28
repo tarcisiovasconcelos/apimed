@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { BoasVindas } from '../../componentes/home/boasvindas';
 import { HeadContainer } from '../../componentes/home/headcontainer';
-import { ScrollViewHorizontal } from '../../componentes/home/scrollviewhorizontal';
 
 
 export interface HomeProps {
@@ -14,7 +13,7 @@ export function Home (props: HomeProps) {
   return (
   <View style={styles.background}>
     <BoasVindas/>
-    <HeadContainer/>        
+    <HeadContainer/>    
           
 
   </View>       

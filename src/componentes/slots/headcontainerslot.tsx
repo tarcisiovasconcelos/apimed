@@ -18,6 +18,7 @@ export function HeadContainerSlot () {
         flex:0,
         width:315,
         height: 25,
+        marginTop:150,
         alignItems: 'center',
     },
 
