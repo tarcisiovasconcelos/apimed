@@ -7,7 +7,7 @@ import { Card } from 'react-native-elements';
 
 //Propriedades do FlatList (data é uma delas)
 export interface ICardSlot {
-  data: ISlot
+  slot:any;
 }
 
 //Propriedades do slot que vem dentro da propriedade data do Flatlist
@@ -17,7 +17,7 @@ export interface ISlot {
   status: string
 }
 
-const CardSlot = ({data}: ICardSlot) => {
+export function CardSlot(props:ICardSlot)  {
   
   useEffect(() => {});
   
@@ -25,8 +25,8 @@ const CardSlot = ({data}: ICardSlot) => {
 
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
-                <Text style={styles.title2}>{data.name}</Text>
-                <Text style={styles.text1}>{data.status == 'Livre' ? 'Livre' : 'Ocupado'} </Text>
+                <Text style={styles.title2}>Nome Slot</Text>
+                <Text style={styles.text1}>Status</Text>
                 <TouchableOpacity>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
                 </TouchableOpacity>

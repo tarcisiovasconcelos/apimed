@@ -2,35 +2,26 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import CardSlot from './cardslot';
 import slots from '../../pequenoback/slots';
 
-export interface FlatSlotProps {
+export interface ScrollViewProps {
+  slots: any[]
 }
 //LOGIN
-export function FlatSlot (props: FlatSlotProps) {
+export function ScrollViewSlot (props: ScrollViewProps) {
 
-  const [list, setList] = useState(slots);
-  
-  useEffect(() => {setList(slots)});
 
-    return (
+  return (  
+      <View style={{height:450}}>  
+      <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
+        {props.slots.map(slot => <CardSlot key={slot.idSlot} slot={slot} />)}
+      </ScrollView>
+      </View>        
 
-      <View style={styles.container}>
-        <FlatList
-          data={list}
-          style={styles.list}
-          renderItem={({ item }) => <CardSlot data={item}  />}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}          
-          />    
-      </View>
-      
-      
-        
-    );
-  }
+     
+  );}
   
   const styles = StyleSheet.create({
     background: {

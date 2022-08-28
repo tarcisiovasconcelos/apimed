@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { InfoDisp } from '../../componentes/slots/infodisp';
-import { FlatSlot } from '../../componentes/slots/flatlistslot';
+import { FlatSlot, ScrollViewSlot } from '../../componentes/slots/flatlistslot';
 import { HeadContainerSlot } from '../../componentes/slots/headcontainerslot';
 import { FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -23,7 +23,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
     <FontAwesome name="trash-o" size={24} color="white" />
     </TouchableOpacity>
     <HeadContainerSlot/>
-    <FlatSlot/>
+    <ScrollViewSlot/>
     
 
   </View>       
