@@ -44,9 +44,9 @@ export function FlatSlot (props: FlatSlotProps) {
     },
 
     container:{
-      flex:0,
+      flex:1,
       width: 315,
-      height: 480,
+      minHeight: 240,
       alignItems: 'center',
     },
 

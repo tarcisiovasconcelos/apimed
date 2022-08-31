@@ -13,12 +13,11 @@ export interface CardiProps {
 export function Cardi (props: CardiProps) {
   const nav = useNavigation();
   const { dispositivo } = props;
-
     return (
         <Card wrapperStyle={styles.carditens} containerStyle={styles.card}>
           {/*react-native-elements Card*/}
           <View style={styles.cardhead}>
-          <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo')}>
+          <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo', {dispositivo})}>
             <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
           </TouchableOpacity>
           </View>
@@ -28,7 +27,7 @@ export function Cardi (props: CardiProps) {
             Imagem
           </Text>
           </View>
-          <InfoDisp/>
+          <InfoDisp dispositivo={dispositivo}/>
 
         </Card>
         );

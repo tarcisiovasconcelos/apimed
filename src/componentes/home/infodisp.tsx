@@ -8,6 +8,7 @@ import "firebase/compat/firestore";
 import { child, getDatabase, onValue, ref } from 'firebase/database';
 
 export interface InfoDispProps {
+  dispositivo: IDispositivo
 }
 
 //dispositivo
@@ -24,19 +25,8 @@ export function InfoDisp (props: InfoDispProps) {
   const database = getDatabase();
   const [ nomeDispositivo, setNomeDispositivo ] = useState<any[]>([])
   let [nomePaciente, setNomePaciente] = useState();
-
-  const refNomeDispositivo = child(child(ref(database,  `dispositivos/${usuarioID}`), usuarioID), "nome");
-  ////child(child(ref(database,  `dispositivos/${usuarioID}`), usuarioID),'nome');
+  const { dispositivo } = props;  
   
-  
-  React.useEffect(() => {
-    //Busca
-    onValue(refNomeDispositivo, (snapshot) => {
-    console.log((snapshot.val()))
-    setNomeDispositivo((snapshot.val()))
-    /////setNomeDispositivo(snapshot.val());
-    })
-    },[])
 
 
 
@@ -46,14 +36,16 @@ export function InfoDisp (props: InfoDispProps) {
             Nome do dispositivo
           </Text>
           <Text style={styles.text1}>
-            {nomeDispositivo}
+            {dispositivo.nome}
           </Text>
           <Text style={styles.title2}>
             Nome do paciente 
           </Text>
           <Text style={styles.text1}>
-            vem depois
+            {dispositivo.paciente}
           </Text>
+
+          {dispositivo.slots.map((slot) => (<Text>{slot.nome}</Text>))}
           </View>
         );
     }
