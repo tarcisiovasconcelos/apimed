@@ -6,6 +6,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, remove } from 'firebase/database';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export interface UpdateDispositivoProps {
@@ -18,28 +21,38 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
   const { dispositivo } = props.route.params;
   const auth = getAuth()
   const usuarioID = auth.currentUser.uid;
+  const database = getDatabase();
+  const nav = useNavigation();
+
+  
 
   const handleDelete = async () => {
     Alert.alert('Remover', 'Deseja realmente deletar o dispositivo', [
       {text:'Cancelar'},
       {text: 'Confirmar', onPress: () => {
         // console.log(dispositivo)
-        console.log('ID: ', dispositivo.idDispositivo)
-        //ref = `dispositivos\\${usuarioID}\\{dispositivo.idDispositivo}`
-
-
+        console.log('ID: ',usuarioID, dispositivo.idDispositivo)
+        remove(ref(database, "dispositivos/" + usuarioID + "/" + dispositivo.idDispositivo))
+        .then(() => {
+          Alert.alert('Dispositivo deletado!');
+          nav.navigate('Tela-Home')
+        })
+        .catch(() => {
+          alert("erro");
+        })
       }}
-    ] )
+    ])
   }
 
   return (
   <View style={styles.background}>
+      
+      <TouchableOpacity style={{marginTop:100}} onPress={handleDelete}>
+      <FontAwesome name="trash-o" size={24} color="white" />
+      </TouchableOpacity>
       <HeadContainerSlot/>
       <FlatSlot/>
-      <Text>A partir daqui se o slot tiver livre ao clicar em configurar você libera a porta de inserir medicamento, e se tiver ocupado ele vai ter uma opção de lixeira que serve para esvaziar o slot e consequentemente abrir a porta de despejar medicamento</Text>
-      <TouchableOpacity style={{marginTop:25}} onPress={handleDelete}>
-          <FontAwesome name="trash-o" size={24} color="white" />
-      </TouchableOpacity>
+
   </View>       
   );}
   

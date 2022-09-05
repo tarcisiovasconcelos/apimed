@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, ToastAndroid } from 'react-native';
+import { StyleSheet, View, Text, ToastAndroid, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
@@ -22,13 +22,11 @@ export function HeadContainer () {
   
 
     const [ dispositivos, setDispositivos ] = useState<any[]>([])
-    
-
-    const getDispositivos = async () => {
-      const auth = getAuth()
+    const auth = getAuth()
       const usuarioID = auth.currentUser.uid;
       const database = getDatabase();
-      
+
+    const getDispositivos = async () => {  
       const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
       //Busca por dados de dispositivos/firebase
       onValue(refDispositivos, (snapshot) => {
@@ -40,23 +38,30 @@ export function HeadContainer () {
     }
 
     const dispositivoNew = async () => {
-      const auth = getAuth()
-      const usuarioID = auth.currentUser.uid;
-      const database = getDatabase();
       let UID = push(ref(database, `dispositivos/${usuarioID}`)).key; //Id unico
       let dadosDispositivo:IDispositivo = {
         idDispositivo: UID,
-        nome: 'Dispositivo 1',
-        paciente:'Tio Zezo',
+        nome: 'Dispositivo 2',
+        paciente:'Tio Nenem',
         slots:[
           {id:"01",status:"livre",nome:"Slot01", data: "15/12/2025", horario: "15:30", medicamentos:["Dipirona"]},
           {id:"02",status:"livre",nome:"Slot02", data: "12/02/2027", horario: "16:45", medicamentos:["Dipirona vencida","Paracetamol"]}
         ],
       };
 
-      set(child(ref(database, `dispositivos/${usuarioID}`), dadosDispositivo.idDispositivo), dadosDispositivo)
-      ToastAndroid.show("CRIADO", 3000);
-    }
+      Alert.alert('Adicionar', 'Deseja realmente adicionar um dispositivo', [
+        {text:'Cancelar'},
+        {text: 'Confirmar', onPress: () => {
+          set(child(ref(database, `dispositivos/${usuarioID}`), dadosDispositivo.idDispositivo), dadosDispositivo)
+          .then(() => {
+            Alert.alert('Dispositivo adicionado!');
+          })
+          .catch(() => {
+            alert("erro");
+          })
+        }}
+      ])
+    }    
 
     React.useEffect(() => {
       getDispositivos();
