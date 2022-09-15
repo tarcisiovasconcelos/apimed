@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Entypo } from '@expo/vector-icons'; 
 import { Card } from 'react-native-elements';
@@ -15,13 +14,16 @@ export interface CardiSlotProps {
 export function CardiSlot (props: CardiSlotProps) {
   const nav = useNavigation();
   const { dispositivo } = props;
+
+
+
     
   return (
 
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
-                <Text style={styles.title2}>{dispositivo.slot.name}</Text>
-                <Text style={styles.text1}>{dispositivo.slot.status} </Text>
+                <Text style={styles.title2}>calma, vai chegar</Text>
+                <Text style={styles.text1}>{dispositivo.slots.map((slot) => (<Text>{slot.status}</Text>))}</Text>
                 <TouchableOpacity onPress={() => nav.navigate('Tela-Home', {dispositivo})}>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
                 </TouchableOpacity>
@@ -83,4 +85,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardSlot;

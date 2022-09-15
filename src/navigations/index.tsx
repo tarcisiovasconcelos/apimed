@@ -6,7 +6,6 @@ import { Cadastro } from '../screens/cadastro';
 import { Esqueceusenha } from '../screens/esqueceusenha';
 import { Start } from '../screens/start';
 import { MyTabs } from './configuracoes';
-import { InsertDispositivo } from '../screens/insertdispositivo';
 import { UpdateDispositivo } from '../screens/updatedispositivo';
 import { View } from 'react-native';
 import firebase from "firebase/compat/app";

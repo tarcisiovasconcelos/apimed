@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { CardiSlot } from './cardslot';
+import { CardiSlot } from './cardislot';
+
+
 
 
 

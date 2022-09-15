@@ -45,7 +45,7 @@ export function InfoDisp (props: InfoDispProps) {
             {dispositivo.paciente}
           </Text>
 
-          {dispositivo.slots.map((slot) => (<Text>{slot.nome}</Text>))}
+          
           </View>
         );
     }

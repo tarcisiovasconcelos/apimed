@@ -58,6 +58,10 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
     ])
   }
 
+  React.useEffect(() => {
+    getDispositivos();
+  }, [])
+
   return (
   <View style={styles.background}>
       
