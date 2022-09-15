@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
-import { FlatSlot } from '../../componentes/slots/flatlistslot';
 import { HeadContainerSlot } from '../../componentes/slots/headcontainerslot';
 import { FontAwesome } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { Text } from 'react-native-elements';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, onValue, ref, remove } from 'firebase/database';
 import { useNavigation } from '@react-navigation/native';

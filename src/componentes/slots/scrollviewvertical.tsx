@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Cardi } from '../../componentes/home/card';
 import { CardiSlot } from './cardslot';
 
 

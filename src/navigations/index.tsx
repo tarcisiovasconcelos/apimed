@@ -62,7 +62,6 @@ export function MainNavigation(){
                 <Stack.Screen name="Tela-EsqueceuSenha" component={Esqueceusenha}/>
                 <Stack.Screen name="Tela-Home" component={MyTabs}/>
                 <Stack.Screen name="Tela-UpdateDispositivo" component={UpdateDispositivo}/>
-                <Stack.Screen name="Tela-InsertDispositivo" component={InsertDispositivo}/>
                 
                 
 
