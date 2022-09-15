@@ -6,8 +6,10 @@ import { FontAwesome } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-elements';
 import { getAuth } from 'firebase/auth';
-import { getDatabase, ref, remove } from 'firebase/database';
+import { getDatabase, onValue, ref, remove } from 'firebase/database';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollViewVertical } from '../../componentes/slots/scrollviewvertical';
+import { useState } from 'react';
 
 
 
@@ -17,12 +19,26 @@ export interface UpdateDispositivoProps {
 //LOGIN
 export function UpdateDispositivo (props: UpdateDispositivoProps) {
 
+  const [ dispositivos, setDispositivos ] = useState<any[]>([])
+
+
 
   const { dispositivo } = props.route.params;
   const auth = getAuth()
   const usuarioID = auth.currentUser.uid;
   const database = getDatabase();
   const nav = useNavigation();
+
+  const getDispositivos = async () => {  
+    const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
+    //Busca por dados de dispositivos/firebase
+    onValue(refDispositivos, (snapshot) => {
+      
+      console.log(Object.values(snapshot.val()))
+      setDispositivos(Object.values(snapshot.val()))
+    })
+    console.log('E');
+  }
 
   
 
@@ -51,7 +67,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>
       <HeadContainerSlot/>
-      <FlatSlot/>
+      <ScrollViewVertical dispositivos={dispositivos}/>
 
   </View>       
   );}
