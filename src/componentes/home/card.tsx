@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         width:300,
         height:420,
         borderRadius:15,
-        backgroundColor:'#0077B6'
+        backgroundColor:'#00B4D8'
   
       },
       carditens:{
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
       },
   
       cardimagem:{
-        backgroundColor: 'gold',
+        backgroundColor: 'whitesmoke',
         marginTop:15,
         marginRight:10,
         marginLeft:10,

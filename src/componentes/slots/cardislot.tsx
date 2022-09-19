@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width:280,
     height:80,
     borderRadius:15,
-    backgroundColor:'green'
+    backgroundColor: '#00B4D8',
   },
 
   cardhead:{

@@ -55,7 +55,7 @@ export function ListaComBarra (props: ListaComBarraProps) {
   const handleOrderClick = () => {
     let newList = [...list];
 
-    newList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
+    newList.sort((a, b) => (a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0));
 
     setList(newList);
   };
@@ -139,6 +139,10 @@ export function ListaComBarra (props: ListaComBarraProps) {
       height: 420,
       marginTop: 50,
       alignItems: 'center',
+      backgroundColor:'#00B4D8',
+      borderRadius: 15,
+      borderColor:'white',
+      borderWidth: 0.8
     },
 
     btn:{

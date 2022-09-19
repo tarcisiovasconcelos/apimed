@@ -6,8 +6,6 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { FontAwesome } from '@expo/vector-icons';
 
 
 export interface PerfilProps {
@@ -17,8 +15,6 @@ export function Perfil (props: PerfilProps) {
     
   const nav = useNavigation();
   const auth = getAuth();
-
-  
 
   const Deslogar = async () => {    
     
@@ -34,29 +30,16 @@ export function Perfil (props: PerfilProps) {
 
     return (
     <View style={styles.background}>
-
-      <View style={styles.head1}>
-      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>Slot 01</Text>
-      <TouchableOpacity style={{marginTop:3,marginLeft:10}}>
-      <FontAwesome name="trash-o" size={24} color="white" />
-      </TouchableOpacity>
-      </View>
       <View style={styles.head}>
-        <View style={styles.divisor}>
-          <Text style={styles.title2}>Alarme:</Text>
-          <Text style={styles.title2}>Data:</Text>          
-        </View>
-        <View style={styles.divisor1}>
-        <Text style={styles.title2}>Selecione a Hora</Text>
-        <Text style={styles.title2}>Selecione a Data</Text>
-        </View>       	
+      <Text style={styles.title1}>Área em desenvolvimento</Text>	
       </View>
-      <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB'}}>Medicamentos</Text>
-      <View style={styles.container}>
 
+      <View style={styles.container}>
+        
+      <Text style={styles.title2}>Notificações!</Text>      
+      <Button title="Sair" onPress={Deslogar} buttonStyle={styles.btn}></Button>
       </View>
       <View style={styles.rodape}>
-      <Button title="Salvar" onPress={Deslogar} buttonStyle={styles.btn}></Button>
 
       </View>
 
@@ -67,47 +50,18 @@ export function Perfil (props: PerfilProps) {
   }
   
   const styles = StyleSheet.create({
-
     background: {
-      flex: 0,
+      flex: 1,
       backgroundColor: '#0077B6',
       alignItems: 'center',
-      width: '80%',
-      marginLeft:'10%',
-      height: '70%',
-      marginTop: '30%',
-      borderRadius: 15
-      
+      justifyContent: 'space-evenly',
     },
-
-    divisor:{
-      flex: 0,
-      width: '30%',
-      alignItems: 'flex-end'
-
-    },
-
-    divisor1:{
-      flex: 0,
-      width: '70%',
-      alignItems: 'flex-start',
-    },
-
 
     head:{
-      alignItems:'flex-start',
-      width: '70%',
-      height: 80,
-      marginTop:30,
-      flexDirection: 'row',
-    },
-
-    head1:{
-      alignItems:'flex-start',
-      width: '70%',
-      marginTop:10,
-      flexDirection: 'row',
-      justifyContent: 'space-between'
+      alignItems:'center',
+      width: 315,
+      height: 140,
+      marginTop:50,
     },
   
     logo:{
@@ -117,13 +71,11 @@ export function Perfil (props: PerfilProps) {
 
     container:{
       flex:0,
-      width: '80%',
-      height: '50%',
-      alignItems: 'flex-start',
-      backgroundColor: '#00B4D8',
-      borderRadius: 15,
-      borderWidth: 0.8,
-      borderColor: 'white'
+      width: 315,
+      height: 255,
+      marginTop: 0,
+      alignItems: 'center',
+      justifyContent: 'space-between',
     },
 
     btn:{
@@ -141,7 +93,7 @@ export function Perfil (props: PerfilProps) {
       width: 315,
       height: 50,
       alignItems: 'center',
-      marginTop: 30
+
     },
 
     //CSS DE TEXTO
@@ -158,8 +110,6 @@ export function Perfil (props: PerfilProps) {
       fontSize: 14,
       fontWeight: 'bold',
       color: '#DEDBDB',
-      marginBottom:15,
-      marginLeft: 5,
 
     },
 
