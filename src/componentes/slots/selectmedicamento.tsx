@@ -30,17 +30,27 @@ const items = [
   { id: 10, name: 'instagram' },
 ];
 
+const addMed = async (item) => {    
+    
+  if (item.name == 'angellist'){
+    return (
+        <Text>Teste</Text>
+    )
+}
+
+  }
 
   return (
     
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text>Adicionar Medicamento</Text>
         <KeyboardAvoidingView style={styles.background} behavior="position">
         <SearchableDropdown
           onTextChange={(text) => console.log(text)}
           //On text change listner on the searchable input
-          onItemSelect={(item) => alert(JSON.stringify(item))}
+          onItemSelect={(item) => 
+              console.log(item.name)
+          }
           //onItemSelect called after the selection from the dropdown
           containerStyle={{ padding: 0}}
           //suggestion container style
@@ -71,9 +81,8 @@ const items = [
           }}
           items={items}
           //mapping of item array
-          defaultIndex={2}
           //default selected item index
-          placeholder="Digite aqui "
+          placeholder="Adicionar Medicamento"
           //place holder for the search input
           resetValue={false}
           //reset textInput Value with true and false state
