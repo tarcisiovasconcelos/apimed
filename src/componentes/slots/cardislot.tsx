@@ -24,7 +24,7 @@ export function CardiSlot (props: CardiSlotProps) {
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>calma, vai chegar</Text>
                 <Text style={styles.text1}>{dispositivo.slots.map((slot) => (<Text>{slot.status}</Text>))}</Text>
-                <TouchableOpacity onPress={() => nav.navigate('Tela-Home', {dispositivo})}>
+                <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {dispositivo})}>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
                 </TouchableOpacity>
             </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   card:{
     flex:0,
     justifyContent:'center',
-    width:280,
+    width:'91%',
     height:80,
     borderRadius:15,
     backgroundColor: '#00B4D8',
