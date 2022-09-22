@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -9,16 +9,22 @@ import { getAuth, signOut } from "firebase/auth";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
 import SelectMedicamento from '../../componentes/slots/selectmedicamento';
+import { child, getDatabase, ref, set } from 'firebase/database';
+import teste from '../../componentes/slots/selectmedicamento';
 
 
 
 export interface updateSlotProps {
+  route:any;
 }
 //LOGIN
 export function UpdateSlot (props: updateSlotProps) {
     
   const nav = useNavigation();
-  const auth = getAuth();
+  const auth = getAuth()
+  const database = getDatabase();
+  const usuarioID = auth.currentUser.uid;
+
   
 
 //checando se ele esta on ou off
@@ -31,22 +37,17 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
   });
 
-  const Deslogar = async () => {    
+  
+  const Save = async () => {   
     
-  firebase.auth().signOut()
-  .then(function() {
-    console.log('Logout');
-  }, function(error) {
-    console.error( error );
-  });
+
   }
 
     return (
     
     <View style={styles.background}>
-      <Text style={{fontSize: 20, color: 'red', fontWeight: 'bold'}} >Luiz Eva e Adão</Text>
       <View style={styles.head1}>
-      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>Slot 01</Text>
+      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>SLOT 01</Text>
       <TouchableOpacity style={{marginTop:3,marginLeft:10}}>
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>
@@ -66,10 +67,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         <SelectMedicamento/>
              
       </View>
-      <View style={styles.rodape}>
-      <Button title="Salvar" onPress={Deslogar} buttonStyle={styles.btn}></Button>
 
-      </View>
 
     </View>
       
@@ -131,7 +129,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       width: '80%',
       height: '50%',
       alignItems: 'center',
-      backgroundColor: '#00B4D8',
+      backgroundColor: '#0077B6',
       borderRadius: 15,
       borderWidth: 0.8,
       borderColor: 'white'
