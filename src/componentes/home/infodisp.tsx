@@ -16,7 +16,7 @@ export interface IDispositivo {
   idDispositivo: string,
   nome: string,
   paciente: string,
-  slots:[{id:'', status:'',nome:'',data:'',horario: '', medicamentos:[]}]
+  slots:[{idSlot: string, status: string,nome: string,data: string,hora: string , medicamentos:string[]}]
 }
 
 export function InfoDisp (props: InfoDispProps) {

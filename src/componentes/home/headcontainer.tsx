@@ -15,7 +15,7 @@ export interface IDispositivo {
   idDispositivo: string,
   nome: string,
   paciente: string,
-  slots:[{id:'', status:'',nome:'',data:'',horario: '', medicamentos:[]}]
+  slots:[{idSlot: string, status: string,nome: string,data: string,hora: string , medicamentos:string[]}]
 }
 //Cabeçalho da home Meus dispositivos  + add dispositivo
 export function HeadContainer () {   
@@ -41,11 +41,12 @@ export function HeadContainer () {
       let UID = push(ref(database, `dispositivos/${usuarioID}`)).key; //Id unico
       let dadosDispositivo:IDispositivo = {
         idDispositivo: UID,
-        nome: 'Dispositivo 2',
-        paciente:'Tio Nenem',
+        nome: 'Dispositivo novo modelo',
+        paciente:'Tio Lula',
         slots:[
-          {id:"01",status:"livre",nome:"Slot01", data: "15/12/2025", horario: "15:30", medicamentos:["Dipirona"]},
-          {id:"02",status:"livre",nome:"Slot02", data: "12/02/2027", horario: "16:45", medicamentos:["Dipirona vencida","Paracetamol"]}
+          {idSlot:"01",status:"ocupado",nome:"Slot01", data: "15/12/2025", hora: "15:30", medicamentos:["Dipirona"]},
+          {idSlot:"02",status:"ocupado",nome:"Slot02", data: "12/02/2027", hora: "16:45", medicamentos:["Dipirona","Paracetamol"]},
+          {idSlot:"03",status:"livre",nome:"Slot03", data: "", hora: "", medicamentos:[]},
         ],
       };
 
