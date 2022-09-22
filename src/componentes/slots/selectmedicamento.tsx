@@ -63,6 +63,7 @@ export default function SelectMedicamento() {
         max={7}
         modalContentContainerStyle={{
           backgroundColor: "#0077B6",
+          flex:0,
         }}
         
         placeholder="Selecione os medicamentos"
