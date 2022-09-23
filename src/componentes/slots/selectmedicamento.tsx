@@ -28,12 +28,6 @@ export default function SelectMedicamento() {
     {label: 'medicamento', value: 'y8'},
     {label: 'medicamento', value: 'y9'},
   ]);
-
-  const teste = async () => {   
-    console.log('asds')
-
-  }
-
   
   return (
     <View style={{
