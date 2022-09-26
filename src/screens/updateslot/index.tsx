@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
@@ -11,6 +11,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { child, getDatabase, ref, set } from 'firebase/database';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
+import { TimePicker } from 'react-native-simple-time-picker';
 
 
 
@@ -22,6 +23,21 @@ export function UpdateSlot (props: updateSlotProps) {
     
   const nav = useNavigation();
   const [date, setDate] = useState('09-10-2020');
+  const [hours, setHours] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0);
+  const [horario,setHorario] = useState('00:00');
+  const [alarme,setAlarme] = useState([]);
+
+  const handleChange = (value: { hours: number, minutes: number }) => {
+
+    setHours(value.hours);
+    setMinutes(value.minutes);
+    
+  };
+  const handleReset = () => {
+    setHours(0);
+    setMinutes(0);
+  };
   const auth = getAuth()
   const database = getDatabase();
   const usuarioID = auth.currentUser.uid;
@@ -54,13 +70,38 @@ firebase.auth().onAuthStateChanged(function(user) {
     //offline
   }
   });
+  const AutoAtt = async () => {  
+    //Tratando String hora e minuto para fazer a String Horario 00:00
+    
+    console.log(horario)
 
+  }
+
+  React.useEffect(() => {
+    if (String(hours).length == 1){
+      var newHours = ('0' + String(hours))
+    }
+    else{
+      var newHours = (String(hours))
+    }
+    if (String(minutes).length == 1){
+      var newMinutes = ('0' + String(minutes))
+    }
+    else{
+      var newMinutes = (String(minutes))
+    }
+    setHorario(newHours + ':' + newMinutes)
+    setAlarme([date,horario,dadosMedicamento])
+  }, [])
   
-  const Save = async () => {  
+  const Save = async () => {    
+
     
     console.log(date)
-    console.log(dadosMedicamento)
-
+    console.log(hours)
+    console.log(minutes)
+    console.log(alarme)
+    
   }
 
     return (
@@ -73,12 +114,14 @@ firebase.auth().onAuthStateChanged(function(user) {
       </TouchableOpacity>
       </View>
       <View style={styles.head}>
-        <View style={styles.divisor}>
-          <Text style={styles.title2}>Alarme:</Text>
-          <Text style={styles.title2}>Data:</Text>          
-        </View>
         <View style={styles.divisor1}>
-        <Text style={styles.title2}>Selecione a Hora</Text>
+        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Selecione a Hora</Text>
+        <TimePicker 
+          style={styles.datePickerStyle}
+          value={{ hours, minutes }} 
+          onChange={handleChange} 
+          />
+        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Selecione a Data</Text>
         <DatePicker
           style={styles.datePickerStyle}
           date={date} //initial date from state
@@ -86,8 +129,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           placeholder="Selecione a data"
           format="DD-MM-YYYY"
           confirmBtnText="Confirmar"
-          cancelBtnText="Cancelar"
-          customStyles={{
+          cancelBtnText="Cancelar"          
+          customStyles={{            
             dateIcon: {
               //display: 'none',
               position: 'absolute',
@@ -96,7 +139,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               marginLeft: 0,
             },
             dateInput: {
-              marginLeft: 36,
+              marginLeft: 36, 
             },
           }}
           onDateChange={(date) => {
@@ -179,30 +222,26 @@ firebase.auth().onAuthStateChanged(function(user) {
       
     },
 
-    divisor:{
-      flex: 0,
-      width: '30%',
-      alignItems: 'flex-end'
-
-    },
 
     divisor1:{
       flex: 0,
-      width: '70%',
-      alignItems: 'flex-start',
+      width: '80%',
+      height:'100%',
+      alignItems: 'center',
     },
 
 
     head:{
-      alignItems:'flex-start',
-      width: '70%',
-      height: 80,
+      alignItems:'center',
+      justifyContent:'center',
+      width: '100%',
+      height: 160,
       marginTop:30,
       flexDirection: 'row',
     },
 
     datePickerStyle: {
-      width: 200,
+      width: '100%',      
     },
 
     head1:{
@@ -279,5 +318,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     },
   });
+
+  export default UpdateSlot;
   
 
