@@ -21,6 +21,7 @@ export interface updateSlotProps {
 //LOGIN
 export function UpdateSlot (props: updateSlotProps) {
     
+  const {slot} = props.route.params; 
   const nav = useNavigation();
   const [date, setDate] = useState('09-10-2020');
   const [hours, setHours] = React.useState(0);
@@ -90,9 +91,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     else{
       var newMinutes = (String(minutes))
     }
-    setHorario(newHours + ':' + newMinutes)
-    setAlarme([date,horario,dadosMedicamento])
-  }, [])
+    const novaHora = newHours + ':' + newMinutes;
+    setHorario(novaHora)
+    setAlarme([date,novaHora,dadosMedicamento])
+  }, [hours, date, minutes, dadosMedicamento])
   
   const Save = async () => {    
 
@@ -108,7 +110,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     
     <View style={styles.background}>
       <View style={styles.head1}>
-      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>SLOT 01</Text>
+      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>{slot.nome}</Text>
       <TouchableOpacity style={{marginTop:3,marginLeft:10}}>
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>

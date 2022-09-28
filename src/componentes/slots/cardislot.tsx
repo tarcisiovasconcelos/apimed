@@ -7,13 +7,13 @@ import { useNavigation } from '@react-navigation/native';
 
 //Propriedades do FlatList (data é uma delas)
 export interface CardiSlotProps {
-  dispositivo:any;
+  slot:any;
 }
 
 
 export function CardiSlot (props: CardiSlotProps) {
   const nav = useNavigation();
-  const { dispositivo } = props;
+  const { slot } = props;
 
 
 
@@ -23,8 +23,8 @@ export function CardiSlot (props: CardiSlotProps) {
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>calma, vai chegar</Text>
-                <Text style={styles.text1}>{dispositivo.slots.map((slot) => (<Text>{slot.status}</Text>))}</Text>
-                <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {dispositivo})}>
+                <Text style={styles.text1}>{slot.status}</Text>
+                <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {slot})}>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
                 </TouchableOpacity>
             </View>

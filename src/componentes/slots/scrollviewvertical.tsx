@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { CardiSlot } from './cardislot';
 
@@ -8,7 +8,7 @@ import { CardiSlot } from './cardislot';
 
 
 export interface ScrollViewVerticalProps {
-  dispositivos: any[]
+  slots: any[]
 }
 //LOGIN
 export function ScrollViewVertical (props: ScrollViewVerticalProps) {
@@ -17,7 +17,12 @@ export function ScrollViewVertical (props: ScrollViewVerticalProps) {
   return (  
       <View style={{minHeight:260,width:'80%'}}>  
       <ScrollView horizontal={false} showsVerticalScrollIndicator={false} style={{minHeight:250}}>
-        {props.dispositivos.map(dispositivo => <CardiSlot key={dispositivo.idDispositivo} dispositivo={dispositivo} />)}
+        {props.slots.map(slot => 
+            <>
+              <Text>{slot.idSlot}</Text>
+              <CardiSlot key={slot.idSlot} slot={slot} />
+            </>
+            )}
       </ScrollView>
       </View>        
 

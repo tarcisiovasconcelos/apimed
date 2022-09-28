@@ -30,9 +30,10 @@ export function HeadContainer () {
       const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
       //Busca por dados de dispositivos/firebase
       onValue(refDispositivos, (snapshot) => {
-        
-        console.log(Object.values(snapshot.val()))
-        setDispositivos(Object.values(snapshot.val()))
+        if (snapshot.exists()) {
+          console.log(Object.values(snapshot.val()))
+          setDispositivos(Object.values(snapshot.val()))
+        }
       })
       console.log('E');
     }

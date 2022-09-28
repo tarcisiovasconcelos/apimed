@@ -17,9 +17,6 @@ export interface UpdateDispositivoProps {
 //LOGIN
 export function UpdateDispositivo (props: UpdateDispositivoProps) {
 
-  const [ dispositivos, setDispositivos ] = useState<any[]>([])
-
-
 
   const { dispositivo } = props.route.params;
   const auth = getAuth()
@@ -27,18 +24,6 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
   const database = getDatabase();
   const nav = useNavigation();
 
-  const getDispositivos = async () => {  
-    const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
-    //Busca por dados de dispositivos/firebase
-    onValue(refDispositivos, (snapshot) => {
-      
-      console.log(Object.values(snapshot.val()))
-      setDispositivos(Object.values(snapshot.val()))
-    })
-    console.log('E');
-  }
-
-  
 
   const handleDelete = async () => {
     Alert.alert('Remover', 'Deseja realmente deletar o dispositivo', [
@@ -59,7 +44,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
   }
 
   React.useEffect(() => {
-    getDispositivos();
+    // getDispositivos();
   }, [])
 
   return (
@@ -69,7 +54,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>
       <HeadContainerSlot/>
-      <ScrollViewVertical dispositivos={dispositivos}/>
+      <ScrollViewVertical slots={dispositivo.slots}/>
 
   </View>       
   );}
