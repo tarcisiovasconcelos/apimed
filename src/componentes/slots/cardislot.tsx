@@ -22,7 +22,7 @@ export function CardiSlot (props: CardiSlotProps) {
 
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
-                <Text style={styles.title2}>calma, vai chegar</Text>
+                <Text style={styles.title2}>{slot.nome}</Text>
                 <Text style={styles.text1}>{slot.status}</Text>
                 <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {slot})}>
                     <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
