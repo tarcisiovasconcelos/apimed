@@ -13,6 +13,7 @@ export interface CardiProps {
 export function Cardi (props: CardiProps) {
   const nav = useNavigation();
   const { dispositivo } = props;
+
     return (
         <Card wrapperStyle={styles.carditens} containerStyle={styles.card}>
           {/*react-native-elements Card*/}

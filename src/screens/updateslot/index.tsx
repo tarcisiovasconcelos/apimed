@@ -12,6 +12,7 @@ import { child, getDatabase, ref, set, update ,} from 'firebase/database';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
 import { TimePicker } from 'react-native-simple-time-picker';
+import { AsyncStorage } from 'react-native';
 
 
 
@@ -169,9 +170,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           });
         }, 15000);
         const slotPosicao = parseInt(slot.idSlot) - 1
-        update(ref(database, `dispositivos/${usuarioID}/-NFABtuFWX8CjQMxdb05/slots/${slotPosicao}`),{
-          status: 'livre'
-        });
+        // update(ref(database, `dispositivos/${usuarioID}/${idDispositivo}/slots/${slotPosicao}`),{
+        //   status: 'livre'
+        // });
       }}
     ])
   }
