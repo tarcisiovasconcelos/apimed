@@ -75,6 +75,17 @@ export function HeadContainer () {
           {idSlot:"28",status:"livre",nome:"Slot28", data: "", hora: "", medicamentos:[]},
           {idSlot:"29",status:"livre",nome:"Slot29", data: "", hora: "", medicamentos:[]},
           {idSlot:"30",status:"livre",nome:"Slot30", data: "", hora: "", medicamentos:[]},
+          {idSlot:"31",status:"livre",nome:"Slot31", data: "", hora: "", medicamentos:[]},
+          {idSlot:"32",status:"livre",nome:"Slot32", data: "", hora: "", medicamentos:[]},
+          {idSlot:"33",status:"livre",nome:"Slot33", data: "", hora: "", medicamentos:[]},
+          {idSlot:"34",status:"livre",nome:"Slot34", data: "", hora: "", medicamentos:[]},
+          {idSlot:"35",status:"livre",nome:"Slot35", data: "", hora: "", medicamentos:[]},
+          {idSlot:"36",status:"livre",nome:"Slot36", data: "", hora: "", medicamentos:[]},
+          {idSlot:"37",status:"livre",nome:"Slot37", data: "", hora: "", medicamentos:[]},
+          {idSlot:"38",status:"livre",nome:"Slot38", data: "", hora: "", medicamentos:[]},
+          {idSlot:"39",status:"livre",nome:"Slot39", data: "", hora: "", medicamentos:[]},
+          {idSlot:"40",status:"livre",nome:"Slot40", data: "", hora: "", medicamentos:[]},
+
 
         ],
       };

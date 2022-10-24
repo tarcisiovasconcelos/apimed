@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View, BackHandler } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -8,7 +8,7 @@ import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
-import { child, getDatabase, ref, set } from 'firebase/database';
+import { child, getDatabase, ref, set, update ,} from 'firebase/database';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
 import { TimePicker } from 'react-native-simple-time-picker';
@@ -21,13 +21,19 @@ export interface updateSlotProps {
 //LOGIN
 export function UpdateSlot (props: updateSlotProps) {
     
-  const {slot} = props.route.params; 
+  const {slot} = props.route.params;
+  const {dispositivo} = props.route.params;
+  const auth = getAuth()
+  const usuarioID = auth.currentUser.uid;
+  const database = getDatabase(); 
   const nav = useNavigation();
   const [date, setDate] = useState('09-10-2020');
   const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
   const [horario,setHorario] = useState('00:00');
   const [alarme,setAlarme] = useState([]);
+  
+  
 
   const handleChange = (value: { hours: number, minutes: number }) => {
 
@@ -39,9 +45,7 @@ export function UpdateSlot (props: updateSlotProps) {
     setHours(0);
     setMinutes(0);
   };
-  const auth = getAuth()
-  const database = getDatabase();
-  const usuarioID = auth.currentUser.uid;
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState([]);
   const [dadosMedicamento,setdadosMedicamento] = useState([])
@@ -95,6 +99,37 @@ firebase.auth().onAuthStateChanged(function(user) {
     setHorario(novaHora)
     setAlarme([date,novaHora,dadosMedicamento])
   }, [hours, date, minutes, dadosMedicamento])
+
+  React.useEffect(() => {
+    if (slot.status == 'livre'){
+      const b = parseInt(slot.idSlot)
+      set(ref(database, '/comunicacao/x'), {
+        x: b,
+      });
+      
+    }
+
+  }, [])
+
+  React.useEffect(() => {
+    const backAction = () => {
+      console.log('ssss')
+      set(ref(database, '/comunicacao/x'), {
+        x: 0,
+      }); 
+      nav.goBack()
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",      
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
+
   
   const Save = async () => {    
 
@@ -103,7 +138,42 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log(hours)
     console.log(minutes)
     console.log(alarme)
-    
+    set(ref(database, '/comunicacao/x'), {
+      x: 0,
+    });
+    const slotPosicao = parseInt(slot.idSlot) - 1
+    console.log('aqui eu preciso do idDispositivo pra colocar na ref')
+    // console.log(dispositivo.idDispositivo)
+    // update(ref(database, `dispositivos/${usuarioID}/${dispositivo.idDispositivo}/slots/${slotPosicao}`),{
+    //   status: 'ocupado'
+    // });
+    nav.goBack()    
+  }
+
+  const adiantarMedicamento = async () => {
+    Alert.alert('Adiantar Medicamento', 'Deseja realmente adiantar o medicamento?', [
+      {text:'Cancelar'},
+      {text: 'Confirmar', onPress: async () => {
+        // console.log(dispositivo)
+        console.log("Adiantando medicação")
+        // aqui \/ eu vou mudar a váriavel de comunicação baseado no id do slot + 40 
+        const a = (parseInt(slot.idSlot) + 40)
+        set(ref(database, '/comunicacao/x'), {
+          x: a,
+        });
+        console.log('Aguardando Caneco ser removido')
+        await setTimeout(() => {
+          console.log('Caneco removido, mudando variável para 0')
+          set(ref(database, '/comunicacao/x'), {
+            x: 0,
+          });
+        }, 15000);
+        const slotPosicao = parseInt(slot.idSlot) - 1
+        update(ref(database, `dispositivos/${usuarioID}/-NFABtuFWX8CjQMxdb05/slots/${slotPosicao}`),{
+          status: 'livre'
+        });
+      }}
+    ])
   }
 
     return (
@@ -111,9 +181,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     <View style={styles.background}>
       <View style={styles.head1}>
       <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>{slot.nome}</Text>
-      <TouchableOpacity style={{marginTop:3,marginLeft:10}}>
-      <FontAwesome name="trash-o" size={24} color="white" />
-      </TouchableOpacity>
+      {slot.status == 'ocupado' && (
+              <TouchableOpacity style={{marginTop:3,marginLeft:10} } onPress={adiantarMedicamento} >
+              <FontAwesome name="trash-o" size={24} color="white"/>
+              </TouchableOpacity> 
+              
+      )}
+
       </View>
       <View style={styles.head}>
         <View style={styles.divisor1}>
@@ -203,7 +277,10 @@ firebase.auth().onAuthStateChanged(function(user) {
       />
       </View>             
       </View>
-      <Button title="Salvar" onPress={Save} buttonStyle={styles.btn}></Button>
+      {slot.status == 'livre' && (
+              <Button title="Salvar" onPress={Save} buttonStyle={styles.btn}></Button>              
+      )}
+      
 
 
     </View>
