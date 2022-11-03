@@ -43,6 +43,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
     ])
   }
 
+
   React.useEffect(() => {
     // getDispositivos();
   }, [])
@@ -54,7 +55,7 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>
       <HeadContainerSlot/>
-      <ScrollViewVertical slots={dispositivo.slots}/>
+      <ScrollViewVertical slots={dispositivo.slots} teste={dispositivo.idDispositivo}/>
 
   </View>       
   );}

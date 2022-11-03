@@ -9,9 +9,12 @@ import { CardiSlot } from './cardislot';
 
 export interface ScrollViewVerticalProps {
   slots: any[]
+  teste:any[]
 }
 //LOGIN
 export function ScrollViewVertical (props: ScrollViewVerticalProps) {
+
+  const { teste } = props;
 
 
   return (  
@@ -19,7 +22,7 @@ export function ScrollViewVertical (props: ScrollViewVerticalProps) {
       <ScrollView horizontal={false} showsVerticalScrollIndicator={false} style={{minHeight:250}}>
         {props.slots.map(slot => 
             <>
-              <CardiSlot key={slot.idSlot} slot={slot} />
+              <CardiSlot key={slot.idSlot} slot={slot} teste={teste}/>
             </>
             )}
       </ScrollView>

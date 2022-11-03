@@ -1,18 +1,19 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import { Alert, StyleSheet, View, BackHandler } from 'react-native';
+import { Alert, StyleSheet, View, BackHandler, ScrollView } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
-import { child, getDatabase, ref, set, update ,} from 'firebase/database';
+import { child, getDatabase, onValue, ref, set, update ,} from 'firebase/database';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
 import { TimePicker } from 'react-native-simple-time-picker';
 import { AsyncStorage } from 'react-native';
+import { ScrollViewVertical } from '../../componentes/slots/scrollviewvertical';
 
 
 
@@ -23,16 +24,17 @@ export interface updateSlotProps {
 export function UpdateSlot (props: updateSlotProps) {
     
   const {slot} = props.route.params;
-  const {dispositivo} = props.route.params;
+  const {teste} = props.route.params;
   const auth = getAuth()
   const usuarioID = auth.currentUser.uid;
   const database = getDatabase(); 
   const nav = useNavigation();
-  const [date, setDate] = useState('09-10-2020');
+  const [date, setDate] = useState(new Date().getDate());
   const [hours, setHours] = React.useState(0);
   const [minutes, setMinutes] = React.useState(0);
   const [horario,setHorario] = useState('00:00');
   const [alarme,setAlarme] = useState([]);
+
   
   
 
@@ -113,6 +115,22 @@ firebase.auth().onAuthStateChanged(function(user) {
   }, [])
 
   React.useEffect(() => {
+    if (slot.status == 'ocupado'){
+      setDate(slot.data)
+      var horaSepara = slot.hora
+      horaSepara = horaSepara.split(':')
+      setHours(Number(horaSepara[0]))
+      setMinutes(Number(horaSepara[1]))
+      setdadosMedicamento(slot.medicamentos)
+      
+
+      
+      
+    }
+
+  }, [])
+
+  React.useEffect(() => {
     const backAction = () => {
       console.log('ssss')
       set(ref(database, '/comunicacao/x'), {
@@ -130,25 +148,26 @@ firebase.auth().onAuthStateChanged(function(user) {
     return () => backHandler.remove();
   }, []);
 
+  
 
   
   const Save = async () => {    
 
     
-    console.log(date)
-    console.log(hours)
-    console.log(minutes)
-    console.log(alarme)
+
     set(ref(database, '/comunicacao/x'), {
       x: 0,
     });
     const slotPosicao = parseInt(slot.idSlot) - 1
-    console.log('aqui eu preciso do idDispositivo pra colocar na ref')
-    // console.log(dispositivo.idDispositivo)
-    // update(ref(database, `dispositivos/${usuarioID}/${dispositivo.idDispositivo}/slots/${slotPosicao}`),{
-    //   status: 'ocupado'
-    // });
-    nav.goBack()    
+    console.log(slot.medicamentos)
+    update(ref(database, `dispositivos/${usuarioID}/${teste}/slots/${slotPosicao}`),{
+      status: 'ocupado',
+      data: date,
+      medicamentos: dadosMedicamento,
+      hora: horario
+    });
+    
+    nav.navigate('Tela-Home')    
   }
 
   const adiantarMedicamento = async () => {
@@ -168,11 +187,16 @@ firebase.auth().onAuthStateChanged(function(user) {
           set(ref(database, '/comunicacao/x'), {
             x: 0,
           });
-        }, 15000);
+        }, 15000);        
         const slotPosicao = parseInt(slot.idSlot) - 1
-        // update(ref(database, `dispositivos/${usuarioID}/${idDispositivo}/slots/${slotPosicao}`),{
-        //   status: 'livre'
-        // });
+        update(ref(database, `dispositivos/${usuarioID}/${teste}/slots/${slotPosicao}`),{
+          status: 'livre',
+          data: '',
+          hora:'',
+          medicamentos:[]
+        });
+        nav.navigate('Tela-Home')
+        
       }}
     ])
   }
@@ -185,7 +209,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       {slot.status == 'ocupado' && (
               <TouchableOpacity style={{marginTop:3,marginLeft:10} } onPress={adiantarMedicamento} >
               <FontAwesome name="trash-o" size={24} color="white"/>
-              </TouchableOpacity> 
+              </TouchableOpacity>
+
               
       )}
 
@@ -199,6 +224,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           onChange={handleChange} 
           />
         <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Selecione a Data</Text>
+
         <DatePicker
           style={styles.datePickerStyle}
           date={date} //initial date from state
@@ -233,7 +259,15 @@ firebase.auth().onAuthStateChanged(function(user) {
       justifyContent: 'flex-start',
       paddingHorizontal: 5,
 
-    }}>
+      }}>
+      {slot.status == 'ocupado' && (
+        <FlatList
+        data={slot.medicamentos
+        }
+        renderItem={({item}) => <Text style={{fontSize:20, fontWeight: 'bold',color: '#DEDBDB', marginBottom:15, }}>{item}</Text>}
+      />
+      )}
+      {slot.status == 'livre' && (
       <DropDownPicker style={{marginTop:10,minHeight:30, backgroundColor:'#0077B6',borderColor:'white', borderWidth:0.1, borderRadius:0,maxHeight:'100%'}}
         open={open}
         value={value}
@@ -246,6 +280,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           console.log(value);
         }        
         }     
+        
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
@@ -276,11 +311,10 @@ firebase.auth().onAuthStateChanged(function(user) {
         }}
         badgeDotColors='#0077B6'
       />
+      )}
       </View>             
       </View>
-      {slot.status == 'livre' && (
-              <Button title="Salvar" onPress={Save} buttonStyle={styles.btn}></Button>              
-      )}
+      <Button title="Salvar" onPress={Save} buttonStyle={styles.btn}></Button>              
       
 
 
