@@ -255,16 +255,16 @@ firebase.auth().onAuthStateChanged(function(user) {
       <View style={styles.container}>
       <View style={{
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
       paddingHorizontal: 5,
+      width:'100%'
 
       }}>
       {slot.status == 'ocupado' && (
         <FlatList
+        style={{width:'100%',marginTop:10,marginLeft:10}}
         data={slot.medicamentos
         }
-        renderItem={({item}) => <Text style={{fontSize:20, fontWeight: 'bold',color: '#DEDBDB', marginBottom:15, }}>{item}</Text>}
+        renderItem={({item}) => <Text style={{fontSize:20, fontWeight: 'bold',color: '#DEDBDB', marginBottom:15,textAlign:'left'}}>{item}</Text>}
       />
       )}
       {slot.status == 'livre' && (

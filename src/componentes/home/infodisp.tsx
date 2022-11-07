@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#DEDBDB',
+        color: 'black',
   
       },
   
       text1:{
         textAlign: 'center',
         fontSize: 10,
-        color: '#DEDBDB',
+        color: 'black',
       },
   
       text2:{

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#DEDBDB',
+    color: 'black',
 
   },
 
@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#DEDBDB',
+    color: 'black',
 
   },
 
   text1:{
     textAlign: 'left',
     fontSize: 10,
-    color: '#DEDBDB',
+    color: 'black',
   },
 
   text2:{

@@ -30,7 +30,7 @@ export function CardiSlot (props: CardiSlotProps) {
 
                 
                 <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {slot,teste})}>
-                    <Entypo name="dots-three-vertical" size={24} color="#DEDBDB" />
+                    <Entypo name="dots-three-vertical" size={24} color="black" />
                 </TouchableOpacity>
             </View>
 
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#DEDBDB',
+    color: 'black',
 
   },
 
   text1:{
 
     fontSize: 10,
-    color: '#DEDBDB',
+    color: 'black',
   },
 
   text2:{
