@@ -45,8 +45,8 @@ export function HeadContainer () {
         nome: 'Dispositivo Modelo',
         paciente:'Paciente Modelo',
         slots:[
-          {idSlot:"01",status:"ocupado",nome:"Slot01", data: "15/12/2025", hora: "15:30", medicamentos:["Dipirona"]},
-          {idSlot:"02",status:"ocupado",nome:"Slot02", data: "12/02/2027", hora: "16:45", medicamentos:["Dipirona","Paracetamol"]},
+          {idSlot:"01",status:"ocupado",nome:"Slot01", data: "", hora: "", medicamentos:[]},
+          {idSlot:"02",status:"ocupado",nome:"Slot02", data: "", hora: "", medicamentos:[]},
           {idSlot:"03",status:"livre",nome:"Slot03", data: "", hora: "", medicamentos:[]},
           {idSlot:"04",status:"livre",nome:"Slot04", data: "", hora: "", medicamentos:[]},
           {idSlot:"05",status:"livre",nome:"Slot05", data: "", hora: "", medicamentos:[]},
