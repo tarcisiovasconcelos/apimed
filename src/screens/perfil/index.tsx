@@ -6,134 +6,200 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { array } from 'yup';
 
 
 export interface PerfilProps {
 }
 //LOGIN
-export function Perfil (props: PerfilProps) {
-    
+export function Perfil(props: PerfilProps) {
+
+  //checando se ele esta on ou off
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      const x = user.uid
+      setUid(x)
+      //online
+    } else {
+      //offline
+    }
+  });
+
+  const database = getDatabase();
   const nav = useNavigation();
   const auth = getAuth();
+  const [uid, setUid] = React.useState('')
+  const [leitura, setLeitura] = React.useState('read');
+  const refNome = ref(database, `notificacoes/${uid}`);
 
-//checando se ele esta on ou off
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    //online
-    console.log( user );
-  } else {
-    //offline
-  }
-  });
 
-  const Deslogar = async () => {    
+
+
+
+
+  const [listNaoLido, setListNaoLido] = React.useState<any[]>([]);
+  const [listLido, setListLido] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+
     
-  firebase.auth().signOut()
-  .then(function() {
-    console.log('Logout');
-  }, function(error) {
-    console.error( error );
-  });
+    onValue(refNome, (snapshot) => {
+      let tempArrayLido:any = []
+      let tempArrayNaoLido:any = []
+      snapshot.forEach(doc => {
+        
+        if (doc.val()[1] == true) {
+          tempArrayLido.push(doc.val()[0])
+        }
+        if (doc.val()[1] == false) {
+          tempArrayNaoLido.push(doc.val()[0])
+        }
+      })
+      setListLido(tempArrayLido)
+      setListNaoLido(tempArrayNaoLido)
+      console.log(listLido)
+      console.log(listNaoLido)
+      
+      
+    })
+  }, [])
+
+
+  const Deslogar = async () => {
+    firebase.auth().signOut()
+      .then(function () {
+        console.log('Logout');
+      }, function (error) {
+        console.error(error);
+      });
   }
 
+  const read = async () => {
+    setLeitura('read')
+    console.log("aqui vai mudar para lido")
+  }
 
-    return (
+  const notRead = async () => {
+    setLeitura('notRead')
+    console.log("aqui vai mudar para não lido")
+
+  }
+
+  return (
     <View style={styles.background}>
+
       <View style={styles.head}>
-      <Text style={styles.title1}>Área em desenvolvimento</Text>	
+        <Button title="Lido" onPress={read} buttonStyle={styles.btnREAD}></Button>
+        <Button title="Não Lido" onPress={notRead} buttonStyle={styles.btnREAD}></Button>
       </View>
+
 
       <View style={styles.container}>
-        
-      <Text style={styles.title2}>Notificações!</Text>      
-      <Button title="Sair" onPress={Deslogar} buttonStyle={styles.btn}></Button>
+
+
+        <Text style={{fontWeight: 'bold',color: '#DEDBDB',marginBottom:50}}>AGORA É SÓ COLOCAR A FLATSLIST</Text>
+        {leitura == 'read' && (
+          <Text style={styles.title2}>{listLido}</Text>           
+        )}
+        {leitura == 'notRead' && (
+          <Text style={styles.title2}>{listNaoLido}</Text>           
+        )}
+
+
+
+
       </View>
       <View style={styles.rodape}>
-
+        <Button title="Sair" onPress={Deslogar} buttonStyle={styles.btn}></Button>
       </View>
 
     </View>
-      
-        
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    background: {
-      flex: 1,
-      backgroundColor: '#0077B6',
-      alignItems: 'center',
-      justifyContent: 'space-evenly',
-    },
 
-    head:{
-      alignItems:'center',
-      width: 315,
-      height: 140,
-      marginTop:50,
-    },
-  
-    logo:{
-      width:245,
-      height:140,    
-    },
 
-    container:{
-      flex:0,
-      width: 315,
-      height: 255,
-      marginTop: 0,
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
+  );
+}
 
-    btn:{
-      flexDirection:'column',
-      borderRadius: 15,
-      backgroundColor: '#00B4D8',
-      width: 165,
-      borderColor: '#DEDBDB',
-      borderRightWidth: 5,
-      borderLeftWidth: 5, 
-    },
+const styles = StyleSheet.create({
+  background: {
+    maxHeight: '100%',
+    flex: 1,
+    backgroundColor: '#0077B6',
+    alignItems: 'center',
 
-    rodape:{
-      flex:0,
-      width: 315,
-      height: 50,
-      alignItems: 'center',
+  },
 
-    },
+  head: {
+    flex: 0,
+    width: 315,
+    maxHeight: '30%',
+    marginTop: 100,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
 
-    //CSS DE TEXTO
-    title1:{
-      textAlign: 'center',
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#DEDBDB',
+  container: {
+    flex: 0,
+    width: 315,
+    minHeight: '60%',
+    marginTop: 0,
+    backgroundColor: 'green',
+  },
 
-    },
+  btn: {
+    flexDirection: 'column',
+    borderRadius: 15,
+    backgroundColor: '#00B4D8',
+    width: 165,
+    borderColor: '#DEDBDB',
+    borderRightWidth: 5,
+    borderLeftWidth: 5,
+  },
 
-    title2:{
-      textAlign: 'center',
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: '#DEDBDB',
+  btnREAD: {
+    flexDirection: 'column',
+    backgroundColor: '#00B4D8',
+    width: 100,
+  },
 
-    },
+  rodape: {
+    flex: 0,
+    width: 315,
+    maxHeight: '10%',
+    alignItems: 'center',
+    backgroundColor: 'red'
 
-    text1:{
-      textAlign: 'center',
-      fontSize: 10,
-      color: '#DEDBDB',
-    },
+  },
 
-    text2:{
-      textAlign: 'center',
-      fontSize: 10,
-      color: '#DEDBDB',
+  //CSS DE TEXTO
+  title1: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
 
-    },
-  });
-  
+  },
+
+  title2: {
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
+  },
+
+  text1: {
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+  },
+
+  text2: {
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+
+  },
+});
+
 
