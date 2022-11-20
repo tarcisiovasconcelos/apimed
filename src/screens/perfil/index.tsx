@@ -90,6 +90,7 @@ export function Perfil(props: PerfilProps) {
     <View style={styles.background}>
 
       <View style={styles.head}>
+        
         <Button title="Lido" onPress={read} buttonStyle={styles.btnREAD}></Button>
         <Button title="Não Lido" onPress={notRead} buttonStyle={styles.btnREAD}></Button>
       </View>
@@ -98,7 +99,7 @@ export function Perfil(props: PerfilProps) {
       <View style={styles.container}>
 
 
-        <Text style={{fontWeight: 'bold',color: '#DEDBDB',marginBottom:50}}>AGORA É SÓ COLOCAR A FLATSLIST</Text>
+        <Text style={{fontWeight: 'bold',color: '#DEDBDB',marginBottom:50,textAlign:'center'}}>Notificações</Text>
         {leitura == 'read' && (
           <Text style={styles.title2}>{listLido}</Text>           
         )}
