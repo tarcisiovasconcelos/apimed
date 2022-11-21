@@ -1,16 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { Button, Card, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { array } from 'yup';
+import ListaNotify from '../../componentes/perfil/listanotificacoes';
+import { FlatList } from 'react-native-gesture-handler';
+import { CardNotify } from '../../componentes/perfil/cardnotify';
+import { ScrollViewVerticalTeste } from '../../componentes/perfil/scrollviewverticalteste';
 
 
 export interface PerfilProps {
+  notify:any
 }
 //LOGIN
 export function Perfil(props: PerfilProps) {
@@ -32,37 +37,43 @@ export function Perfil(props: PerfilProps) {
   const [uid, setUid] = React.useState('')
   const [leitura, setLeitura] = React.useState('read');
   const refNome = ref(database, `notificacoes/${uid}`);
+  const [ notify, setNotificacoes ] = React.useState<any[]>([])
 
 
-
-
-
-
-  const [listNaoLido, setListNaoLido] = React.useState<any[]>([]);
-  const [listLido, setListLido] = React.useState<any[]>([]);
-
-  React.useEffect(() => {
-
-    
+  const getNotificacoes = async () => {  
+    //Busca por dados de dispositivos/firebase
     onValue(refNome, (snapshot) => {
-      let tempArrayLido:any = []
-      let tempArrayNaoLido:any = []
-      snapshot.forEach(doc => {
-        
-        if (doc.val()[1] == true) {
-          tempArrayLido.push(doc.val()[0])
-        }
-        if (doc.val()[1] == false) {
-          tempArrayNaoLido.push(doc.val()[0])
-        }
-      })
-      setListLido(tempArrayLido)
-      setListNaoLido(tempArrayNaoLido)
-      console.log(listLido)
-      console.log(listNaoLido)
+      if (snapshot.exists()) {
+        setNotificacoes(Object.values(snapshot.val()))
+      }
       
       
     })
+
+
+  }
+
+  React.useEffect(() => {
+
+    getNotificacoes();
+
+    // onValue(refNome, (snapshot) => {
+    //   let tempArrayLido:any = []
+    //   let tempArrayNaoLido:any = []
+    //   snapshot.forEach(doc => {
+        
+    //     if (doc.val()[1] == true) {
+    //       tempArrayLido.push(doc.val()[0])
+    //     }
+    //     if (doc.val()[1] == false) {
+    //       tempArrayNaoLido.push(doc.val()[0])
+    //     }
+    //   })
+    //   setListLido(tempArrayLido)
+    //   setListNaoLido(tempArrayNaoLido)
+      
+      
+    // })
   }, [])
 
 
@@ -96,15 +107,12 @@ export function Perfil(props: PerfilProps) {
 
 
       <View style={styles.container}>
-
-
-        <Text style={{fontWeight: 'bold',color: '#DEDBDB',marginBottom:50}}>AGORA É SÓ COLOCAR A FLATSLIST</Text>
         {leitura == 'read' && (
-          <Text style={styles.title2}>{listLido}</Text>           
+                  <ScrollViewVerticalTeste notify={notify}/>          
         )}
-        {leitura == 'notRead' && (
-          <Text style={styles.title2}>{listNaoLido}</Text>           
-        )}
+
+
+
 
 
 
@@ -138,12 +146,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
 
+  list:{
+    width:300
+
+  },
+
   container: {
     flex: 0,
     width: 315,
     minHeight: '60%',
     marginTop: 0,
-    backgroundColor: 'green',
   },
 
   btn: {
