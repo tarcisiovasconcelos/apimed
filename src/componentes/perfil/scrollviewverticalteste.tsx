@@ -43,12 +43,14 @@ export function ScrollViewVerticalTeste (props: ScrollViewVerticalTesteProps) {
 
 
   return (  
-      <View style={{minHeight:260,width:'80%'}}>  
-      <ScrollView horizontal={false} showsVerticalScrollIndicator={false} style={{minHeight:250}}>
+      <View style={{minHeight:260,width:'100%'}}>  
+      <ScrollView horizontal={false} showsVerticalScrollIndicator={true} style={{minHeight:250}}>
         {props.notify.map(not => 
             <>
               <CardiNotify notify={not} />
+
             </>
+            
             )}
       </ScrollView>
       </View>        

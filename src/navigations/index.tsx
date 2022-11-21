@@ -17,6 +17,8 @@ import {
 import { firebaseConfig } from '../config/firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UpdateSlot } from '../screens/updateslot';
+import { NotifyDetails } from '../screens/perfil/notifydetails';
+import { Perfil } from '../screens/perfil';
 
 const Stack = createStackNavigator();
 
@@ -63,6 +65,7 @@ export function MainNavigation(){
                 <Stack.Screen name="Tela-Home" component={MyTabs}/>
                 <Stack.Screen name="Tela-UpdateDispositivo" component={UpdateDispositivo}/>
                 <Stack.Screen name="Tela-UpdateSlot" component={UpdateSlot}/>
+                <Stack.Screen name="Tela-Perfil" component={Perfil}/>
                 
                 
 

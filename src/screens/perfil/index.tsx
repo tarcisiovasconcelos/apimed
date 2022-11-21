@@ -34,9 +34,13 @@ export function Perfil(props: PerfilProps) {
   const nav = useNavigation();
   const auth = getAuth();
   const [uid, setUid] = React.useState('')
-  const [leitura, setLeitura] = React.useState('read');
+  const [leitura, setLeitura] = React.useState('notRead');
   const refNome = ref(database, `notificacoes/${uid}`);
+  const [ notifyLido, setNotifyLido ] = React.useState<any[]>([])
+  const [ notifyNaoLido, setNotifyNaoLido ] = React.useState<any[]>([])
   const [ notify, setNotificacoes ] = React.useState<any[]>([])
+
+
 
 
   const getNotificacoes = async () => {  
@@ -45,35 +49,28 @@ export function Perfil(props: PerfilProps) {
       if (snapshot.exists()) {
         setNotificacoes(Object.values(snapshot.val()))
       }
-      
-      
+      let tempArrayLido:any = []
+      let tempArrayNaoLido:any = []
+      snapshot.forEach(doc => {
+        
+        if (doc.val()[2] == true) {
+          tempArrayLido.push(doc.val())
+        }
+        if (doc.val()[2] == false) {
+          tempArrayNaoLido.push(doc.val())
+        }
+      })
+      setNotifyLido(Object(tempArrayLido))
+      setNotifyNaoLido(Object(tempArrayNaoLido))
+     
     })
 
 
   }
 
   React.useEffect(() => {
-
     getNotificacoes();
-
-    // onValue(refNome, (snapshot) => {
-    //   let tempArrayLido:any = []
-    //   let tempArrayNaoLido:any = []
-    //   snapshot.forEach(doc => {
-        
-    //     if (doc.val()[1] == true) {
-    //       tempArrayLido.push(doc.val()[0])
-    //     }
-    //     if (doc.val()[1] == false) {
-    //       tempArrayNaoLido.push(doc.val()[0])
-    //     }
-    //   })
-    //   setListLido(tempArrayLido)
-    //   setListNaoLido(tempArrayNaoLido)
-      
-      
-    // })
-  }, [])
+  }, [leitura])
 
 
   const Deslogar = async () => {
@@ -108,7 +105,10 @@ export function Perfil(props: PerfilProps) {
 
       <View style={styles.container}>
         {leitura == 'read' && (
-                  <ScrollViewVerticalTeste notify={notify}/>          
+                  <ScrollViewVerticalTeste notify={notifyLido}/>          
+        )}
+        {leitura == 'notRead' && (
+                  <ScrollViewVerticalTeste notify={notifyNaoLido}/>          
         )}
 
 
