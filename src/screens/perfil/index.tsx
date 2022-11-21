@@ -10,7 +10,6 @@ import { getDatabase, onValue, ref } from 'firebase/database';
 import { array } from 'yup';
 import ListaNotify from '../../componentes/perfil/listanotificacoes';
 import { FlatList } from 'react-native-gesture-handler';
-import { CardNotify } from '../../componentes/perfil/cardnotify';
 import { ScrollViewVerticalTeste } from '../../componentes/perfil/scrollviewverticalteste';
 
 
@@ -101,6 +100,7 @@ export function Perfil(props: PerfilProps) {
     <View style={styles.background}>
 
       <View style={styles.head}>
+        
         <Button title="Lido" onPress={read} buttonStyle={styles.btnREAD}></Button>
         <Button title="Não Lido" onPress={notRead} buttonStyle={styles.btnREAD}></Button>
       </View>
