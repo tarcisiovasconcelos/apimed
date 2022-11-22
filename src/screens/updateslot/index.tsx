@@ -14,6 +14,7 @@ import DatePicker from 'react-native-datepicker';
 import { TimePicker } from 'react-native-simple-time-picker';
 import { AsyncStorage } from 'react-native';
 import { ScrollViewVertical } from '../../componentes/slots/scrollviewvertical';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 
@@ -207,8 +208,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       <View style={styles.head1}>
       <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>{slot.nome}</Text>
       {slot.status == 'ocupado' && (
-              <TouchableOpacity style={{marginTop:3,marginLeft:10} } onPress={adiantarMedicamento} >
-              <FontAwesome name="trash-o" size={24} color="white"/>
+              <TouchableOpacity style={{} } onPress={adiantarMedicamento} >
+                <MaterialIcons name="more-time" size={30} color="white" />
               </TouchableOpacity>
 
               
@@ -349,8 +350,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       alignItems:'center',
       justifyContent:'center',
       width: '100%',
-      height: 160,
-      marginTop:30,
+      height: '20%',
       flexDirection: 'row',
     },
 
@@ -361,7 +361,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     head1:{
       alignItems:'flex-start',
       width: '70%',
-      marginTop:'20%',
+      height:'10%',
+      marginTop:80,
       flexDirection: 'row',
       justifyContent: 'space-between'
     },
@@ -374,7 +375,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     container:{
       flex:0,
       width: '80%',
-      height: '50%',
+      height: '45%',
       alignItems: 'center',
       backgroundColor: '#0077B6',
       borderRadius: 15,
