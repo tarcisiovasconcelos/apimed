@@ -7,9 +7,6 @@ import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
 import { getDatabase, onValue, ref } from 'firebase/database';
-import { array } from 'yup';
-import ListaNotify from '../../componentes/perfil/listanotificacoes';
-import { FlatList } from 'react-native-gesture-handler';
 import { ScrollViewVerticalTeste } from '../../componentes/perfil/scrollviewverticalteste';
 
 
@@ -34,14 +31,11 @@ export function Perfil(props: PerfilProps) {
   const nav = useNavigation();
   const auth = getAuth();
   const [uid, setUid] = React.useState('')
-  const [leitura, setLeitura] = React.useState('notRead');
+  const [leitura, setLeitura] = React.useState('');
   const refNome = ref(database, `notificacoes/${uid}`);
   const [ notifyLido, setNotifyLido ] = React.useState<any[]>([])
   const [ notifyNaoLido, setNotifyNaoLido ] = React.useState<any[]>([])
   const [ notify, setNotificacoes ] = React.useState<any[]>([])
-  const [att,setATT] = React.useState('notRead');
-
-
 
 
   const getNotificacoes = async () => {  
@@ -105,6 +99,7 @@ export function Perfil(props: PerfilProps) {
 
 
       <View style={styles.container}>
+        <Text style={{color:'silver',textAlign:'center'}}>Notificações</Text>
         {leitura == 'read' && (
                   <ScrollViewVerticalTeste notify={notifyLido}/>          
         )}
@@ -154,7 +149,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 0,
-    width: '90%',
+    width: '80%',
     height: '70%',
   },
 

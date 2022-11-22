@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { getAuth } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
 
 
 //Propriedades do FlatList (data é uma delas)
@@ -28,21 +28,26 @@ export function CardiNotify (props: CardiNotifyProps) {
   var lido = notify[2]
   var titulo = notify[3]
 
+
   const notRead = async () => {  
+    set(ref(database, `notificacoes/${usuarioID}/${idNotify}/2`), true)
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
         console.log('Setando como lido')
-        set(ref(database, `notificacoes/${usuarioID}/${idNotify}/2`), true)
+
+
       }}
     ])
   }   
   const read = async () => {  
+    set(ref(database, `notificacoes/${usuarioID}/${idNotify}/2`), false)
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
-        console.log('Só exibe')
+        console.log('Só exibe mas agora ta setando como nao lido')
+        nav.navigate('Tela-Home')
       }}
     ])
-  }    
+  } 
 
     
   return (
@@ -56,7 +61,7 @@ export function CardiNotify (props: CardiNotifyProps) {
                 </TouchableOpacity>
 
                 )}
-              {notify[2] == true &&(
+              {lido == true &&(
                 <TouchableOpacity onPress={read}>
                 <Ionicons name="mail-open-outline" size={24} color="black" />
                 </TouchableOpacity>
