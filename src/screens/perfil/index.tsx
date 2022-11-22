@@ -39,6 +39,7 @@ export function Perfil(props: PerfilProps) {
   const [ notifyLido, setNotifyLido ] = React.useState<any[]>([])
   const [ notifyNaoLido, setNotifyNaoLido ] = React.useState<any[]>([])
   const [ notify, setNotificacoes ] = React.useState<any[]>([])
+  const [att,setATT] = React.useState('notRead');
 
 
 
@@ -130,7 +131,7 @@ export function Perfil(props: PerfilProps) {
 
 const styles = StyleSheet.create({
   background: {
-    maxHeight: '100%',
+    height: '100%',
     flex: 1,
     backgroundColor: '#0077B6',
     alignItems: 'center',
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   head: {
     flex: 0,
     width: 315,
-    maxHeight: '30%',
+    height: '10%',
     marginTop: 100,
     flexDirection: 'row',
     justifyContent: 'space-around'
@@ -153,9 +154,8 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 0,
-    width: 315,
-    minHeight: '60%',
-    marginTop: 0,
+    width: '90%',
+    height: '70%',
   },
 
   btn: {
@@ -177,9 +177,8 @@ const styles = StyleSheet.create({
   rodape: {
     flex: 0,
     width: 315,
-    maxHeight: '10%',
+    height: '10%',
     alignItems: 'center',
-    backgroundColor: 'red'
 
   },
 

@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Modal, Alert, Pressable } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Entypo } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
+
 
 //Propriedades do FlatList (data é uma delas)
 export interface CardiNotifyProps {
@@ -14,15 +17,50 @@ export interface CardiNotifyProps {
 
 export function CardiNotify (props: CardiNotifyProps) {
   const nav = useNavigation();
+  const auth = getAuth()
+  const usuarioID = auth.currentUser.uid;
+  const database = getDatabase();
+
 
   const { notify } = props;
+  var idNotify = notify[0]
+  var textoNotify = notify[1]
+  var lido = notify[2]
+  var titulo = notify[3]
+
+  const notRead = async () => {  
+    Alert.alert('Notificação', textoNotify.toString(), [
+      {text: 'Entendi', onPress: () => {
+        console.log('Setando como lido')
+        set(ref(database, `notificacoes/${usuarioID}/${idNotify}/2`), true)
+      }}
+    ])
+  }   
+  const read = async () => {  
+    Alert.alert('Notificação', textoNotify.toString(), [
+      {text: 'Entendi', onPress: () => {
+        console.log('Só exibe')
+      }}
+    ])
+  }    
 
     
   return (
 
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
-              <Text>{notify[1]}</Text>
+              <Text>{titulo}</Text>
+              {lido == false &&(
+                <TouchableOpacity onPress={notRead}>
+                <Ionicons name="mail-outline" size={24} color="black" />
+                </TouchableOpacity>
+
+                )}
+              {notify[2] == true &&(
+                <TouchableOpacity onPress={read}>
+                <Ionicons name="mail-open-outline" size={24} color="black" />
+                </TouchableOpacity>
+              )}
            
             </View>
         </Card>
@@ -35,56 +73,15 @@ const styles = StyleSheet.create({
   card:{
     flex:0,
     justifyContent:'center',
-    width:'90%',
+    width:'95%',
     borderRadius:15,
     backgroundColor: '#00B4D8',
   },
-  
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#2196F3',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  
+
   cardhead:{
     flex:0,
-    height:20,
+    height:30,
+    width:'95%',
     marginRight:10,
     marginLeft:10,
     flexDirection:'row',
