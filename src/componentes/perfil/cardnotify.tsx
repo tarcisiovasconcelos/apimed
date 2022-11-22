@@ -44,7 +44,6 @@ export function CardiNotify (props: CardiNotifyProps) {
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
         console.log('Só exibe mas agora ta setando como nao lido')
-        nav.navigate('Tela-Home')
       }}
     ])
   } 
