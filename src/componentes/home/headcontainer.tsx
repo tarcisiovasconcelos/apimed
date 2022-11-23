@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import { child, getDatabase, onValue, push, ref, set } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
 import { ScrollViewHorizontal } from './scrollviewhorizontal';
 
@@ -23,19 +23,33 @@ export function HeadContainer () {
 
     const [ dispositivos, setDispositivos ] = useState<any[]>([])
     const auth = getAuth()
-      const usuarioID = auth.currentUser.uid;
-      const database = getDatabase();
+    const database = getDatabase();
+    const [ usuarioID, setUsuarioID] = React.useState<any>(null);
+
+    onAuthStateChanged(auth, function (user) {
+      if (user) {
+        const x = user.uid
+        setUsuarioID(x)
+        //online
+      } else {
+        //offline
+      }
+    });
 
     const getDispositivos = async () => {  
-      const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
-      //Busca por dados de dispositivos/firebase
-      onValue(refDispositivos, (snapshot) => {
-        if (snapshot.exists()) {
-          console.log(Object.values(snapshot.val()))
-          setDispositivos(Object.values(snapshot.val()))
-        }
-      })
-      console.log('E');
+
+      if (usuarioID) {
+          const refDispositivos = ref(database,  `dispositivos/${usuarioID}`);
+          //Busca por dados de dispositivos/firebase
+          onValue(refDispositivos, (snapshot) => {
+            if (snapshot.exists()) {
+              console.log(Object.values(snapshot.val()))
+              setDispositivos(Object.values(snapshot.val()))
+            } else {
+              setDispositivos([])
+            }
+          })
+      }
     }
 
     const dispositivoNew = async () => {
@@ -106,7 +120,7 @@ export function HeadContainer () {
 
     React.useEffect(() => {
       getDispositivos();
-    }, [])
+    }, [usuarioID])
 
 
     return (
