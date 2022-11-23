@@ -11,6 +11,7 @@ import { getDatabase, onValue, ref, set } from 'firebase/database';
 //Propriedades do FlatList (data é uma delas)
 export interface CardiNotifyProps {
   notify:any;
+  handleUpdate():any;
   
 }
 
@@ -34,7 +35,7 @@ export function CardiNotify (props: CardiNotifyProps) {
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
         console.log('Setando como lido')
-
+        props.handleUpdate();
 
       }}
     ])
@@ -44,6 +45,8 @@ export function CardiNotify (props: CardiNotifyProps) {
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
         console.log('Só exibe mas agora ta setando como nao lido')
+        props.handleUpdate();
+
       }}
     ])
   } 

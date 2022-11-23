@@ -31,43 +31,47 @@ export function Perfil(props: PerfilProps) {
   const nav = useNavigation();
   const auth = getAuth();
   const [uid, setUid] = React.useState('')
-  const [leitura, setLeitura] = React.useState('');
-  const refNome = ref(database, `notificacoes/${uid}`);
+  const [leitura, setLeitura] = React.useState('read');
+  const [atualizar, setAtualizar] = React.useState(true);
   const [ notifyLido, setNotifyLido ] = React.useState<any[]>([])
   const [ notifyNaoLido, setNotifyNaoLido ] = React.useState<any[]>([])
   const [ notify, setNotificacoes ] = React.useState<any[]>([])
-
-
+  
+  
   const getNotificacoes = async () => {  
     //Busca por dados de dispositivos/firebase
-    onValue(refNome, (snapshot) => {
-      if (snapshot.exists()) {
-        setNotificacoes(Object.values(snapshot.val()))
-      }
-      let tempArrayLido:any = []
-      let tempArrayNaoLido:any = []
-      snapshot.forEach(doc => {
-        
-        if (doc.val()[2] == true) {
-          tempArrayLido.push(doc.val())
+    if (uid) {
+      const refNome = ref(database, `notificacoes/${uid}`);
+      onValue(refNome, (snapshot) => {
+        if (snapshot.exists()) {
+          setNotificacoes(Object.values(snapshot.val()))
         }
-        if (doc.val()[2] == false) {
-          tempArrayNaoLido.push(doc.val())
-        }
+        let tempArrayLido:any = []
+        let tempArrayNaoLido:any = []
+        snapshot.forEach(doc => {
+          
+          if (doc.val()[2] == true) {
+            tempArrayLido.push(doc.val())
+          }
+          if (doc.val()[2] == false) {
+            tempArrayNaoLido.push(doc.val())
+          }
+        })
+        setNotifyLido(Object(tempArrayLido))
+        setNotifyNaoLido(Object(tempArrayNaoLido))
       })
-      setNotifyLido(Object(tempArrayLido))
-      setNotifyNaoLido(Object(tempArrayNaoLido))
-     
-    })
+    }
+  }
 
-
+  const handleUpdate = async () => {
+    setAtualizar(!atualizar)
   }
 
   React.useEffect(() => {
     getNotificacoes();
-  }, [leitura])
+  }, [leitura, atualizar, uid])
 
-
+''
   const Deslogar = async () => {
     firebase.auth().signOut()
       .then(function () {
@@ -101,10 +105,10 @@ export function Perfil(props: PerfilProps) {
       <View style={styles.container}>
         <Text style={{color:'silver',textAlign:'center'}}>Notificações</Text>
         {leitura == 'read' && (
-                  <ScrollViewVerticalTeste notify={notifyLido}/>          
+                  <ScrollViewVerticalTeste notify={notifyLido} handleUpdate={handleUpdate}/>          
         )}
         {leitura == 'notRead' && (
-                  <ScrollViewVerticalTeste notify={notifyNaoLido}/>          
+                  <ScrollViewVerticalTeste notify={notifyNaoLido} handleUpdate={handleUpdate}/>          
         )}
 
 
