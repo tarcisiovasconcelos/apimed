@@ -86,7 +86,7 @@ export function Cadastro () {
           { touched.senha1 && <Text style={styles.text2}>{errors.senha1}</Text>}
           { erro != null && <Text style={styles.text2}>{erro}</Text>}
           { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
-          { !isSubmitting && <Button title="Cadastrar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
+          { !isSubmitting && <Button title="Cadastrar" titleStyle={{color:'#3556AA'}} onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
         </View>)}
       </Formik>
           
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 
   background: {
     flex: 1,
-    backgroundColor: '#0077B6',
+    backgroundColor: '#3556AA',
     alignItems: 'center',
     
   },
@@ -128,8 +128,9 @@ const styles = StyleSheet.create({
   },
 
   btn:{
-    borderRadius: 15,
-    backgroundColor: '#00B4D8',
+    borderRadius: 5,
+    backgroundColor: '#9FBAFF',
+    marginTop:20
   },
 
   rodape:{
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
 
   text1:{
     textAlign: 'center',
-    fontSize: 10,
+    fontSize: 14,
     color: '#DEDBDB',
 
   },

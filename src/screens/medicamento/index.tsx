@@ -24,7 +24,7 @@ export function Medicamento (props: MedicamentoProps) {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
       alignItems: 'center',
     },
 

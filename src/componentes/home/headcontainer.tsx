@@ -127,8 +127,8 @@ export function HeadContainer () {
         <View>
           <View style={styles.headcontainer}>
               <Text style={styles.title2}>Meus Dispositivos</Text>
-              <TouchableOpacity onPress={(dispositivoNew)}>
-              <AntDesign name="plus" size={24} color="#DEDBDB" />
+              <TouchableOpacity onPress={(dispositivoNew)} style={{backgroundColor:'white'}}>
+              <AntDesign name="plus" size={24} color="#3556AA" />
               </TouchableOpacity>     
           </View>    
           <ScrollViewHorizontal dispositivos={dispositivos}/>     
@@ -139,45 +139,45 @@ export function HeadContainer () {
   const styles = StyleSheet.create({
 
     headcontainer:{
-        flex:0,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width: '90%',
-        marginLeft:15,
-        margin:15,
-        height: 25,
-        marginTop: 50,
-    },
+      flex:0,
+      flexDirection:'row',
+      justifyContent:'space-between',
+      width: '90%',
+      marginLeft:15,
+      margin:15,
+      height: 25,
+      marginTop: 50,
+  },
 
-    //CSS DE TEXTO
-    title1:{
-      textAlign: 'center',
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#DEDBDB',
+  //CSS DE TEXTO
+  title1:{
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
 
-    },
+  },
 
-    title2:{
-      textAlign: 'center',
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: '#DEDBDB',
+  title2:{
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
 
-    },
+  },
 
-    text1:{
-      textAlign: 'center',
-      fontSize: 10,
-      color: '#DEDBDB',
-    },
+  text1:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+  },
 
-    text2:{
-      textAlign: 'center',
-      fontSize: 10,
-      color: '#DEDBDB',
+  text2:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
 
-    },
-  });
-  
+  },
+});
+
 

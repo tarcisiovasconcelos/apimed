@@ -20,29 +20,34 @@ const styles = StyleSheet.create({
 
   itemInfo: {
     alignItems:'flex-start',
-    marginVertical:15
+    width:'100%',
+    marginVertical:15,
+    borderWidth:1,
+    padding:20,
+    borderRadius:5,
+    borderColor:'white'
   },
 
   title1:{
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
 
   },
 
   title2:{
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
 
   },
 
   text1:{
     textAlign: 'left',
-    fontSize: 10,
-    color: 'black',
+    fontSize: 12,
+    color: 'white',
   },
 
   text2:{

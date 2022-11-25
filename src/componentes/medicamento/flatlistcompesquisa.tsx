@@ -102,19 +102,20 @@ export function ListaComBarra (props: ListaComBarraProps) {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
-      backgroundColor: '#0077B6',
+      width:'80%',
+      backgroundColor: '#3556AA',
       alignItems: 'center',
     },
     list:{
-      width:300
+      width:'100%'
 
     },
 
     inputContainer: { 
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
       borderColor:"#DEDBDB",
       borderWidth: 1,
-      borderRadius: 15,
+      borderRadius: 5,
       width: 250,
       height: 30,
       paddingLeft: 10,
@@ -135,14 +136,11 @@ export function ListaComBarra (props: ListaComBarraProps) {
 
     container:{
       flex:0,
-      width: 315,
+      width: '100%',
       height: 420,
-      marginTop: 50,
+      marginTop: 20,
       alignItems: 'center',
-      backgroundColor:'#00B4D8',
-      borderRadius: 15,
-      borderColor:'white',
-      borderWidth: 0.8
+      backgroundColor:'#3556AA',
     },
 
     btn:{
@@ -190,4 +188,6 @@ export function ListaComBarra (props: ListaComBarraProps) {
     },
   });
   
+
+
 

@@ -21,7 +21,7 @@ export function Home (props: HomeProps) {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
     },
 
 

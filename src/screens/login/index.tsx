@@ -45,7 +45,7 @@ export function Login (props: LoginProps) {
         onSubmit={login}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
         <View>
-          <Text style={styles.title1}>Entrar</Text>
+          <Text style={styles.title1}>Login</Text>
 
           <Text style={styles.title2}>E-mail</Text>
           <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
@@ -56,7 +56,7 @@ export function Login (props: LoginProps) {
           { touched.senha && <Text style={styles.text2}>{errors.senha}</Text>}
           { erro != null && <Text style={styles.text2}>{erro}</Text>}
           { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
-          { !isSubmitting && <Button title="Logar" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
+          { !isSubmitting && <Button title="Entrar" titleStyle={{color:'#3556AA'}} onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
           <View style={{marginTop: 15}}>
           <TouchableOpacity onPress={() => nav.navigate('Tela-EsqueceuSenha')}>
 	        <Text style={styles.text1}>Esqueçeu a senha? Clique aqui para recuperar.</Text>
@@ -78,7 +78,7 @@ export function Login (props: LoginProps) {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
       alignItems: 'center',
       
     },
@@ -102,8 +102,9 @@ export function Login (props: LoginProps) {
     },
 
     btn:{
-      borderRadius: 15,
-      backgroundColor: '#00B4D8',
+      borderRadius: 5,
+      backgroundColor: '#9FBAFF',
+      marginTop:10
     },
 
     rodape:{
@@ -132,7 +133,7 @@ export function Login (props: LoginProps) {
 
     text1:{
       textAlign: 'center',
-      fontSize: 10,
+      fontSize: 14,
       color: '#DEDBDB',
 
     },

@@ -20,7 +20,7 @@ export function Cardi (props: CardiProps) {
           {/*react-native-elements Card*/}
           <View style={styles.cardhead}>
           <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateDispositivo', {dispositivo})}>
-            <Entypo name="dots-three-vertical" size={24} color="black" />
+            <Entypo name="dots-three-vertical" size={24} color="white" />
           </TouchableOpacity>
           </View>
           
@@ -34,77 +34,77 @@ export function Cardi (props: CardiProps) {
     }
 
 const styles = StyleSheet.create({
-    card:{
-        width:300,
-        height:420,
-        borderRadius:15,
-        backgroundColor:'#00B4D8'
-  
-      },
+  card:{
+    width:300,
+    height:420,
+    borderRadius:15,
+    backgroundColor:'#4663AE'
 
-      logo:{
-        width:'100%',
-        height:'100%',    
-      },
+  },
 
-      carditens:{
-        flex:0,
-        flexDirection:'column',
-        height:395
+  logo:{
+    width:'100%',
+    height:'100%',    
+  },
+
+  carditens:{
+    flex:0,
+    flexDirection:'column',
+    height:395
+
+  },
   
-      },
-      
-      cardhead:{
-        flex:0,
-        height:40,
-        marginTop:15,
-        marginRight:10,
-        marginLeft:10,
-        flexDirection:'row',
-        justifyContent:'flex-end'
-      },
+  cardhead:{
+    flex:0,
+    height:40,
+    marginTop:15,
+    marginRight:10,
+    marginLeft:10,
+    flexDirection:'row',
+    justifyContent:'flex-end'
+  },
+
+  cardimagem:{
+    marginTop:15,
+    marginRight:10,
+    marginLeft:10,
+    height:200,
+  },
   
-      cardimagem:{
-        marginTop:15,
-        marginRight:10,
-        marginLeft:10,
-        height:200,
-      },
-      
-      infodisp:{
-        flex:0,
-        marginTop:15,
-        marginRight:10,
-        marginLeft:10,
-        height: 100
-      },
-      //CSS DE TEXTO
-      title1:{
-        textAlign: 'center',
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#DEDBDB',
-  
-      },
-  
-      title2:{
-        textAlign: 'center',
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: '#DEDBDB',
-  
-      },
-  
-      text1:{
-        textAlign: 'center',
-        fontSize: 10,
-        color: '#DEDBDB',
-      },
-  
-      text2:{
-        textAlign: 'center',
-        fontSize: 10,
-        color: '#DEDBDB',
-  
-      },
-    });
+  infodisp:{
+    flex:0,
+    marginTop:15,
+    marginRight:10,
+    marginLeft:10,
+    height: 100
+  },
+  //CSS DE TEXTO
+  title1:{
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
+  },
+
+  title2:{
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#DEDBDB',
+
+  },
+
+  text1:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+  },
+
+  text2:{
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#DEDBDB',
+
+  },
+});

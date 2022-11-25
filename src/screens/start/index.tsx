@@ -31,7 +31,7 @@ export function Start (props: StartProps) {
         </Text>
       </View>
       <View style={styles.rodape}>
-        <Button buttonStyle={styles.btn} title="Começar" onPress={start}></Button>
+        <Button buttonStyle={styles.btn} titleStyle={{color:'#3556AA'}} title="Começar" onPress={start}></Button>
       </View>
 
     </View>
@@ -43,7 +43,7 @@ export function Start (props: StartProps) {
   const styles = StyleSheet.create({
     background: {
       flex: 1,
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
       alignItems: 'center',
       justifyContent: 'space-evenly',
     },
@@ -70,7 +70,7 @@ export function Start (props: StartProps) {
     btn:{
       flexDirection:'column',
       borderRadius: 15,
-      backgroundColor: '#00B4D8',
+      backgroundColor: '#9FBAFF',
       width: 165,
       borderColor: '#DEDBDB',
       borderRightWidth: 5,

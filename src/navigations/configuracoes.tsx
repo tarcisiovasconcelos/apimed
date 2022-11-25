@@ -12,25 +12,26 @@ export function MyTabs(){
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
       <Tab.Screen name="Medicamentos" component={Medicamento} options={{
-          tabBarActiveBackgroundColor:'#00B4D8',
+          tabBarActiveBackgroundColor:'#9FBAFF',
           tabBarShowLabel:false,
-          tabBarInactiveBackgroundColor:'#0077B6',
+          tabBarInactiveBackgroundColor:'#4663AE',
           tabBarIcon: () => (
             <MaterialCommunityIcons name="pill" size={40} color="#DEDBDB" />
           ),
         }}/>
       <Tab.Screen name="Home" component={Home} options={{
-          tabBarActiveBackgroundColor:'#00B4D8',
+          tabBarActiveBackgroundColor:'#9FBAFF',
           tabBarShowLabel:false,
-          tabBarInactiveBackgroundColor:'#0077B6',
+          tabBarInactiveBackgroundColor:'#4663AE',
           tabBarIcon: () => (
             <MaterialCommunityIcons name="home" size={40} color="#DEDBDB" />
           ),
         }}/>
         <Tab.Screen name="Perfil" component={Perfil} options={{
-          tabBarActiveBackgroundColor:'#00B4D8',
+          tabBarActiveBackgroundColor:'#9FBAFF',
           tabBarShowLabel:false,
-          tabBarInactiveBackgroundColor:'#0077B6',
+          tabBarInactiveBackgroundColor:'#4663AE',
+        
           tabBarIcon: () => (
             <FontAwesome name="user" size={40} color="#DEDBDB" />
           ),

@@ -7,6 +7,7 @@ import "firebase/compat/firestore"
 import { InputRound } from './components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export interface EsqueceuSenhaProps {
 }
@@ -44,13 +45,17 @@ export function Esqueceusenha (props: EsqueceuSenhaProps) {
         onSubmit={requestPassword}>
         {({ handleChange, touched, handleSubmit, handleBlur, isSubmitting, errors}) => (
         <View>
-          <Text style={styles.title1}>Já estamos quase lá.</Text>
+          <View style={{flex:0, alignItems:'center'}}>
+          <FontAwesome5 name="lock" size={104} color="#9FBAFF"/>
+          </View>
+          <Text style={styles.title1}>Esqueceu sua senha?</Text>
+          <Text style={{color:'white', marginBottom:10}}>Por favor, informe o E-mail associado a sua conta que enviaremos um link para o mesmo com as instruções para a restauração de sua senha.</Text>
       
           <Text style={styles.title2}>E-mail</Text>
           <InputRound onBlur={handleBlur('email')} placeholder="Digite seu email" icone="email" onChangeText={handleChange('email')}/>
           { touched.email && <Text style={styles.text2}>{errors.email}</Text>}        
        
-          { !isSubmitting && <Button title="Recuperar senha" onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
+          { !isSubmitting && <Button title="Enviar" titleStyle={{color:'#3556AA'}} onPress={handleSubmit} buttonStyle={styles.btn}></Button>}
           { isSubmitting && <ActivityIndicator size="large" color="#00B4D8"/>}
         </View>
       
@@ -64,7 +69,7 @@ export function Esqueceusenha (props: EsqueceuSenhaProps) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#0077B6',
+    backgroundColor: '#3556AA',
     alignItems: 'center',
     
   },
@@ -89,8 +94,9 @@ const styles = StyleSheet.create({
   },
 
   btn:{
-    borderRadius: 15,
-    backgroundColor: '#00B4D8',
+    borderRadius: 5,
+    backgroundColor: '#9FBAFF',
+    marginTop:10
   },
 
   rodape:{

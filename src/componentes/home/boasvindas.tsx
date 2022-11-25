@@ -51,7 +51,7 @@ export function BoasVindas (props: BoasVindasProps) {
   const styles = StyleSheet.create({
     head:{
       flex:0,
-      alignItems:'center',
+      alignItems:'flex-end',
       width: 390,
       marginLeft:10,
       height: 50,
