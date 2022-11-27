@@ -8,6 +8,7 @@ import { getDatabase, onValue, ref, remove } from 'firebase/database';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollViewVertical } from '../../componentes/slots/scrollviewvertical';
 import { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 
 
@@ -43,6 +44,10 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
     ])
   }
 
+  const handleBack = async () => {
+    nav.navigate('Tela-Home')
+  }
+
 
   React.useEffect(() => {
     // getDispositivos();
@@ -50,10 +55,15 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
 
   return (
   <View style={styles.background}>
-      
+
+      <View style={styles.icons}>
+      <TouchableOpacity style={{marginTop:100}} onPress={handleBack}>
+      <Ionicons name="arrow-back" size={35} color="white" />
+      </TouchableOpacity>
       <TouchableOpacity style={{marginTop:100}} onPress={handleDelete}>
       <FontAwesome name="trash-o" size={24} color="white" />
       </TouchableOpacity>
+      </View>  
       <HeadContainerSlot/>
       <ScrollViewVertical slots={dispositivo.slots} teste={dispositivo.idDispositivo}/>
 
@@ -62,9 +72,16 @@ export function UpdateDispositivo (props: UpdateDispositivoProps) {
   
   const styles = StyleSheet.create({
     background: {
-      flex: 1,
-      backgroundColor: '#0077B6',
+      flex: 0,
+      height:'100%',
+      backgroundColor: '#3556AA',
       alignItems:'center'
+    },
+    icons:{
+      flex:0,
+      flexDirection:'row',
+      width:'90%',
+      justifyContent:'space-between'
     },
 
 

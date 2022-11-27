@@ -18,11 +18,13 @@ export function ScrollViewVertical (props: ScrollViewVerticalProps) {
 
 
   return (  
-      <View style={{minHeight:260,width:'80%'}}>  
-      <ScrollView horizontal={false} showsVerticalScrollIndicator={false} style={{minHeight:250}}>
+      <View style={{flex:0,alignItems:'center',height:'70%',width:'90%'}}>  
+      <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
         {props.slots.map(slot => 
             <>
+              <View>
               <CardiSlot key={slot.idSlot} slot={slot} teste={teste}/>
+              </View>
             </>
             )}
       </ScrollView>

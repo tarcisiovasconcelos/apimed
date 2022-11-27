@@ -15,6 +15,9 @@ import { TimePicker } from 'react-native-simple-time-picker';
 import { AsyncStorage } from 'react-native';
 import { ScrollViewVertical } from '../../componentes/slots/scrollviewvertical';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 
 
 
@@ -141,7 +144,14 @@ firebase.auth().onAuthStateChanged(function(user) {
   }, []);
 
   
-
+  const backAction = () => {
+    console.log('ssss')
+    set(ref(database, '/comunicacao/x'), {
+      x: 0,
+    }); 
+    nav.goBack()
+    return true;
+  };
   
   const Save = async () => {    
 
@@ -152,14 +162,22 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
     const slotPosicao = parseInt(slot.idSlot) - 1
     console.log(slot.medicamentos)
-    update(ref(database, `dispositivos/${usuarioID}/${teste}/slots/${slotPosicao}`),{
-      status: 'ocupado',
-      data: date,
-      medicamentos: dadosMedicamento,
-      hora: horario
-    });
-    
-    nav.navigate('Tela-Home')    
+    {slot.status == 'livre' &&(
+      update(ref(database, `dispositivos/${usuarioID}/${teste}/slots/${slotPosicao}`),{
+        status: 'ocupado',
+        data: date,
+        medicamentos: dadosMedicamento,
+        hora: horario
+      })      
+      
+    )}
+    {slot.status == 'ocupado' &&(
+      update(ref(database, `dispositivos/${usuarioID}/${teste}/slots/${slotPosicao}`),{
+        data: date,
+        hora: horario
+      })
+    )}
+    nav.navigate('Tela-Home')
   }
 
   const adiantarMedicamento = async () => {
@@ -196,52 +214,63 @@ firebase.auth().onAuthStateChanged(function(user) {
     return (
     
     <View style={styles.background}>
-      <View style={styles.head1}>
-      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>{slot.nome}</Text>
+      <View style={styles.icons}>
+      <TouchableOpacity style={{marginTop:100}} onPress={backAction}>
+      <Ionicons name="arrow-back" size={35} color="white" />
+      </TouchableOpacity>
       {slot.status == 'ocupado' && (
-              <TouchableOpacity style={{} } onPress={adiantarMedicamento} >
-                <MaterialIcons name="more-time" size={30} color="white" />
-              </TouchableOpacity>
-
-              
+              <TouchableOpacity style={{marginTop:100,marginRight:0}} onPress={adiantarMedicamento} >
+                <MaterialIcons name="more-time" size={35} color="white" />
+              </TouchableOpacity>              
       )}
 
+      </View>  
+      <View style={styles.head1}>
+      <Text style={{textAlign: 'center',fontSize: 20,fontWeight: 'bold',color: '#DEDBDB',width:'100%'}}>{slot.nome}</Text>
       </View>
+
       <View style={styles.head}>
         <View style={styles.divisor1}>
-        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Selecione a Hora</Text>
+        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Defina a Hora</Text>
+        <View style={{width:'95%',height:40,backgroundColor:'#4663AE'}}>
         <TimePicker 
-          style={styles.datePickerStyle}
           value={{ hours, minutes }} 
           onChange={handleChange} 
-          />
-        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Selecione a Data</Text>
-
+          hoursUnit='H'
+          zeroPadding
+          minutesUnit="M"
+        />
+        </View>
+        <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB',}}>Defina a Data</Text>
+        <View style={{width:'95%',backgroundColor:'#4663AE'}}>
         <DatePicker
           style={styles.datePickerStyle}
           date={date} //initial date from state
           mode="date" //The enum of date, datetime and time
           placeholder="Selecione a data"
           format="DD-MM-YYYY"
+          fontWeight='bold'
           confirmBtnText="Confirmar"
-          cancelBtnText="Cancelar"          
+          cancelBtnText="Cancelar"
+          iconSource= {null}
           customStyles={{            
-            dateIcon: {
-              //display: 'none',
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
             dateInput: {
-              marginLeft: 36, 
+              marginLeft: 26, 
+              borderColor:'transparent',
+              backgroundColor:'#4663AE',
             },
+
           }}
           onDateChange={(date) => {
             setDate(date);
           }}
         />
-        </View>       	
+        </View>
+        </View>
+        <View style={{flex:0,width:'10%',height:'100%'}}>
+          <AntDesign name="clockcircleo" style={{marginTop:20}} size={35} color="white" />
+          <AntDesign name="calendar" style={{marginTop:20}} size={35} color="white" />
+          </View>       	
       </View>
       <Text style={{textAlign: 'center',fontSize: 14,fontWeight: 'bold',color: '#DEDBDB'}}>Medicamentos</Text>
       <View style={styles.container}>
@@ -253,14 +282,16 @@ firebase.auth().onAuthStateChanged(function(user) {
       }}>
       {slot.status == 'ocupado' && (
         <FlatList
-        style={{width:'100%',marginTop:10,marginLeft:10}}
+        style={{width:'100%',marginTop:10,marginLeft:10,backgroundColor:'transparent'}}
         data={slot.medicamentos
         }
-        renderItem={({item}) => <Text style={{fontSize:20, fontWeight: 'bold',color: '#DEDBDB', marginBottom:15,textAlign:'left'}}>{item}</Text>}
+        renderItem={({item}) => 
+        <Text style={{fontSize:20,backgroundColor:'#3556AA', fontWeight: 'bold',color: '#DEDBDB',width:'80%', marginBottom:10,textAlign:'left'}}>
+          {item}</Text>}
       />
       )}
       {slot.status == 'livre' && (
-      <DropDownPicker style={{marginTop:10,minHeight:30, backgroundColor:'#0077B6',borderColor:'white', borderWidth:0.1, borderRadius:0,maxHeight:'100%'}}
+      <DropDownPicker style={{marginTop:10,minHeight:30, backgroundColor:'#4663AE',borderColor:'white', borderWidth:0.1, borderRadius:0,maxHeight:'100%'}}
         open={open}
         value={value}
         items={items}
@@ -280,7 +311,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         searchable={true}
         max={7}
         modalContentContainerStyle={{
-          backgroundColor: "#0077B6",
+          backgroundColor: "#4663AE",
           flex:0,
         }}
         
@@ -293,20 +324,21 @@ firebase.auth().onAuthStateChanged(function(user) {
         multiple={true}
         mode="BADGE"
         badgeStyle={{
-          backgroundColor:'white',
           borderColor:'white',
           borderWidth: 0.8
         }}
-        badgeColors="#00B4D8"
+        badgeColors="#3556AA"
         badgeTextStyle={{
           color:'white'
         }}
-        badgeDotColors='#0077B6'
+
+        badgeDotColors='transparent'
+        badgeDotStyle={{borderColor:'white',borderWidth:1}}
       />
       )}
       </View>             
       </View>
-      <Button title="Salvar" onPress={Save} buttonStyle={styles.btn}></Button>              
+      <Button title="Salvar" onPress={Save} titleStyle={{color:'#3556AA'}} buttonStyle={styles.btn}></Button>              
       
 
 
@@ -320,18 +352,25 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     background: {
       flex: 0,
-      backgroundColor: '#0077B6',
+      backgroundColor: '#3556AA',
       alignItems: 'center',
       width: '100%',
-      height: '100%',
-      borderRadius: 15
-      
+      height: '100%',      
     },
+
+    icons:{
+      flex:0,
+      flexDirection:'row',
+      width:'90%',
+      height:'20%',
+      justifyContent:'space-between'
+    },
+
 
 
     divisor1:{
       flex: 0,
-      width: '80%',
+      width: '50%',
       height:'100%',
       alignItems: 'center',
     },
@@ -341,19 +380,19 @@ firebase.auth().onAuthStateChanged(function(user) {
       alignItems:'center',
       justifyContent:'center',
       width: '100%',
-      height: '20%',
+      height:'20%',
       flexDirection: 'row',
     },
 
     datePickerStyle: {
-      width: '100%',      
+      width: '100%',    
+      fontWeight:'bold',  
     },
 
     head1:{
       alignItems:'flex-start',
       width: '70%',
-      height:'10%',
-      marginTop:80,
+      height:'5%',
       flexDirection: 'row',
       justifyContent: 'space-between'
     },
@@ -366,22 +405,20 @@ firebase.auth().onAuthStateChanged(function(user) {
     container:{
       flex:0,
       width: '80%',
-      height: '45%',
+      height: '40%',
       alignItems: 'center',
-      backgroundColor: '#0077B6',
+      backgroundColor: '#4663AE',
       borderRadius: 15,
       borderWidth: 0.8,
-      borderColor: 'white'
+      borderColor: 'transparent'
     },
 
+
     btn:{
-      flexDirection:'column',
-      borderRadius: 15,
-      backgroundColor: '#00B4D8',
-      width: 165,
-      borderColor: '#DEDBDB',
-      borderRightWidth: 5,
-      borderLeftWidth: 5, 
+      borderRadius: 5,
+      backgroundColor: '#9FBAFF',
+      marginTop:10,
+      width:150
     },
 
     rodape:{

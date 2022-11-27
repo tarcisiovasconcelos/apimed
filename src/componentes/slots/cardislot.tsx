@@ -27,13 +27,10 @@ export function CardiSlot (props: CardiSlotProps) {
             <View style={styles.cardhead}>
                 <Text style={styles.title2}>{slot.nome}</Text>
                 <Text style={styles.text1}>{slot.status}</Text>
-
-                
-                <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {slot,teste})}>
-                    <Entypo name="dots-three-vertical" size={24} color="black" />
-                </TouchableOpacity>
             </View>
-
+            <TouchableOpacity onPress={() => nav.navigate('Tela-UpdateSlot', {slot,teste})}>
+                    <Entypo name="dots-three-horizontal" size={24} color="white" />
+            </TouchableOpacity>
         </Card>
 
   );
@@ -44,49 +41,36 @@ const styles = StyleSheet.create({
   card:{
     flex:0,
     justifyContent:'center',
-    width:'91%',
-    height:80,
-    borderRadius:15,
-    backgroundColor: '#00B4D8',
+    width:150,
+    height:140,
+    borderRadius:10,
+    borderColor:'transparent',
+    backgroundColor: '#4663AE',
   },
 
   cardhead:{
     flex:0,
-    height:30,
+    height:'80%',
     marginRight:10,
     marginLeft:10,
-    flexDirection:'row',
-    justifyContent:'space-between',
+    flexDirection:'column',
     alignItems:'center',
-  },
-
-  title1:{
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#DEDBDB',
-
   },
 
   title2:{
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
+    marginTop:'30%'
 
   },
 
   text1:{
 
-    fontSize: 10,
-    color: 'black',
+    fontSize: 14,
+    color: 'white',
   },
 
-  text2:{
-    textAlign: 'center',
-    fontSize: 10,
-    color: '#DEDBDB',
-
-  },
 });
 
