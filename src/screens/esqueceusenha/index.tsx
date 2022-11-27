@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text ,  ActivityIndicator, Platform, Image, ToastAndroid } from 'react-native';
+import { StyleSheet, View, Text ,  ActivityIndicator, Platform, Image, ToastAndroid, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
@@ -8,6 +8,9 @@ import { InputRound } from './components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+
 
 export interface EsqueceuSenhaProps {
 }
@@ -28,11 +31,23 @@ export function Esqueceusenha (props: EsqueceuSenhaProps) {
           ToastAndroid.show("Desculpe, Não encontramos conta com esse email.", 3000);
         })     
     }
+    const nav = useNavigation();
+
+    const backAction = () => {
+      nav.goBack()
+      return true;
+    };
 
       
 
     return (
     <View style={styles.background}>
+      <View style={styles.icons}>
+      <TouchableOpacity style={{marginTop:100}} onPress={backAction}>
+      <Ionicons name="arrow-back" size={35} color="white" />
+      </TouchableOpacity>
+
+      </View>  
       <View style={styles.head}>
 	      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
       </View>
@@ -73,12 +88,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     
   },
+  icons:{
+    flex:0,
+    flexDirection:'row',
+    width:'90%',
+    height:'20%',
+    justifyContent:'space-between'
+  },
 
   head:{
     alignItems:'center',
     width: 315,
     height: 140,
-    marginTop:50
   },
 
   logo:{
