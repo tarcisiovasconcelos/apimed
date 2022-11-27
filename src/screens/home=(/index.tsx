@@ -20,10 +20,10 @@ export function Home (props: HomeProps) {
   
   const styles = StyleSheet.create({
     background: {
-      flex: 1,
+      flex: 0,
       backgroundColor: '#3556AA',
     },
-
+    //#3556AA
 
     //CSS DE TEXTO
     title1:{

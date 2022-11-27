@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { Image } from 'react-native-elements';
 
 export interface BoasVindasProps {
 }
@@ -42,29 +43,45 @@ export function BoasVindas (props: BoasVindasProps) {
   
 
     return (
-        <View style={styles.head}>
-            <Text style={styles.title1}>Olá {nome}, seja bem-vindo(a)!</Text>
-        </View>        
+
+      <View style={styles.head}>
+      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
+      <View style={styles.head1}>
+      <Text style={styles.title1}>Olá {nome}, seja bem-vindo(a)!</Text>
+      </View>
+      </View>
+      
     );
   }
   
   const styles = StyleSheet.create({
     head:{
       flex:0,
+      alignItems:'center',
+      width: '100%',
+      height: '20%',
+      marginTop:50,
+    },
+    head1:{
+      flex:0,
+      width:'100%',
+      height:'40%',
       alignItems:'flex-end',
-      width: 390,
-      marginLeft:10,
-      height: 50,
-      marginTop:80,
+    },
+
+    logo:{
+      width:245,
+      height:140,
     },
 
     //CSS DE TEXTO
     title1:{
-      textAlign: 'center',
+      textAlign: 'right',
       fontSize: 20,
       fontWeight: 'bold',
       color: '#DEDBDB',
-
+      marginTop:10,
+      width:'60%',
     },
 
     title2:{

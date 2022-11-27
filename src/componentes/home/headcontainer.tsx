@@ -124,7 +124,7 @@ export function HeadContainer () {
 
 
     return (
-        <View>
+        <View style={{flex:0,marginTop:15}}>
           <View style={styles.headcontainer}>
               <Text style={styles.title2}>Meus Dispositivos</Text>
               <TouchableOpacity onPress={(dispositivoNew)} style={{backgroundColor:'white'}}>
@@ -146,7 +146,6 @@ export function HeadContainer () {
       marginLeft:15,
       margin:15,
       height: 25,
-      marginTop: 50,
   },
 
   //CSS DE TEXTO

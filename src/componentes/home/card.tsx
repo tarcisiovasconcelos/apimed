@@ -36,7 +36,7 @@ export function Cardi (props: CardiProps) {
 const styles = StyleSheet.create({
   card:{
     width:300,
-    height:420,
+    height:375,
     borderRadius:15,
     backgroundColor:'#4663AE'
 

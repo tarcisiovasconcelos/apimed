@@ -55,17 +55,17 @@ export function UpdateSlot (props: updateSlotProps) {
   const [dadosMedicamento,setdadosMedicamento] = useState([])
   const [items, setItems] = useState([
     {label: 'Dipirona', value: 'Dipirona'},
-    {label: 'Buprofinule', value: 'Buprofinule'},
-    {label: 'medicamento1', value: 'medicamento1'},
-    {label: 'medicamento2', value: 'medicamento2'},
-    {label: 'medicamento3', value: 'medicamento3'},
-    {label: 'medicamento4', value: 'medicamento4'},
-    {label: 'medicamento5', value: 'medicamento5'},
-    {label: 'medicamento6', value: 'medicamento6'},
-    {label: 'medicamento7', value: 'medicamento7'},
-    {label: 'medicamento8', value: 'medicamento8'},
-    {label: 'medicamento9', value: 'medicamento9'},
-    {label: 'medicamento10', value: 'medicamento10'},
+    {label: 'Paracetamol', value: 'Paracetamol'},
+    {label: 'Medicamento 01', value: 'Medicamento 01'},
+    {label: 'Medicamento 02', value: 'Medicamento 02'},
+    {label: 'Medicamento 03', value: 'Medicamento 03'},
+    {label: 'Medicamento 04', value: 'Medicamento 04'},
+    {label: 'Medicamento 05', value: 'Medicamento 05'},
+    {label: 'Medicamento 06', value: 'Medicamento 06'},
+    {label: 'Medicamento 07', value: 'Medicamento 07'},
+    {label: 'Medicamento 08', value: 'Medicamento 08'},
+    {label: 'Medicamento 09', value: 'Medicamento 09'},
+    {label: 'Medicamento 10', value: 'Medicamento 10'},
   ]);
 
   
@@ -79,12 +79,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     //offline
   }
   });
-  const AutoAtt = async () => {  
-    //Tratando String hora e minuto para fazer a String Horario 00:00
-    
-    console.log(horario)
-
-  }
+  
 
   React.useEffect(() => {
     if (String(hours).length == 1){
@@ -122,11 +117,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       horaSepara = horaSepara.split(':')
       setHours(Number(horaSepara[0]))
       setMinutes(Number(horaSepara[1]))
-      setdadosMedicamento(slot.medicamentos)
-      
-
-      
-      
+      setdadosMedicamento(slot.medicamentos)      
     }
 
   }, [])

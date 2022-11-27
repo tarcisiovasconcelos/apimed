@@ -13,11 +13,11 @@ export function ScrollViewHorizontal (props: ScrollViewHorizontalProps) {
 
 
   return (  
-      <View style={{height:450}}>  
+      <ScrollView style={{height:'100%'}}>  
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {props.dispositivos.map(dispositivo => <Cardi key={dispositivo.idDispositivo} dispositivo={dispositivo} />)}
       </ScrollView>
-      </View>        
+      </ScrollView>        
 
      
   );}

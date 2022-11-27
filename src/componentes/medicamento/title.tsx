@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { Image } from 'react-native-elements';
 
 
 
@@ -11,8 +12,10 @@ export function TitleMedicamentos (props: TitleMedicamentosProps) {
 
     return (    
       <View style={styles.head}>
-        <Text style={styles.title1}>Medicamentos</Text>	
+      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
+      <Text style={styles.title1}>Medicamentos</Text>
       </View>
+      
     );
   }
   
@@ -21,8 +24,13 @@ export function TitleMedicamentos (props: TitleMedicamentosProps) {
     head:{
       alignItems:'center',
       width: 315,
-      height: 45,
-      marginTop:80,
+      height: 175,
+      marginTop:50
+    },
+
+    logo:{
+      width:245,
+      height:140,    
     },
 
     //CSS DE TEXTO
@@ -31,6 +39,7 @@ export function TitleMedicamentos (props: TitleMedicamentosProps) {
       fontSize: 20,
       fontWeight: 'bold',
       color: '#DEDBDB',
+      marginTop:10
 
     },
 

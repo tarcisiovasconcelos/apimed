@@ -5,11 +5,11 @@ const ListaMedicamentos = ({ data }) => {
   return (
       <View style={styles.itemInfo}>
         <Text style={styles.title1}>{data.nome}</Text>
-        <Text style={styles.title2}>Descrição:</Text>
+        <Text style={styles.title2}>Descrição</Text>
         <Text style={styles.text1}>{data.descricao}</Text>
-        <Text style={styles.title2}>Efeitos colaterais:</Text>
+        <Text style={styles.title2}>Efeitos colaterais</Text>
         <Text style={styles.text1}>{data.efeitos}</Text>
-        <Text style={styles.title2}>Interação medicamentosa:</Text>
+        <Text style={styles.title2}>Interação medicamentosa</Text>
         <Text style={styles.text1}>{data.interacao}</Text>
       </View>
   );

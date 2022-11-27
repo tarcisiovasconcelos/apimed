@@ -116,17 +116,10 @@ export function ListaComBarra (props: ListaComBarraProps) {
       borderColor:"#DEDBDB",
       borderWidth: 1,
       borderRadius: 5,
-      width: 250,
+      width: '70%',
       height: 30,
       paddingLeft: 10,
       color:"#DEDBDB"
-    },
-
-    head:{
-      alignItems:'center',
-      width: 315,
-      height: 45,
-      marginTop:80,
     },
   
     logo:{
@@ -138,7 +131,6 @@ export function ListaComBarra (props: ListaComBarraProps) {
       flex:0,
       width: '100%',
       height: 420,
-      marginTop: 20,
       alignItems: 'center',
       backgroundColor:'#3556AA',
     },
@@ -149,7 +141,7 @@ export function ListaComBarra (props: ListaComBarraProps) {
 
     barra:{
       flex:0,
-      width: 315,
+      width: '95%',
       height: 50,
       marginTop:5,
       flexDirection:'row',
