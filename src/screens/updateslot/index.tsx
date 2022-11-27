@@ -286,7 +286,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         data={slot.medicamentos
         }
         renderItem={({item}) => 
-        <Text style={{fontSize:20,backgroundColor:'#3556AA', fontWeight: 'bold',color: '#DEDBDB',width:'80%', marginBottom:10,textAlign:'left'}}>
+        <Text style={{borderRadius:5,borderColor:'transparent',fontSize:20,backgroundColor:'#3556AA', fontWeight: 'bold',color: '#DEDBDB',width:'80%', marginBottom:10,textAlign:'left'}}>
           {item}</Text>}
       />
       )}
