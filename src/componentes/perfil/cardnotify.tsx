@@ -41,7 +41,6 @@ export function CardiNotify (props: CardiNotifyProps) {
     ])
   }   
   const read = async () => {  
-    set(ref(database, `notificacoes/${usuarioID}/${idNotify}/2`), false)
     Alert.alert('Notificação', textoNotify.toString(), [
       {text: 'Entendi', onPress: () => {
         console.log('Só exibe mas agora ta setando como nao lido')
@@ -56,16 +55,16 @@ export function CardiNotify (props: CardiNotifyProps) {
 
         <Card containerStyle={styles.card} >
             <View style={styles.cardhead}>
-              <Text>{titulo}</Text>
+              <Text style={{color:'white'}}>{titulo}</Text>
               {lido == false &&(
                 <TouchableOpacity onPress={notRead}>
-                <Ionicons name="mail-outline" size={24} color="black" />
+                <Ionicons name="mail-outline" size={24} color="white" />
                 </TouchableOpacity>
 
                 )}
               {lido == true &&(
                 <TouchableOpacity onPress={read}>
-                <Ionicons name="mail-open-outline" size={24} color="black" />
+                <Ionicons name="mail-open-outline" size={24} color="white" />
                 </TouchableOpacity>
               )}
            
@@ -81,8 +80,9 @@ const styles = StyleSheet.create({
     flex:0,
     justifyContent:'center',
     width:'95%',
-    borderRadius:15,
-    backgroundColor: '#00B4D8',
+    borderRadius:10,
+    borderColor:'transparent',
+    backgroundColor: '#4663AE',
   },
 
   cardhead:{

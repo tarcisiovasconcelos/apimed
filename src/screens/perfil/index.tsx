@@ -1,13 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Card, Text } from 'react-native-elements';
+import { Button, Card, Image, Text } from 'react-native-elements';
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import { getAuth, signOut } from "firebase/auth";
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { ScrollViewVerticalTeste } from '../../componentes/perfil/scrollviewverticalteste';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export interface PerfilProps {
@@ -80,46 +83,74 @@ export function Perfil(props: PerfilProps) {
         console.error(error);
       });
   }
+  const [isActiveLido, setIsActiveLido] = React.useState(true);
+  const [isActiveNaoLido, setIsActiveNaoLido] = React.useState(false);
 
   const read = async () => {
     setLeitura('read')
+    setIsActiveLido(true);
+    setIsActiveNaoLido(false);
     console.log("aqui vai mudar para lido")
+    
   }
 
   const notRead = async () => {
     setLeitura('notRead')
+    setIsActiveNaoLido(true);
+    setIsActiveLido(false);
     console.log("aqui vai mudar para não lido")
-
   }
+
+
+
 
   return (
     <View style={styles.background}>
 
+      <View style={styles.head1}>
+	      <Image style={styles.logo} source={require('./../../assets/imgs/LOGO-Aprovada.png')}/>
+      </View>
       <View style={styles.head}>
-        
-        <Button title="Lido" onPress={read} buttonStyle={styles.btnREAD}></Button>
-        <Button title="Não Lido" onPress={notRead} buttonStyle={styles.btnREAD}></Button>
+        <Button title="Lido" icon={
+          <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color={ isActiveLido ? '#4663AE' : 'white'} />
+        } 
+        onPress={read} titleStyle={{color: isActiveLido ? '#4663AE' : 'white',marginLeft:10}} 
+        buttonStyle={{
+          borderRadius: 5,
+          backgroundColor: isActiveLido ? 'white' : '#4663AE',
+          width:120,
+          marginTop:10,
+          borderWidth:2,
+          borderColor: isActiveLido ? '#4663AE' : 'white' 
+        }}>
+        </Button>
+        <Button title="Não Lido" icon={
+          <MaterialCommunityIcons name="email-multiple-outline" size={24} color={ isActiveNaoLido ? '#4663AE' : 'white'} />
+        } 
+        onPress={notRead} titleStyle={{color: isActiveNaoLido ? '#4663AE' : 'white',marginLeft:10}} 
+        buttonStyle={{
+          borderRadius: 5,
+          backgroundColor: isActiveNaoLido ? 'white' : '#4663AE',
+          width:120,
+          marginTop:10,
+          borderWidth:2,
+          borderColor: isActiveNaoLido ? '#4663AE' : 'white' 
+        }}>         
+
+        </Button>
       </View>
 
 
       <View style={styles.container}>
-        <Text style={{color:'silver',textAlign:'center'}}>Notificações</Text>
         {leitura == 'read' && (
                   <ScrollViewVerticalTeste notify={notifyLido} handleUpdate={handleUpdate}/>          
         )}
         {leitura == 'notRead' && (
                   <ScrollViewVerticalTeste notify={notifyNaoLido} handleUpdate={handleUpdate}/>          
         )}
-
-
-
-
-
-
-
       </View>
       <View style={styles.rodape}>
-        <Button title="Sair" onPress={Deslogar} buttonStyle={styles.btn}></Button>
+        <Button title="Sair" onPress={Deslogar} titleStyle={{color:'#3556AA'}} buttonStyle={styles.btn1}></Button>
       </View>
 
     </View>
@@ -131,20 +162,31 @@ export function Perfil(props: PerfilProps) {
 const styles = StyleSheet.create({
   background: {
     height: '100%',
-    flex: 1,
-    backgroundColor: '#0077B6',
+    flex: 0,
+    backgroundColor: '#3556AA',
     alignItems: 'center',
 
+  },
+  head1:{
+    alignItems:'center',
+    width: 315,
+    height: 140,
+    marginTop:50
+  },
+
+  logo:{
+    width:245,
+    height:140,    
   },
 
   head: {
     flex: 0,
     width: 315,
-    height: '10%',
-    marginTop: 100,
+    height: '8%',
+    marginTop: 10,
     flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
+    justifyContent: 'space-around',
+    },
 
   list:{
     width:300
@@ -154,18 +196,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     width: '80%',
-    height: '70%',
+    height: '45%',
   },
 
-  btn: {
-    flexDirection: 'column',
-    borderRadius: 15,
-    backgroundColor: '#00B4D8',
-    width: 165,
-    borderColor: '#DEDBDB',
-    borderRightWidth: 5,
-    borderLeftWidth: 5,
-  },
+
+    btn1:{
+      borderRadius: 5,
+      backgroundColor: '#9FBAFF',
+      width:100,
+    },
 
   btnREAD: {
     flexDirection: 'column',
