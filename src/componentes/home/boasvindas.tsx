@@ -66,7 +66,7 @@ export function BoasVindas (props: BoasVindasProps) {
       flex:0,
       width:'100%',
       height:'40%',
-      alignItems:'flex-end',
+      alignItems:'center',
     },
 
     logo:{
@@ -76,7 +76,7 @@ export function BoasVindas (props: BoasVindasProps) {
 
     //CSS DE TEXTO
     title1:{
-      textAlign: 'right',
+      textAlign: 'center',
       fontSize: 20,
       fontWeight: 'bold',
       color: '#DEDBDB',
