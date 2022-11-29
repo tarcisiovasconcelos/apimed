@@ -1,0 +1,345 @@
+{
+  "comunicacao": {
+    "recipiente": 1,
+    "violado": false,
+    "x": {
+      "x": 0
+    }
+  },
+  "dispositivos": {
+    "7UxZgUmYY5asMCXsRVEOKAiPRnp1": {
+      "-NHVql8lAS3VPaYJZZEQ": {
+        "idDispositivo": "-NHVql8lAS3VPaYJZZEQ",
+        "nome": "Dispositivo Modelo",
+        "paciente": "Paciente Modelo",
+        "slots": [
+          {
+            "data": "23-11-2022",
+            "hora": "14:00",
+            "idSlot": "01",
+            "medicamentos": [
+              "Dipirona",
+              "Buprofinule",
+              "medicamento6",
+              "medicamento9"
+            ],
+            "nome": "Slot01",
+            "status": "ocupado"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "02",
+            "nome": "Slot02",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "03",
+            "nome": "Slot03",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "04",
+            "nome": "Slot04",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "05",
+            "nome": "Slot05",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "06",
+            "nome": "Slot06",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "07",
+            "nome": "Slot07",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "08",
+            "nome": "Slot08",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "09",
+            "nome": "Slot09",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "10",
+            "nome": "Slot10",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "11",
+            "nome": "Slot11",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "12",
+            "nome": "Slot12",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "13",
+            "nome": "Slot13",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "14",
+            "nome": "Slot14",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "15",
+            "nome": "Slot15",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "16",
+            "nome": "Slot16",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "17",
+            "nome": "Slot17",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "18",
+            "nome": "Slot18",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "19",
+            "nome": "Slot19",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "20",
+            "nome": "Slot20",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "21",
+            "nome": "Slot21",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "22",
+            "nome": "Slot22",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "23",
+            "nome": "Slot23",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "24",
+            "nome": "Slot24",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "25",
+            "nome": "Slot25",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "26",
+            "nome": "Slot26",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "27",
+            "nome": "Slot27",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "28",
+            "nome": "Slot28",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "29",
+            "nome": "Slot29",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "30",
+            "nome": "Slot30",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "31",
+            "nome": "Slot31",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "32",
+            "nome": "Slot32",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "33",
+            "nome": "Slot33",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "34",
+            "nome": "Slot34",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "35",
+            "nome": "Slot35",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "36",
+            "nome": "Slot36",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "37",
+            "nome": "Slot37",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "38",
+            "nome": "Slot38",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "39",
+            "nome": "Slot39",
+            "status": "livre"
+          },
+          {
+            "data": "",
+            "hora": "",
+            "idSlot": "40",
+            "nome": "Slot40",
+            "status": "livre"
+          }
+        ]
+      }
+    }
+  },
+    
+  "medicamentos": [
+    {
+      "descricao": "Descrição do medicamento ",
+      "efeitos": "Efeitos do medicamento ",
+      "id": 0,
+      "interacao": "Interação do medicamento ",
+      "nome": "Medicamento 01"
+    },
+    {
+      "descricao": "Descrição do medicamento ",
+      "efeitos": "Efeitos do medicamento ",
+      "id": 1,
+      "interacao": "Interação do medicamento ",
+      "nome": "Medicamento 02"
+    },
+    {
+      "descricao": "Descrição do medicamento ",
+      "efeitos": "Efeitos do medicamento ",
+      "id": 2,
+      "interacao": "Interação do medicamento ",
+      "nome": "Dipirona"
+    },
+    {
+      "descricao": "Descrição do medicamento ",
+      "efeitos": "Efeitos do medicamento ",
+      "id": 3,
+      "interacao": "Interação do medicamento ",
+      "nome": "Paracetamol"
+    }
+  ],
+  "notificacoes": {
+  },
+  "usuarios": {
+    "7UxZgUmYY5asMCXsRVEOKAiPRnp1": {
+      "idUsuario": "7UxZgUmYY5asMCXsRVEOKAiPRnp1",
+      "name": "Tarcisio Vasconcelos"
+    }
+  }
+}
